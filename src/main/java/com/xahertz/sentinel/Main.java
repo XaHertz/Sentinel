@@ -22,45 +22,127 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Tool_Bar = new javax.swing.JToolBar();
+        Settings_Button = new javax.swing.JButton();
+        Separator_One = new javax.swing.JToolBar.Separator();
+        About_Button = new javax.swing.JButton();
+        Container = new javax.swing.JPanel();
+        Welcome_Label = new javax.swing.JLabel();
+        Menu_Bar = new javax.swing.JMenuBar();
+        Vault_Menu = new javax.swing.JMenu();
+        Exit = new javax.swing.JMenuItem();
+        Edit_Menu = new javax.swing.JMenu();
+        Tools_Menu = new javax.swing.JMenu();
+        Help_Menu = new javax.swing.JMenu();
+        About = new javax.swing.JMenuItem();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Sentinel");
+        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/images/app-icon.png")).getImage());
+
+        Tool_Bar.setRollover(true);
+
+        Settings_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/settings.png"))); // NOI18N
+        Settings_Button.setFocusable(false);
+        Settings_Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        Settings_Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        Tool_Bar.add(Settings_Button);
+        Tool_Bar.add(Separator_One);
+
+        About_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/about.png"))); // NOI18N
+        About_Button.setFocusable(false);
+        About_Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        About_Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        Tool_Bar.add(About_Button);
+
+        Container.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+
+        Welcome_Label.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        Welcome_Label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Welcome_Label.setText("Welcome to Sentinel");
+
+        javax.swing.GroupLayout ContainerLayout = new javax.swing.GroupLayout(Container);
+        Container.setLayout(ContainerLayout);
+        ContainerLayout.setHorizontalGroup(
+            ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ContainerLayout.createSequentialGroup()
+                .addGap(322, 322, 322)
+                .addComponent(Welcome_Label)
+                .addContainerGap(346, Short.MAX_VALUE))
+        );
+        ContainerLayout.setVerticalGroup(
+            ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ContainerLayout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(Welcome_Label)
+                .addContainerGap(446, Short.MAX_VALUE))
+        );
+
+        Vault_Menu.setText("Vault");
+
+        Exit.setText("Exit");
+        Exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExitActionPerformed(evt);
+            }
+        });
+        Vault_Menu.add(Exit);
+
+        Menu_Bar.add(Vault_Menu);
+
+        Edit_Menu.setText("Edit");
+        Menu_Bar.add(Edit_Menu);
+
+        Tools_Menu.setText("Tools");
+        Menu_Bar.add(Tools_Menu);
+
+        Help_Menu.setText("Help");
+
+        About.setText("About");
+        Help_Menu.add(About);
+
+        Menu_Bar.add(Help_Menu);
+
+        setJMenuBar(Menu_Bar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(Container, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Tool_Bar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(Tool_Bar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Container, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_ExitActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
+        /* Set the FlatLightLaf look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+        /* If FlatLightLaf is not available, stay with the default look and feel. */
+        com.formdev.flatlaf.FlatLightLaf.setup();
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("FlatLightLaf".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
@@ -72,5 +154,18 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem About;
+    private javax.swing.JButton About_Button;
+    private javax.swing.JPanel Container;
+    private javax.swing.JMenu Edit_Menu;
+    private javax.swing.JMenuItem Exit;
+    private javax.swing.JMenu Help_Menu;
+    private javax.swing.JMenuBar Menu_Bar;
+    private javax.swing.JToolBar.Separator Separator_One;
+    private javax.swing.JButton Settings_Button;
+    private javax.swing.JToolBar Tool_Bar;
+    private javax.swing.JMenu Tools_Menu;
+    private javax.swing.JMenu Vault_Menu;
+    private javax.swing.JLabel Welcome_Label;
     // End of variables declaration//GEN-END:variables
 }
