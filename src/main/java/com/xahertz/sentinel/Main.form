@@ -9,12 +9,29 @@
             <Property name="text" type="java.lang.String" value="Vault"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="Exit">
+            <MenuItem class="javax.swing.JMenuItem" name="New_Vault_MenuItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="New Vault"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="Open_Vault_MenuItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Open Vault"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="Close_Vault_MenuItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Close Vault"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JPopupMenu$Separator" name="Vault_Menu_Separator_One">
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="Exit_MenuItem">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Exit"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ExitActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Exit_MenuItemActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
@@ -23,18 +40,76 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Edit"/>
           </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="New_Entry_MenuItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="New Entry"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="Edit_Entry_MenuItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Edit Entry"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="Delete_Entry_MenuItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Delete Entry"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JPopupMenu$Separator" name="Edit_Menu_Separator_One">
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="Copy_Username_MenuItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Copy Username"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="Copy_Password_MenuItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Copy Password"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="Tools_Menu">
           <Properties>
             <Property name="text" type="java.lang.String" value="Tools"/>
           </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="Password_Generator_MenuItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Password Generator"/>
+              </Properties>
+            </MenuItem>
+            <Menu class="javax.swing.JMenu" name="AutoType_Menu">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Perform Auto-Type"/>
+              </Properties>
+              <SubComponents>
+                <MenuItem class="javax.swing.JMenuItem" name="AutoType_All_MenuItem">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Username and Password"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="AutoType_Usename_MenuItem">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Username"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="AutoType_Password_MenuItem">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Password"/>
+                  </Properties>
+                </MenuItem>
+              </SubComponents>
+            </Menu>
+          </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="Help_Menu">
           <Properties>
             <Property name="text" type="java.lang.String" value="Help"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="About">
+            <MenuItem class="javax.swing.JMenuItem" name="About_MenuItem">
               <Properties>
                 <Property name="text" type="java.lang.String" value="About"/>
               </Properties>
@@ -72,13 +147,13 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="Container" max="32767" attributes="0"/>
-          <Component id="Tool_Bar" alignment="0" max="32767" attributes="0"/>
+          <Component id="Main_ToolBar" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <Component id="Tool_Bar" min="-2" max="-2" attributes="0"/>
+              <Component id="Main_ToolBar" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="Container" max="32767" attributes="0"/>
           </Group>
@@ -86,13 +161,49 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JToolBar" name="Tool_Bar">
+    <Container class="javax.swing.JToolBar" name="Main_ToolBar">
       <Properties>
         <Property name="rollover" type="boolean" value="true"/>
       </Properties>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
       <SubComponents>
+        <Component class="javax.swing.JButton" name="Open_Vault_Button">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/images/open.png"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Open Existing Vault"/>
+            <Property name="focusable" type="boolean" value="false"/>
+            <Property name="horizontalTextPosition" type="int" value="0"/>
+            <Property name="verticalTextPosition" type="int" value="3"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="Close_Vault_Button">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/images/vault.png"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Close Vault"/>
+            <Property name="focusable" type="boolean" value="false"/>
+            <Property name="horizontalTextPosition" type="int" value="0"/>
+            <Property name="verticalTextPosition" type="int" value="3"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JToolBar$Separator" name="ToolBar_Separator_One">
+        </Component>
+        <Component class="javax.swing.JButton" name="New_Entry_Button">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/images/plus.png"/>
+            </Property>
+            <Property name="focusable" type="boolean" value="false"/>
+            <Property name="horizontalTextPosition" type="int" value="0"/>
+            <Property name="verticalTextPosition" type="int" value="3"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JToolBar$Separator" name="ToolBar_Separator_Two">
+        </Component>
         <Component class="javax.swing.JButton" name="Settings_Button">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
@@ -103,12 +214,10 @@
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JToolBar$Separator" name="Separator_One">
-        </Component>
         <Component class="javax.swing.JButton" name="About_Button">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/images/about.png"/>
+              <Image iconType="3" name="/images/info.png"/>
             </Property>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>

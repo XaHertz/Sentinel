@@ -22,38 +22,78 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Tool_Bar = new javax.swing.JToolBar();
+        Main_ToolBar = new javax.swing.JToolBar();
+        Open_Vault_Button = new javax.swing.JButton();
+        Close_Vault_Button = new javax.swing.JButton();
+        ToolBar_Separator_One = new javax.swing.JToolBar.Separator();
+        New_Entry_Button = new javax.swing.JButton();
+        ToolBar_Separator_Two = new javax.swing.JToolBar.Separator();
         Settings_Button = new javax.swing.JButton();
-        Separator_One = new javax.swing.JToolBar.Separator();
         About_Button = new javax.swing.JButton();
         Container = new javax.swing.JPanel();
         Welcome_Label = new javax.swing.JLabel();
         Menu_Bar = new javax.swing.JMenuBar();
         Vault_Menu = new javax.swing.JMenu();
-        Exit = new javax.swing.JMenuItem();
+        New_Vault_MenuItem = new javax.swing.JMenuItem();
+        Open_Vault_MenuItem = new javax.swing.JMenuItem();
+        Close_Vault_MenuItem = new javax.swing.JMenuItem();
+        Vault_Menu_Separator_One = new javax.swing.JPopupMenu.Separator();
+        Exit_MenuItem = new javax.swing.JMenuItem();
         Edit_Menu = new javax.swing.JMenu();
+        New_Entry_MenuItem = new javax.swing.JMenuItem();
+        Edit_Entry_MenuItem = new javax.swing.JMenuItem();
+        Delete_Entry_MenuItem = new javax.swing.JMenuItem();
+        Edit_Menu_Separator_One = new javax.swing.JPopupMenu.Separator();
+        Copy_Username_MenuItem = new javax.swing.JMenuItem();
+        Copy_Password_MenuItem = new javax.swing.JMenuItem();
         Tools_Menu = new javax.swing.JMenu();
+        Password_Generator_MenuItem = new javax.swing.JMenuItem();
+        AutoType_Menu = new javax.swing.JMenu();
+        AutoType_All_MenuItem = new javax.swing.JMenuItem();
+        AutoType_Usename_MenuItem = new javax.swing.JMenuItem();
+        AutoType_Password_MenuItem = new javax.swing.JMenuItem();
         Help_Menu = new javax.swing.JMenu();
-        About = new javax.swing.JMenuItem();
+        About_MenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sentinel");
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/images/app-icon.png")).getImage());
 
-        Tool_Bar.setRollover(true);
+        Main_ToolBar.setRollover(true);
+
+        Open_Vault_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/open.png"))); // NOI18N
+        Open_Vault_Button.setToolTipText("Open Existing Vault");
+        Open_Vault_Button.setFocusable(false);
+        Open_Vault_Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        Open_Vault_Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        Main_ToolBar.add(Open_Vault_Button);
+
+        Close_Vault_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/vault.png"))); // NOI18N
+        Close_Vault_Button.setToolTipText("Close Vault");
+        Close_Vault_Button.setFocusable(false);
+        Close_Vault_Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        Close_Vault_Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        Main_ToolBar.add(Close_Vault_Button);
+        Main_ToolBar.add(ToolBar_Separator_One);
+
+        New_Entry_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/plus.png"))); // NOI18N
+        New_Entry_Button.setFocusable(false);
+        New_Entry_Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        New_Entry_Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        Main_ToolBar.add(New_Entry_Button);
+        Main_ToolBar.add(ToolBar_Separator_Two);
 
         Settings_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/settings.png"))); // NOI18N
         Settings_Button.setFocusable(false);
         Settings_Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         Settings_Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        Tool_Bar.add(Settings_Button);
-        Tool_Bar.add(Separator_One);
+        Main_ToolBar.add(Settings_Button);
 
-        About_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/about.png"))); // NOI18N
+        About_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/info.png"))); // NOI18N
         About_Button.setFocusable(false);
         About_Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         About_Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        Tool_Bar.add(About_Button);
+        Main_ToolBar.add(About_Button);
 
         Container.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
@@ -80,26 +120,70 @@ public class Main extends javax.swing.JFrame {
 
         Vault_Menu.setText("Vault");
 
-        Exit.setText("Exit");
-        Exit.addActionListener(new java.awt.event.ActionListener() {
+        New_Vault_MenuItem.setText("New Vault");
+        Vault_Menu.add(New_Vault_MenuItem);
+
+        Open_Vault_MenuItem.setText("Open Vault");
+        Vault_Menu.add(Open_Vault_MenuItem);
+
+        Close_Vault_MenuItem.setText("Close Vault");
+        Vault_Menu.add(Close_Vault_MenuItem);
+        Vault_Menu.add(Vault_Menu_Separator_One);
+
+        Exit_MenuItem.setText("Exit");
+        Exit_MenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ExitActionPerformed(evt);
+                Exit_MenuItemActionPerformed(evt);
             }
         });
-        Vault_Menu.add(Exit);
+        Vault_Menu.add(Exit_MenuItem);
 
         Menu_Bar.add(Vault_Menu);
 
         Edit_Menu.setText("Edit");
+
+        New_Entry_MenuItem.setText("New Entry");
+        Edit_Menu.add(New_Entry_MenuItem);
+
+        Edit_Entry_MenuItem.setText("Edit Entry");
+        Edit_Menu.add(Edit_Entry_MenuItem);
+
+        Delete_Entry_MenuItem.setText("Delete Entry");
+        Edit_Menu.add(Delete_Entry_MenuItem);
+        Edit_Menu.add(Edit_Menu_Separator_One);
+
+        Copy_Username_MenuItem.setText("Copy Username");
+        Edit_Menu.add(Copy_Username_MenuItem);
+
+        Copy_Password_MenuItem.setText("Copy Password");
+        Edit_Menu.add(Copy_Password_MenuItem);
+
         Menu_Bar.add(Edit_Menu);
 
         Tools_Menu.setText("Tools");
+
+        Password_Generator_MenuItem.setText("Password Generator");
+        Tools_Menu.add(Password_Generator_MenuItem);
+
+        AutoType_Menu.setText("Perform Auto-Type");
+
+        AutoType_All_MenuItem.setText("Username and Password");
+        AutoType_Menu.add(AutoType_All_MenuItem);
+
+        AutoType_Usename_MenuItem.setText("Username");
+        AutoType_Menu.add(AutoType_Usename_MenuItem);
+
+        AutoType_Password_MenuItem.setText("Password");
+        AutoType_Menu.add(AutoType_Password_MenuItem);
+
+        Tools_Menu.add(AutoType_Menu);
+
         Menu_Bar.add(Tools_Menu);
 
         Help_Menu.setText("Help");
 
-        About.setText("About");
-        Help_Menu.add(About);
+        About_MenuItem.setText("About");
+        Help_Menu.add(About_MenuItem);
 
         Menu_Bar.add(Help_Menu);
 
@@ -110,12 +194,12 @@ public class Main extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(Container, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(Tool_Bar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Main_ToolBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(Tool_Bar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Main_ToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Container, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -123,9 +207,9 @@ public class Main extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed
+    private void Exit_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Exit_MenuItemActionPerformed
         System.exit(0);
-    }//GEN-LAST:event_ExitActionPerformed
+    }//GEN-LAST:event_Exit_MenuItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -154,18 +238,37 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem About;
     private javax.swing.JButton About_Button;
+    private javax.swing.JMenuItem About_MenuItem;
+    private javax.swing.JMenuItem AutoType_All_MenuItem;
+    private javax.swing.JMenu AutoType_Menu;
+    private javax.swing.JMenuItem AutoType_Password_MenuItem;
+    private javax.swing.JMenuItem AutoType_Usename_MenuItem;
+    private javax.swing.JButton Close_Vault_Button;
+    private javax.swing.JMenuItem Close_Vault_MenuItem;
     private javax.swing.JPanel Container;
+    private javax.swing.JMenuItem Copy_Password_MenuItem;
+    private javax.swing.JMenuItem Copy_Username_MenuItem;
+    private javax.swing.JMenuItem Delete_Entry_MenuItem;
+    private javax.swing.JMenuItem Edit_Entry_MenuItem;
     private javax.swing.JMenu Edit_Menu;
-    private javax.swing.JMenuItem Exit;
+    private javax.swing.JPopupMenu.Separator Edit_Menu_Separator_One;
+    private javax.swing.JMenuItem Exit_MenuItem;
     private javax.swing.JMenu Help_Menu;
+    private javax.swing.JToolBar Main_ToolBar;
     private javax.swing.JMenuBar Menu_Bar;
-    private javax.swing.JToolBar.Separator Separator_One;
+    private javax.swing.JButton New_Entry_Button;
+    private javax.swing.JMenuItem New_Entry_MenuItem;
+    private javax.swing.JMenuItem New_Vault_MenuItem;
+    private javax.swing.JButton Open_Vault_Button;
+    private javax.swing.JMenuItem Open_Vault_MenuItem;
+    private javax.swing.JMenuItem Password_Generator_MenuItem;
     private javax.swing.JButton Settings_Button;
-    private javax.swing.JToolBar Tool_Bar;
+    private javax.swing.JToolBar.Separator ToolBar_Separator_One;
+    private javax.swing.JToolBar.Separator ToolBar_Separator_Two;
     private javax.swing.JMenu Tools_Menu;
     private javax.swing.JMenu Vault_Menu;
+    private javax.swing.JPopupMenu.Separator Vault_Menu_Separator_One;
     private javax.swing.JLabel Welcome_Label;
     // End of variables declaration//GEN-END:variables
 }
