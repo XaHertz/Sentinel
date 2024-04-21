@@ -64,6 +64,23 @@
             </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="Edit_Menu_Separator_One">
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="New_Group_MenuItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="New Group"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="Edit_Group_MenuItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Edit Group"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="Delete_Group_MenuItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Delete Group"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JPopupMenu$Separator" name="Edit_Menu_Separator_Two">
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="Copy_Username_MenuItem">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Copy Username"/>
@@ -207,6 +224,18 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/images/plus.png"/>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Add a New Entry"/>
+            <Property name="focusable" type="boolean" value="false"/>
+            <Property name="horizontalTextPosition" type="int" value="0"/>
+            <Property name="verticalTextPosition" type="int" value="3"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="Delete_Entry_Button">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/images/cross.png"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Delete Entry"/>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
@@ -243,7 +272,7 @@
         <Container class="javax.swing.JPanel" name="StartPage">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-              <CardConstraints cardName="card2"/>
+              <CardConstraints cardName="start"/>
             </Constraint>
           </Constraints>
 
@@ -414,7 +443,7 @@
         <Container class="javax.swing.JPanel" name="VaultPage">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-              <CardConstraints cardName="card3"/>
+              <CardConstraints cardName="vault"/>
             </Constraint>
           </Constraints>
 

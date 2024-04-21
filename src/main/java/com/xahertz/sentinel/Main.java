@@ -29,6 +29,7 @@ public class Main extends javax.swing.JFrame {
         Close_Vault_Button = new javax.swing.JButton();
         ToolBar_Separator_One = new javax.swing.JToolBar.Separator();
         New_Entry_Button = new javax.swing.JButton();
+        Delete_Entry_Button = new javax.swing.JButton();
         ToolBar_Separator_Two = new javax.swing.JToolBar.Separator();
         Settings_Button = new javax.swing.JButton();
         About_Button = new javax.swing.JButton();
@@ -60,6 +61,10 @@ public class Main extends javax.swing.JFrame {
         Edit_Entry_MenuItem = new javax.swing.JMenuItem();
         Delete_Entry_MenuItem = new javax.swing.JMenuItem();
         Edit_Menu_Separator_One = new javax.swing.JPopupMenu.Separator();
+        New_Group_MenuItem = new javax.swing.JMenuItem();
+        Edit_Group_MenuItem = new javax.swing.JMenuItem();
+        Delete_Group_MenuItem = new javax.swing.JMenuItem();
+        Edit_Menu_Separator_Two = new javax.swing.JPopupMenu.Separator();
         Copy_Username_MenuItem = new javax.swing.JMenuItem();
         Copy_Password_MenuItem = new javax.swing.JMenuItem();
         Tools_Menu = new javax.swing.JMenu();
@@ -99,10 +104,18 @@ public class Main extends javax.swing.JFrame {
         Main_ToolBar.add(ToolBar_Separator_One);
 
         New_Entry_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/plus.png"))); // NOI18N
+        New_Entry_Button.setToolTipText("Add a New Entry");
         New_Entry_Button.setFocusable(false);
         New_Entry_Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         New_Entry_Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         Main_ToolBar.add(New_Entry_Button);
+
+        Delete_Entry_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cross.png"))); // NOI18N
+        Delete_Entry_Button.setToolTipText("Delete Entry");
+        Delete_Entry_Button.setFocusable(false);
+        Delete_Entry_Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        Delete_Entry_Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        Main_ToolBar.add(Delete_Entry_Button);
         Main_ToolBar.add(ToolBar_Separator_Two);
 
         Settings_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/settings.png"))); // NOI18N
@@ -205,7 +218,7 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap(101, Short.MAX_VALUE))
         );
 
-        Container.add(StartPage, "card2");
+        Container.add(StartPage, "start");
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Vault Home");
         javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Internet");
@@ -273,7 +286,7 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        Container.add(VaultPage, "card3");
+        Container.add(VaultPage, "vault");
 
         Vault_Menu.setText("Vault");
 
@@ -318,6 +331,16 @@ public class Main extends javax.swing.JFrame {
         Delete_Entry_MenuItem.setText("Delete Entry");
         Edit_Menu.add(Delete_Entry_MenuItem);
         Edit_Menu.add(Edit_Menu_Separator_One);
+
+        New_Group_MenuItem.setText("New Group");
+        Edit_Menu.add(New_Group_MenuItem);
+
+        Edit_Group_MenuItem.setText("Edit Group");
+        Edit_Menu.add(Edit_Group_MenuItem);
+
+        Delete_Group_MenuItem.setText("Delete Group");
+        Edit_Menu.add(Delete_Group_MenuItem);
+        Edit_Menu.add(Edit_Menu_Separator_Two);
 
         Copy_Username_MenuItem.setText("Copy Username");
         Edit_Menu.add(Copy_Username_MenuItem);
@@ -379,19 +402,19 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_Exit_MenuItemActionPerformed
 
     private void StartPage_Create_Vault_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StartPage_Create_Vault_ButtonActionPerformed
-        Container_Deck.show(Container, "card3");
+        Container_Deck.show(Container, "vault");
     }//GEN-LAST:event_StartPage_Create_Vault_ButtonActionPerformed
 
     private void Close_Vault_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Close_Vault_ButtonActionPerformed
-        Container_Deck.show(Container, "card2");
+        Container_Deck.show(Container, "start");
     }//GEN-LAST:event_Close_Vault_ButtonActionPerformed
 
     private void Close_Vault_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Close_Vault_MenuItemActionPerformed
-        Container_Deck.show(Container, "card2");
+        Container_Deck.show(Container, "start");
     }//GEN-LAST:event_Close_Vault_MenuItemActionPerformed
 
     private void Open_Vault_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Open_Vault_MenuItemActionPerformed
-        Container_Deck.show(Container, "card3");
+        Container_Deck.show(Container, "vault");
     }//GEN-LAST:event_Open_Vault_MenuItemActionPerformed
 
     /**
@@ -412,6 +435,8 @@ public class Main extends javax.swing.JFrame {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        javax.swing.UIManager.put("ScrollBar.thumbArc", 999);
+        javax.swing.UIManager.put("ScrollBar.thumbInsets", new java.awt.Insets(2, 2, 2, 2));
         //</editor-fold>
 
         /* Create and display the form */
@@ -432,11 +457,15 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel Container;
     private javax.swing.JMenuItem Copy_Password_MenuItem;
     private javax.swing.JMenuItem Copy_Username_MenuItem;
+    private javax.swing.JButton Delete_Entry_Button;
     private javax.swing.JMenuItem Delete_Entry_MenuItem;
+    private javax.swing.JMenuItem Delete_Group_MenuItem;
     private javax.swing.JPanel Details_Panel;
     private javax.swing.JMenuItem Edit_Entry_MenuItem;
+    private javax.swing.JMenuItem Edit_Group_MenuItem;
     private javax.swing.JMenu Edit_Menu;
     private javax.swing.JPopupMenu.Separator Edit_Menu_Separator_One;
+    private javax.swing.JPopupMenu.Separator Edit_Menu_Separator_Two;
     private javax.swing.JMenuItem Exit_MenuItem;
     private javax.swing.JTree FolderTree;
     private javax.swing.JScrollPane FolderTree_ScrollPane;
@@ -445,6 +474,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuBar Menu_Bar;
     private javax.swing.JButton New_Entry_Button;
     private javax.swing.JMenuItem New_Entry_MenuItem;
+    private javax.swing.JMenuItem New_Group_MenuItem;
     private javax.swing.JMenuItem New_Vault_MenuItem;
     private javax.swing.JButton Open_Vault_Button;
     private javax.swing.JMenuItem Open_Vault_MenuItem;
