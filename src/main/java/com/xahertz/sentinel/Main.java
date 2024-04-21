@@ -24,6 +24,10 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Passwords_Table_PopupMenu = new javax.swing.JPopupMenu();
+        New_Entry = new javax.swing.JMenuItem();
+        Edit_Entry = new javax.swing.JMenuItem();
+        Delete_Entry = new javax.swing.JMenuItem();
         Main_ToolBar = new javax.swing.JToolBar();
         Open_Vault_Button = new javax.swing.JButton();
         Close_Vault_Button = new javax.swing.JButton();
@@ -75,6 +79,15 @@ public class Main extends javax.swing.JFrame {
         AutoType_Password_MenuItem = new javax.swing.JMenuItem();
         Help_Menu = new javax.swing.JMenu();
         About_MenuItem = new javax.swing.JMenuItem();
+
+        New_Entry.setText("New Entry");
+        Passwords_Table_PopupMenu.add(New_Entry);
+
+        Edit_Entry.setText("Edit Entry");
+        Passwords_Table_PopupMenu.add(Edit_Entry);
+
+        Delete_Entry.setText("Delete Entry");
+        Passwords_Table_PopupMenu.add(Delete_Entry);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sentinel");
@@ -245,6 +258,11 @@ public class Main extends javax.swing.JFrame {
                 "Title", "Username", "URL", "Notes"
             }
         ));
+        Passwords_Table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                Passwords_TableMousePressed(evt);
+            }
+        });
         Passwords_Table_ScrollPane.setViewportView(Passwords_Table);
 
         Details_Panel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
@@ -417,6 +435,17 @@ public class Main extends javax.swing.JFrame {
         Container_Deck.show(Container, "vault");
     }//GEN-LAST:event_Open_Vault_MenuItemActionPerformed
 
+    private void Passwords_TableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Passwords_TableMousePressed
+        if (evt.getButton() == java.awt.event.MouseEvent.BUTTON3) {
+            Passwords_Table = (javax.swing.JTable)evt.getSource();
+            int row = Passwords_Table.rowAtPoint(evt.getPoint());
+            int column = Passwords_Table.columnAtPoint(evt.getPoint());
+            if (!Passwords_Table.isRowSelected(row))
+                Passwords_Table.changeSelection(row, column, false, false);
+            Passwords_Table_PopupMenu.show(Passwords_Table, evt.getX(), evt.getY());
+        }
+    }//GEN-LAST:event_Passwords_TableMousePressed
+
     /**
      * @param args the command line arguments
      */
@@ -457,10 +486,12 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel Container;
     private javax.swing.JMenuItem Copy_Password_MenuItem;
     private javax.swing.JMenuItem Copy_Username_MenuItem;
+    private javax.swing.JMenuItem Delete_Entry;
     private javax.swing.JButton Delete_Entry_Button;
     private javax.swing.JMenuItem Delete_Entry_MenuItem;
     private javax.swing.JMenuItem Delete_Group_MenuItem;
     private javax.swing.JPanel Details_Panel;
+    private javax.swing.JMenuItem Edit_Entry;
     private javax.swing.JMenuItem Edit_Entry_MenuItem;
     private javax.swing.JMenuItem Edit_Group_MenuItem;
     private javax.swing.JMenu Edit_Menu;
@@ -472,6 +503,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenu Help_Menu;
     private javax.swing.JToolBar Main_ToolBar;
     private javax.swing.JMenuBar Menu_Bar;
+    private javax.swing.JMenuItem New_Entry;
     private javax.swing.JButton New_Entry_Button;
     private javax.swing.JMenuItem New_Entry_MenuItem;
     private javax.swing.JMenuItem New_Group_MenuItem;
@@ -480,6 +512,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem Open_Vault_MenuItem;
     private javax.swing.JMenuItem Password_Generator_MenuItem;
     private javax.swing.JTable Passwords_Table;
+    private javax.swing.JPopupMenu Passwords_Table_PopupMenu;
     private javax.swing.JScrollPane Passwords_Table_ScrollPane;
     private javax.swing.JLabel Recent_Vaults_Label;
     private javax.swing.JList<String> Recent_Vaults_List;
