@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
  *
  * @author XaHertz
  */
-public class Function {
+public class Functions {
     static File dataFolder = new File("data");
     static Path currentDirectory = Paths.get(System.getProperty("user.dir"));
     
@@ -25,7 +25,7 @@ public class Function {
     public static DefaultListModel<String> VaultList() {
         DefaultListModel<String> listModel = new DefaultListModel<>();
         try {
-            File listFile = new File(dataFolder + File.separator + "Vaults.lst");
+            File listFile = new File(dataFolder + File.separator + "vaults.lst");
             listFile.createNewFile();
             java.util.Scanner vaultScanner = new java.util.Scanner(listFile);
             while (vaultScanner.hasNextLine()) {

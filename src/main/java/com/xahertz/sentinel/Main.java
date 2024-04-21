@@ -10,7 +10,7 @@ public class Main extends javax.swing.JFrame {
      * Creates new form Main
      */
     public Main() {
-        com.xahertz.internal.Function.initData();
+        com.xahertz.internal.Functions.initData();
         initComponents();
         Container_Deck = (java.awt.CardLayout)Container.getLayout();
     }
@@ -175,7 +175,7 @@ public class Main extends javax.swing.JFrame {
         Recent_Vaults_Label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Recent_Vaults_Label.setText("Recent Vaults");
 
-        Recent_Vaults_List.setModel(com.xahertz.internal.Function.VaultList());
+        Recent_Vaults_List.setModel(com.xahertz.internal.Functions.VaultList());
         Recent_Vaults_ScrollPane.setViewportView(Recent_Vaults_List);
 
         javax.swing.GroupLayout Vault_Actions_PanelLayout = new javax.swing.GroupLayout(Vault_Actions_Panel);
