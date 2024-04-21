@@ -8,17 +8,17 @@
         <Property name="useNullLayout" type="boolean" value="true"/>
       </Layout>
       <SubComponents>
-        <MenuItem class="javax.swing.JMenuItem" name="New_Entry">
+        <MenuItem class="javax.swing.JMenuItem" name="Table_PopupMenu_New_Entry">
           <Properties>
             <Property name="text" type="java.lang.String" value="New Entry"/>
           </Properties>
         </MenuItem>
-        <MenuItem class="javax.swing.JMenuItem" name="Edit_Entry">
+        <MenuItem class="javax.swing.JMenuItem" name="Table_PopupMenu_Edit_Entry">
           <Properties>
             <Property name="text" type="java.lang.String" value="Edit Entry"/>
           </Properties>
         </MenuItem>
-        <MenuItem class="javax.swing.JMenuItem" name="Delete_Entry">
+        <MenuItem class="javax.swing.JMenuItem" name="Table_PopupMenu_Delete_Entry">
           <Properties>
             <Property name="text" type="java.lang.String" value="Delete Entry"/>
           </Properties>
@@ -225,6 +225,9 @@
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Open_Vault_ButtonActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="Close_Vault_Button">
           <Properties>
@@ -414,6 +417,9 @@
                     <Property name="text" type="java.lang.String" value="Open Vault"/>
                     <Property name="toolTipText" type="java.lang.String" value="Open Existing Vault"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="StartPage_Open_Vault_ButtonActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="StartPage_Import_File_Button">
                   <Properties>
@@ -428,6 +434,9 @@
                     <Property name="text" type="java.lang.String" value="Import File"/>
                     <Property name="toolTipText" type="java.lang.String" value="Import Passwords From CSV File"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="StartPage_Import_File_ButtonActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="Recent_Vaults_Label">
                   <Properties>
@@ -513,7 +522,7 @@
                 <Component class="javax.swing.JTree" name="FolderTree">
                   <Properties>
                     <Property name="model" type="javax.swing.tree.TreeModel" editor="org.netbeans.modules.form.editors2.TreeModelEditor">
-                      <TreeModel code="Vault Home&#xa; Internet&#xa;  Social&#xa;  Work&#xa;  Entertainment&#xa; Offline"/>
+                      <TreeModel code="Root&#xa; Work&#xa; Entertainment&#xa; Social"/>
                     </Property>
                   </Properties>
                 </Component>

@@ -25,9 +25,9 @@ public class Main extends javax.swing.JFrame {
     private void initComponents() {
 
         Passwords_Table_PopupMenu = new javax.swing.JPopupMenu();
-        New_Entry = new javax.swing.JMenuItem();
-        Edit_Entry = new javax.swing.JMenuItem();
-        Delete_Entry = new javax.swing.JMenuItem();
+        Table_PopupMenu_New_Entry = new javax.swing.JMenuItem();
+        Table_PopupMenu_Edit_Entry = new javax.swing.JMenuItem();
+        Table_PopupMenu_Delete_Entry = new javax.swing.JMenuItem();
         Main_ToolBar = new javax.swing.JToolBar();
         Open_Vault_Button = new javax.swing.JButton();
         Close_Vault_Button = new javax.swing.JButton();
@@ -80,14 +80,14 @@ public class Main extends javax.swing.JFrame {
         Help_Menu = new javax.swing.JMenu();
         About_MenuItem = new javax.swing.JMenuItem();
 
-        New_Entry.setText("New Entry");
-        Passwords_Table_PopupMenu.add(New_Entry);
+        Table_PopupMenu_New_Entry.setText("New Entry");
+        Passwords_Table_PopupMenu.add(Table_PopupMenu_New_Entry);
 
-        Edit_Entry.setText("Edit Entry");
-        Passwords_Table_PopupMenu.add(Edit_Entry);
+        Table_PopupMenu_Edit_Entry.setText("Edit Entry");
+        Passwords_Table_PopupMenu.add(Table_PopupMenu_Edit_Entry);
 
-        Delete_Entry.setText("Delete Entry");
-        Passwords_Table_PopupMenu.add(Delete_Entry);
+        Table_PopupMenu_Delete_Entry.setText("Delete Entry");
+        Passwords_Table_PopupMenu.add(Table_PopupMenu_Delete_Entry);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sentinel");
@@ -101,6 +101,11 @@ public class Main extends javax.swing.JFrame {
         Open_Vault_Button.setFocusable(false);
         Open_Vault_Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         Open_Vault_Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        Open_Vault_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Open_Vault_ButtonActionPerformed(evt);
+            }
+        });
         Main_ToolBar.add(Open_Vault_Button);
 
         Close_Vault_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/vault.png"))); // NOI18N
@@ -165,11 +170,21 @@ public class Main extends javax.swing.JFrame {
         StartPage_Open_Vault_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/open.png"))); // NOI18N
         StartPage_Open_Vault_Button.setText("Open Vault");
         StartPage_Open_Vault_Button.setToolTipText("Open Existing Vault");
+        StartPage_Open_Vault_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                StartPage_Open_Vault_ButtonActionPerformed(evt);
+            }
+        });
 
         StartPage_Import_File_Button.setFont(StartPage_Import_File_Button.getFont().deriveFont(StartPage_Import_File_Button.getFont().getStyle() | java.awt.Font.BOLD, StartPage_Import_File_Button.getFont().getSize()+2));
         StartPage_Import_File_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/plus.png"))); // NOI18N
         StartPage_Import_File_Button.setText("Import File");
         StartPage_Import_File_Button.setToolTipText("Import Passwords From CSV File");
+        StartPage_Import_File_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                StartPage_Import_File_ButtonActionPerformed(evt);
+            }
+        });
 
         Recent_Vaults_Label.setFont(Recent_Vaults_Label.getFont().deriveFont(Recent_Vaults_Label.getFont().getStyle() | java.awt.Font.BOLD));
         Recent_Vaults_Label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -233,16 +248,12 @@ public class Main extends javax.swing.JFrame {
 
         Container.add(StartPage, "start");
 
-        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Vault Home");
-        javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Internet");
-        javax.swing.tree.DefaultMutableTreeNode treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Social");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Work");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Entertainment");
-        treeNode2.add(treeNode3);
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Root");
+        javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Work");
         treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Offline");
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Entertainment");
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Social");
         treeNode1.add(treeNode2);
         FolderTree.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         FolderTree_ScrollPane.setViewportView(FolderTree);
@@ -432,7 +443,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_Close_Vault_MenuItemActionPerformed
 
     private void Open_Vault_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Open_Vault_MenuItemActionPerformed
-        Container_Deck.show(Container, "vault");
+        com.xahertz.internal.Functions.openVault();
     }//GEN-LAST:event_Open_Vault_MenuItemActionPerformed
 
     private void Passwords_TableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Passwords_TableMousePressed
@@ -445,6 +456,18 @@ public class Main extends javax.swing.JFrame {
             Passwords_Table_PopupMenu.show(Passwords_Table, evt.getX(), evt.getY());
         }
     }//GEN-LAST:event_Passwords_TableMousePressed
+
+    private void StartPage_Open_Vault_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StartPage_Open_Vault_ButtonActionPerformed
+        com.xahertz.internal.Functions.openVault();
+    }//GEN-LAST:event_StartPage_Open_Vault_ButtonActionPerformed
+
+    private void Open_Vault_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Open_Vault_ButtonActionPerformed
+        com.xahertz.internal.Functions.openVault();
+    }//GEN-LAST:event_Open_Vault_ButtonActionPerformed
+
+    private void StartPage_Import_File_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StartPage_Import_File_ButtonActionPerformed
+        com.xahertz.internal.Functions.importVaultData();
+    }//GEN-LAST:event_StartPage_Import_File_ButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -486,12 +509,10 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel Container;
     private javax.swing.JMenuItem Copy_Password_MenuItem;
     private javax.swing.JMenuItem Copy_Username_MenuItem;
-    private javax.swing.JMenuItem Delete_Entry;
     private javax.swing.JButton Delete_Entry_Button;
     private javax.swing.JMenuItem Delete_Entry_MenuItem;
     private javax.swing.JMenuItem Delete_Group_MenuItem;
     private javax.swing.JPanel Details_Panel;
-    private javax.swing.JMenuItem Edit_Entry;
     private javax.swing.JMenuItem Edit_Entry_MenuItem;
     private javax.swing.JMenuItem Edit_Group_MenuItem;
     private javax.swing.JMenu Edit_Menu;
@@ -503,7 +524,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenu Help_Menu;
     private javax.swing.JToolBar Main_ToolBar;
     private javax.swing.JMenuBar Menu_Bar;
-    private javax.swing.JMenuItem New_Entry;
     private javax.swing.JButton New_Entry_Button;
     private javax.swing.JMenuItem New_Entry_MenuItem;
     private javax.swing.JMenuItem New_Group_MenuItem;
@@ -522,6 +542,9 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton StartPage_Create_Vault_Button;
     private javax.swing.JButton StartPage_Import_File_Button;
     private javax.swing.JButton StartPage_Open_Vault_Button;
+    private javax.swing.JMenuItem Table_PopupMenu_Delete_Entry;
+    private javax.swing.JMenuItem Table_PopupMenu_Edit_Entry;
+    private javax.swing.JMenuItem Table_PopupMenu_New_Entry;
     private javax.swing.JToolBar.Separator ToolBar_Separator_One;
     private javax.swing.JToolBar.Separator ToolBar_Separator_Two;
     private javax.swing.JMenu Tools_Menu;
