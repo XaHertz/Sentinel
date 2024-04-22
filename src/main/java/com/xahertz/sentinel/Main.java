@@ -1,5 +1,7 @@
 package com.xahertz.sentinel;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author XaHertz
@@ -10,6 +12,7 @@ public class Main extends javax.swing.JFrame {
      * Creates new form Main
      */
     public Main() {
+        Version = "0.2.0";
         com.xahertz.internal.Functions.initData();
         initComponents();
         Container_Deck = (java.awt.CardLayout)Container.getLayout();
@@ -160,6 +163,11 @@ public class Main extends javax.swing.JFrame {
         About_Button.setFocusable(false);
         About_Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         About_Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        About_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                About_ButtonActionPerformed(evt);
+            }
+        });
         Main_ToolBar.add(About_Button);
 
         Container.setLayout(new java.awt.CardLayout());
@@ -537,6 +545,11 @@ public class Main extends javax.swing.JFrame {
         Help_Menu.setText("Help");
 
         About_MenuItem.setText("About");
+        About_MenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                About_MenuItemActionPerformed(evt);
+            }
+        });
         Help_Menu.add(About_MenuItem);
 
         Menu_Bar.add(Help_Menu);
@@ -615,6 +628,14 @@ public class Main extends javax.swing.JFrame {
     private void StartPage_Import_File_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StartPage_Import_File_ButtonActionPerformed
         com.xahertz.internal.Functions.importVaultData();
     }//GEN-LAST:event_StartPage_Import_File_ButtonActionPerformed
+
+    private void About_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_About_ButtonActionPerformed
+        JOptionPane.showMessageDialog(null, "<html><h1>Sentinel Password Manager</h1></html>\nVersion " + Version + "\nCopyright \u00A9 2024 XaHertz", "About", JOptionPane.PLAIN_MESSAGE);
+    }//GEN-LAST:event_About_ButtonActionPerformed
+
+    private void About_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_About_MenuItemActionPerformed
+        JOptionPane.showMessageDialog(null, "<html><h1>Sentinel Password Manager</h1></html>\nVersion " + Version + "\nCopyright \u00A9 2024 XaHertz", "About", JOptionPane.PLAIN_MESSAGE);
+    }//GEN-LAST:event_About_MenuItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -716,4 +737,5 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel Welcome_Label;
     // End of variables declaration//GEN-END:variables
     private final java.awt.CardLayout Container_Deck;
+    public static String Version;
 }
