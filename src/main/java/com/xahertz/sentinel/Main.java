@@ -127,6 +127,7 @@ public class Main extends javax.swing.JFrame {
 
         Close_Vault_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/vault.png"))); // NOI18N
         Close_Vault_Button.setToolTipText("Close Vault");
+        Close_Vault_Button.setEnabled(false);
         Close_Vault_Button.setFocusable(false);
         Close_Vault_Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         Close_Vault_Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -140,6 +141,7 @@ public class Main extends javax.swing.JFrame {
 
         New_Entry_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/plus.png"))); // NOI18N
         New_Entry_Button.setToolTipText("Add a New Entry");
+        New_Entry_Button.setEnabled(false);
         New_Entry_Button.setFocusable(false);
         New_Entry_Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         New_Entry_Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -147,6 +149,7 @@ public class Main extends javax.swing.JFrame {
 
         Delete_Entry_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cross.png"))); // NOI18N
         Delete_Entry_Button.setToolTipText("Delete Entry");
+        Delete_Entry_Button.setEnabled(false);
         Delete_Entry_Button.setFocusable(false);
         Delete_Entry_Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         Delete_Entry_Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -500,29 +503,37 @@ public class Main extends javax.swing.JFrame {
         Edit_Menu.setText("Edit");
 
         New_Entry_MenuItem.setText("New Entry");
+        New_Entry_MenuItem.setEnabled(false);
         Edit_Menu.add(New_Entry_MenuItem);
 
         Edit_Entry_MenuItem.setText("Edit Entry");
+        Edit_Entry_MenuItem.setEnabled(false);
         Edit_Menu.add(Edit_Entry_MenuItem);
 
         Delete_Entry_MenuItem.setText("Delete Entry");
+        Delete_Entry_MenuItem.setEnabled(false);
         Edit_Menu.add(Delete_Entry_MenuItem);
         Edit_Menu.add(Edit_Menu_Separator_One);
 
         New_Group_MenuItem.setText("New Group");
+        New_Group_MenuItem.setEnabled(false);
         Edit_Menu.add(New_Group_MenuItem);
 
         Edit_Group_MenuItem.setText("Edit Group");
+        Edit_Group_MenuItem.setEnabled(false);
         Edit_Menu.add(Edit_Group_MenuItem);
 
         Delete_Group_MenuItem.setText("Delete Group");
+        Delete_Group_MenuItem.setEnabled(false);
         Edit_Menu.add(Delete_Group_MenuItem);
         Edit_Menu.add(Edit_Menu_Separator_Two);
 
         Copy_Username_MenuItem.setText("Copy Username");
+        Copy_Username_MenuItem.setEnabled(false);
         Edit_Menu.add(Copy_Username_MenuItem);
 
         Copy_Password_MenuItem.setText("Copy Password");
+        Copy_Password_MenuItem.setEnabled(false);
         Edit_Menu.add(Copy_Password_MenuItem);
 
         Menu_Bar.add(Edit_Menu);
@@ -533,6 +544,7 @@ public class Main extends javax.swing.JFrame {
         Tools_Menu.add(Password_Generator_MenuItem);
 
         AutoType_Menu.setText("Perform Auto-Type");
+        AutoType_Menu.setEnabled(false);
 
         AutoType_All_MenuItem.setText("Username and Password");
         AutoType_Menu.add(AutoType_All_MenuItem);
@@ -589,10 +601,12 @@ public class Main extends javax.swing.JFrame {
 
     private void Close_Vault_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Close_Vault_ButtonActionPerformed
         Container_Deck.show(Container, "start");
+        DisableVaultButtons();
     }//GEN-LAST:event_Close_Vault_ButtonActionPerformed
 
     private void Close_Vault_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Close_Vault_MenuItemActionPerformed
         Container_Deck.show(Container, "start");
+        DisableVaultButtons();
     }//GEN-LAST:event_Close_Vault_MenuItemActionPerformed
 
     private void Open_Vault_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Open_Vault_MenuItemActionPerformed
@@ -623,7 +637,13 @@ public class Main extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "The Passwords in Password Fields do not Match. Please Try Again!", "Password Mismatch", JOptionPane.ERROR_MESSAGE);
         else {
             com.xahertz.internal.SQLite.createNewVault(vltName, vltPass, vltPath);
+            Recent_Vaults_List.setModel(com.xahertz.internal.Functions.VaultList());
             Container_Deck.show(Container, "vault");
+            Vault_Name_Field.setText("");
+            Vault_Password_Field.setText("");
+            Confirm_Password_Field.setText("");
+            Vault_Location_Field.setText("");
+            EnableVaultButtons();
         }
     }//GEN-LAST:event_Finish_ButtonActionPerformed
 
@@ -641,6 +661,7 @@ public class Main extends javax.swing.JFrame {
 
     private void New_Vault_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_New_Vault_MenuItemActionPerformed
         Container_Deck.show(Container, "vault");
+        EnableVaultButtons();
     }//GEN-LAST:event_New_Vault_MenuItemActionPerformed
 
     private void StartPage_Import_File_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StartPage_Import_File_ButtonActionPerformed
@@ -673,6 +694,36 @@ public class Main extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "<html><h1>Sentinel Password Manager</h1></html>\nVersion " + Version + "\nCopyright \u00A9 2024 XaHertz", "About", JOptionPane.PLAIN_MESSAGE);
     }//GEN-LAST:event_About_MenuItemActionPerformed
 
+    private void EnableVaultButtons() {
+        Close_Vault_Button.setEnabled(true);
+        New_Entry_Button.setEnabled(true);
+        Delete_Entry_Button.setEnabled(true);
+        New_Entry_MenuItem.setEnabled(true);
+        Edit_Entry_MenuItem.setEnabled(true);
+        Delete_Entry_MenuItem.setEnabled(true);
+        New_Group_MenuItem.setEnabled(true);
+        Edit_Group_MenuItem.setEnabled(true);
+        Delete_Group_MenuItem.setEnabled(true);
+        Copy_Username_MenuItem.setEnabled(true);
+        Copy_Password_MenuItem.setEnabled(true);
+        AutoType_Menu.setEnabled(true);
+    }
+    
+    private void DisableVaultButtons() {
+        Close_Vault_Button.setEnabled(false);
+        New_Entry_Button.setEnabled(false);
+        Delete_Entry_Button.setEnabled(false);
+        New_Entry_MenuItem.setEnabled(false);
+        Edit_Entry_MenuItem.setEnabled(false);
+        Delete_Entry_MenuItem.setEnabled(false);
+        New_Group_MenuItem.setEnabled(false);
+        Edit_Group_MenuItem.setEnabled(false);
+        Delete_Group_MenuItem.setEnabled(false);
+        Copy_Username_MenuItem.setEnabled(false);
+        Copy_Password_MenuItem.setEnabled(false);
+        AutoType_Menu.setEnabled(false);
+    }
+    
     /**
      * @param args the command line arguments
      */
