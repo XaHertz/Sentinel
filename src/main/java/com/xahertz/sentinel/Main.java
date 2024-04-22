@@ -13,7 +13,7 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         Version = "0.2.0";
-        com.xahertz.internal.Functions.initData();
+        com.xahertz.internal.SQLite.initVaultList();
         initComponents();
         Container_Deck = (java.awt.CardLayout)Container.getLayout();
     }
@@ -215,7 +215,7 @@ public class Main extends javax.swing.JFrame {
         Recent_Vaults_Label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Recent_Vaults_Label.setText("Recent Vaults");
 
-        Recent_Vaults_List.setModel(com.xahertz.internal.Functions.VaultList());
+        Recent_Vaults_List.setModel(com.xahertz.internal.SQLite.VaultList());
         Recent_Vaults_ScrollPane.setViewportView(Recent_Vaults_List);
 
         javax.swing.GroupLayout Vault_Actions_PanelLayout = new javax.swing.GroupLayout(Vault_Actions_Panel);
@@ -637,7 +637,7 @@ public class Main extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "The Passwords in Password Fields do not Match. Please Try Again!", "Password Mismatch", JOptionPane.ERROR_MESSAGE);
         else {
             com.xahertz.internal.SQLite.createNewVault(vltName, vltPass, vltPath);
-            Recent_Vaults_List.setModel(com.xahertz.internal.Functions.VaultList());
+            Recent_Vaults_List.setModel(com.xahertz.internal.SQLite.VaultList());
             Container_Deck.show(Container, "vault");
             Vault_Name_Field.setText("");
             Vault_Password_Field.setText("");
