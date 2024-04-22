@@ -47,6 +47,20 @@ public class Main extends javax.swing.JFrame {
         Recent_Vaults_Label = new javax.swing.JLabel();
         Recent_Vaults_ScrollPane = new javax.swing.JScrollPane();
         Recent_Vaults_List = new javax.swing.JList<>();
+        NewVaultPage = new javax.swing.JPanel();
+        NewVault_Label = new javax.swing.JLabel();
+        NewVault_Container = new javax.swing.JPanel();
+        Vault_Name_Label = new javax.swing.JLabel();
+        Vault_Name_Field = new javax.swing.JTextField();
+        Vault_Password_Label = new javax.swing.JLabel();
+        Vault_Password_Field = new javax.swing.JPasswordField();
+        Confirm_Password_Label = new javax.swing.JLabel();
+        Confirm_Password_Field = new javax.swing.JPasswordField();
+        Vault_Location_Label = new javax.swing.JLabel();
+        Vault_Location_Field = new javax.swing.JTextField();
+        Browse_Button = new javax.swing.JButton();
+        Cancel_Button = new javax.swing.JButton();
+        Finish_Button = new javax.swing.JButton();
         VaultPage = new javax.swing.JPanel();
         FolderTree_ScrollPane = new javax.swing.JScrollPane();
         FolderTree = new javax.swing.JTree();
@@ -248,6 +262,122 @@ public class Main extends javax.swing.JFrame {
 
         Container.add(StartPage, "start");
 
+        NewVault_Label.setFont(NewVault_Label.getFont().deriveFont(NewVault_Label.getFont().getSize()+12f));
+        NewVault_Label.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        NewVault_Label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/vault.png"))); // NOI18N
+        NewVault_Label.setText(" Create New Vault");
+
+        NewVault_Container.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        Vault_Name_Label.setFont(Vault_Name_Label.getFont().deriveFont(Vault_Name_Label.getFont().getSize()+2f));
+        Vault_Name_Label.setText("Vault Name");
+
+        Vault_Password_Label.setFont(Vault_Password_Label.getFont().deriveFont(Vault_Password_Label.getFont().getSize()+2f));
+        Vault_Password_Label.setText("Vault Password");
+
+        Confirm_Password_Label.setFont(Confirm_Password_Label.getFont().deriveFont(Confirm_Password_Label.getFont().getSize()+2f));
+        Confirm_Password_Label.setText("Confirm Password");
+
+        Vault_Location_Label.setFont(Vault_Location_Label.getFont().deriveFont(Vault_Location_Label.getFont().getSize()+2f));
+        Vault_Location_Label.setText("Vault Location");
+
+        Browse_Button.setText("Browse");
+
+        javax.swing.GroupLayout NewVault_ContainerLayout = new javax.swing.GroupLayout(NewVault_Container);
+        NewVault_Container.setLayout(NewVault_ContainerLayout);
+        NewVault_ContainerLayout.setHorizontalGroup(
+            NewVault_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(NewVault_ContainerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(NewVault_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(Vault_Location_Label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Confirm_Password_Label, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                    .addComponent(Vault_Password_Label, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Vault_Name_Label, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(NewVault_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Vault_Password_Field)
+                    .addComponent(Confirm_Password_Field)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, NewVault_ContainerLayout.createSequentialGroup()
+                        .addComponent(Vault_Location_Field, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Browse_Button))
+                    .addComponent(Vault_Name_Field))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        NewVault_ContainerLayout.setVerticalGroup(
+            NewVault_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(NewVault_ContainerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(NewVault_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Vault_Name_Field, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                    .addComponent(Vault_Name_Label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(NewVault_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(NewVault_ContainerLayout.createSequentialGroup()
+                        .addComponent(Vault_Password_Field, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(1, 1, 1))
+                    .addComponent(Vault_Password_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(NewVault_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Confirm_Password_Label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Confirm_Password_Field, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(NewVault_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(NewVault_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(Vault_Location_Label, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                        .addComponent(Vault_Location_Field, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Browse_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        Cancel_Button.setFont(Cancel_Button.getFont().deriveFont(Cancel_Button.getFont().getSize()+2f));
+        Cancel_Button.setText("Cancel");
+        Cancel_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Cancel_ButtonActionPerformed(evt);
+            }
+        });
+
+        Finish_Button.setFont(Finish_Button.getFont().deriveFont(Finish_Button.getFont().getSize()+2f));
+        Finish_Button.setText("Finish");
+        Finish_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Finish_ButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout NewVaultPageLayout = new javax.swing.GroupLayout(NewVaultPage);
+        NewVaultPage.setLayout(NewVaultPageLayout);
+        NewVaultPageLayout.setHorizontalGroup(
+            NewVaultPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(NewVaultPageLayout.createSequentialGroup()
+                .addContainerGap(130, Short.MAX_VALUE)
+                .addGroup(NewVaultPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(NewVaultPageLayout.createSequentialGroup()
+                        .addComponent(Cancel_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(560, 560, 560)
+                        .addComponent(Finish_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(NewVault_Container, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(NewVault_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 740, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(130, Short.MAX_VALUE))
+        );
+        NewVaultPageLayout.setVerticalGroup(
+            NewVaultPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(NewVaultPageLayout.createSequentialGroup()
+                .addContainerGap(100, Short.MAX_VALUE)
+                .addComponent(NewVault_Label)
+                .addGap(18, 18, 18)
+                .addComponent(NewVault_Container, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(NewVaultPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Finish_Button, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                    .addComponent(Cancel_Button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(162, Short.MAX_VALUE))
+        );
+
+        Container.add(NewVaultPage, "new");
+
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Root");
         javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Work");
         treeNode1.add(treeNode2);
@@ -320,6 +450,11 @@ public class Main extends javax.swing.JFrame {
         Vault_Menu.setText("Vault");
 
         New_Vault_MenuItem.setText("New Vault");
+        New_Vault_MenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                New_Vault_MenuItemActionPerformed(evt);
+            }
+        });
         Vault_Menu.add(New_Vault_MenuItem);
 
         Open_Vault_MenuItem.setText("Open Vault");
@@ -431,7 +566,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_Exit_MenuItemActionPerformed
 
     private void StartPage_Create_Vault_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StartPage_Create_Vault_ButtonActionPerformed
-        Container_Deck.show(Container, "vault");
+        Container_Deck.show(Container, "new");
     }//GEN-LAST:event_StartPage_Create_Vault_ButtonActionPerformed
 
     private void Close_Vault_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Close_Vault_ButtonActionPerformed
@@ -457,6 +592,14 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_Passwords_TableMousePressed
 
+    private void Finish_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Finish_ButtonActionPerformed
+        Container_Deck.show(Container, "vault");
+    }//GEN-LAST:event_Finish_ButtonActionPerformed
+
+    private void Cancel_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cancel_ButtonActionPerformed
+        Container_Deck.show(Container, "start");
+    }//GEN-LAST:event_Cancel_ButtonActionPerformed
+
     private void StartPage_Open_Vault_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StartPage_Open_Vault_ButtonActionPerformed
         com.xahertz.internal.Functions.openVault();
     }//GEN-LAST:event_StartPage_Open_Vault_ButtonActionPerformed
@@ -464,6 +607,10 @@ public class Main extends javax.swing.JFrame {
     private void Open_Vault_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Open_Vault_ButtonActionPerformed
         com.xahertz.internal.Functions.openVault();
     }//GEN-LAST:event_Open_Vault_ButtonActionPerformed
+
+    private void New_Vault_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_New_Vault_MenuItemActionPerformed
+        Container_Deck.show(Container, "vault");
+    }//GEN-LAST:event_New_Vault_MenuItemActionPerformed
 
     private void StartPage_Import_File_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StartPage_Import_File_ButtonActionPerformed
         com.xahertz.internal.Functions.importVaultData();
@@ -504,8 +651,12 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenu AutoType_Menu;
     private javax.swing.JMenuItem AutoType_Password_MenuItem;
     private javax.swing.JMenuItem AutoType_Usename_MenuItem;
+    private javax.swing.JButton Browse_Button;
+    private javax.swing.JButton Cancel_Button;
     private javax.swing.JButton Close_Vault_Button;
     private javax.swing.JMenuItem Close_Vault_MenuItem;
+    private javax.swing.JPasswordField Confirm_Password_Field;
+    private javax.swing.JLabel Confirm_Password_Label;
     private javax.swing.JPanel Container;
     private javax.swing.JMenuItem Copy_Password_MenuItem;
     private javax.swing.JMenuItem Copy_Username_MenuItem;
@@ -519,11 +670,15 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator Edit_Menu_Separator_One;
     private javax.swing.JPopupMenu.Separator Edit_Menu_Separator_Two;
     private javax.swing.JMenuItem Exit_MenuItem;
+    private javax.swing.JButton Finish_Button;
     private javax.swing.JTree FolderTree;
     private javax.swing.JScrollPane FolderTree_ScrollPane;
     private javax.swing.JMenu Help_Menu;
     private javax.swing.JToolBar Main_ToolBar;
     private javax.swing.JMenuBar Menu_Bar;
+    private javax.swing.JPanel NewVaultPage;
+    private javax.swing.JPanel NewVault_Container;
+    private javax.swing.JLabel NewVault_Label;
     private javax.swing.JButton New_Entry_Button;
     private javax.swing.JMenuItem New_Entry_MenuItem;
     private javax.swing.JMenuItem New_Group_MenuItem;
@@ -550,8 +705,14 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenu Tools_Menu;
     private javax.swing.JPanel VaultPage;
     private javax.swing.JPanel Vault_Actions_Panel;
+    private javax.swing.JTextField Vault_Location_Field;
+    private javax.swing.JLabel Vault_Location_Label;
     private javax.swing.JMenu Vault_Menu;
     private javax.swing.JPopupMenu.Separator Vault_Menu_Separator_One;
+    private javax.swing.JTextField Vault_Name_Field;
+    private javax.swing.JLabel Vault_Name_Label;
+    private javax.swing.JPasswordField Vault_Password_Field;
+    private javax.swing.JLabel Vault_Password_Label;
     private javax.swing.JLabel Welcome_Label;
     // End of variables declaration//GEN-END:variables
     private final java.awt.CardLayout Container_Deck;
