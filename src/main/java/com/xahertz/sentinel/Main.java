@@ -290,6 +290,11 @@ public class Main extends javax.swing.JFrame {
         Vault_Location_Label.setText("Vault Location");
 
         Browse_Button.setText("Browse");
+        Browse_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Browse_ButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout NewVault_ContainerLayout = new javax.swing.GroupLayout(NewVault_Container);
         NewVault_Container.setLayout(NewVault_ContainerLayout);
@@ -606,7 +611,20 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_Passwords_TableMousePressed
 
     private void Finish_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Finish_ButtonActionPerformed
-        Container_Deck.show(Container, "vault");
+        String vltName = Vault_Name_Field.getText();
+        String vltPass = new String(Vault_Password_Field.getPassword());
+        String cnfPass = new String(Confirm_Password_Field.getPassword());
+        String vltPath = Vault_Location_Field.getText();
+        if (vltName.equals("") || vltPass.equals("") || cnfPass.equals("") || vltPath.equals(""))
+            JOptionPane.showMessageDialog(null, "All Fields are Required to be Filled. Please Try Again!", "Empty Feilds", JOptionPane.ERROR_MESSAGE);
+        else if (vltPass.length() < 8)
+            JOptionPane.showMessageDialog(null, "Your Password Must Contain at Least 8 Characters. Please Try Again!", "Password Too Short", JOptionPane.ERROR_MESSAGE);
+        else if (!vltPass.equals(cnfPass))
+            JOptionPane.showMessageDialog(null, "The Passwords in Password Fields do not Match. Please Try Again!", "Password Mismatch", JOptionPane.ERROR_MESSAGE);
+        else {
+            com.xahertz.internal.SQLite.createNewVault(vltName, vltPass, vltPath);
+            Container_Deck.show(Container, "vault");
+        }
     }//GEN-LAST:event_Finish_ButtonActionPerformed
 
     private void Cancel_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cancel_ButtonActionPerformed
@@ -628,6 +646,24 @@ public class Main extends javax.swing.JFrame {
     private void StartPage_Import_File_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StartPage_Import_File_ButtonActionPerformed
         com.xahertz.internal.Functions.importVaultData();
     }//GEN-LAST:event_StartPage_Import_File_ButtonActionPerformed
+
+    private void Browse_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Browse_ButtonActionPerformed
+        javax.swing.JFileChooser fileChooser = new javax.swing.JFileChooser();
+        fileChooser.setDialogTitle("Save Vault as");
+        fileChooser.setDialogType(javax.swing.JFileChooser.SAVE_DIALOG);
+        fileChooser.setSelectedFile(new java.io.File("Passwords.vault"));
+        fileChooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Sentinel Vault File", "vault"));
+        if (fileChooser.showSaveDialog(null) == javax.swing.JFileChooser.APPROVE_OPTION) {
+            if (fileChooser.getSelectedFile().exists()) {
+                int response = JOptionPane.showConfirmDialog(null, "The file already exists. Do you want to overwrite the file?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                if (response == JOptionPane.YES_OPTION) {
+                    fileChooser.getSelectedFile().delete();
+                    Vault_Location_Field.setText(fileChooser.getSelectedFile().getAbsolutePath());
+                }
+            } else
+                Vault_Location_Field.setText(fileChooser.getSelectedFile().getAbsolutePath());
+        }
+    }//GEN-LAST:event_Browse_ButtonActionPerformed
 
     private void About_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_About_ButtonActionPerformed
         JOptionPane.showMessageDialog(null, "<html><h1>Sentinel Password Manager</h1></html>\nVersion " + Version + "\nCopyright \u00A9 2024 XaHertz", "About", JOptionPane.PLAIN_MESSAGE);

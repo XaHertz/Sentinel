@@ -15,12 +15,14 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author XaHertz
  */
 public class Functions {
+    public static File listFile;
     static File dataFolder = new File("data");
     static Path currentDirectory = Paths.get(System.getProperty("user.dir"));
     
     public static void initData() {
         if (!Files.isWritable(currentDirectory))
             dataFolder = new File(System.getenv("appdata") + File.separator + "Sentinel");
+        listFile = new File(dataFolder + File.separator + "vaults.lst");
         dataFolder.mkdir();
     }
     
@@ -45,7 +47,6 @@ public class Functions {
     public static DefaultListModel<String> VaultList() {
         DefaultListModel<String> listModel = new DefaultListModel<>();
         try {
-            File listFile = new File(dataFolder + File.separator + "vaults.lst");
             listFile.createNewFile();
             java.util.Scanner vaultScanner = new java.util.Scanner(listFile);
             while (vaultScanner.hasNextLine()) {
