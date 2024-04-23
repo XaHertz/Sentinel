@@ -71,4 +71,24 @@ public class SQLite {
             JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+    
+    public static void openVault(String vltPath, String vltPass) {
+        try {
+            vltDB = DriverManager.getConnection("jdbc:sqlite:" + new File(vltPath), org.sqlite.mc.SQLiteMCChacha20Config.getDefault().withKey(vltPass).build().toProperties());
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    public static void closeVault() {
+        if (vltDB != null) {
+            try {
+                if (vltDB.isValid(5)) {
+                    vltDB.close();
+                }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
 }

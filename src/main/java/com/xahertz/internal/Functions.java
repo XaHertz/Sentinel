@@ -14,7 +14,10 @@ public class Functions {
         fileChooser.setDialogTitle("Open Existing Vault");
         fileChooser.setFileFilter(new FileNameExtensionFilter("Sentinel Vault File", "vault"));
         if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-            JOptionPane.showMessageDialog(null, fileChooser.getSelectedFile(), "Success", JOptionPane.INFORMATION_MESSAGE);
+            String vltPass = JOptionPane.showInputDialog(null, "Vault File: " + fileChooser.getSelectedFile().getAbsolutePath(), "Enter Password", JOptionPane.PLAIN_MESSAGE);
+            if (!vltPass.equals("")) {
+                com.xahertz.internal.SQLite.openVault(fileChooser.getSelectedFile().getAbsolutePath(), vltPass);
+            }
         }
     }
 

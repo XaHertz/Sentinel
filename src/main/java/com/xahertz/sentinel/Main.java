@@ -600,13 +600,13 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_StartPage_Create_Vault_ButtonActionPerformed
 
     private void Close_Vault_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Close_Vault_ButtonActionPerformed
-        Container_Deck.show(Container, "start");
-        DisableVaultButtons();
+        com.xahertz.internal.SQLite.closeVault();
+        CloseVaultPage();
     }//GEN-LAST:event_Close_Vault_ButtonActionPerformed
 
     private void Close_Vault_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Close_Vault_MenuItemActionPerformed
-        Container_Deck.show(Container, "start");
-        DisableVaultButtons();
+        com.xahertz.internal.SQLite.closeVault();
+        CloseVaultPage();
     }//GEN-LAST:event_Close_Vault_MenuItemActionPerformed
 
     private void Open_Vault_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Open_Vault_MenuItemActionPerformed
@@ -638,12 +638,11 @@ public class Main extends javax.swing.JFrame {
         else {
             com.xahertz.internal.SQLite.createNewVault(vltName, vltPass, vltPath);
             Recent_Vaults_List.setModel(com.xahertz.internal.SQLite.VaultList());
-            Container_Deck.show(Container, "vault");
             Vault_Name_Field.setText("");
             Vault_Password_Field.setText("");
             Confirm_Password_Field.setText("");
             Vault_Location_Field.setText("");
-            EnableVaultButtons();
+            OpenVaultPage();
         }
     }//GEN-LAST:event_Finish_ButtonActionPerformed
 
@@ -653,15 +652,16 @@ public class Main extends javax.swing.JFrame {
 
     private void StartPage_Open_Vault_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StartPage_Open_Vault_ButtonActionPerformed
         com.xahertz.internal.Functions.openVault();
+        OpenVaultPage();
     }//GEN-LAST:event_StartPage_Open_Vault_ButtonActionPerformed
 
     private void Open_Vault_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Open_Vault_ButtonActionPerformed
         com.xahertz.internal.Functions.openVault();
+        OpenVaultPage();
     }//GEN-LAST:event_Open_Vault_ButtonActionPerformed
 
     private void New_Vault_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_New_Vault_MenuItemActionPerformed
-        Container_Deck.show(Container, "vault");
-        EnableVaultButtons();
+        OpenVaultPage();
     }//GEN-LAST:event_New_Vault_MenuItemActionPerformed
 
     private void StartPage_Import_File_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StartPage_Import_File_ButtonActionPerformed
@@ -693,7 +693,8 @@ public class Main extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "<html><h1>Sentinel Password Manager</h1></html>\nVersion " + Version + "\nCopyright \u00A9 2024 XaHertz", "About", JOptionPane.PLAIN_MESSAGE);
     }//GEN-LAST:event_About_MenuItemActionPerformed
 
-    private void EnableVaultButtons() {
+    private void OpenVaultPage() {
+        Container_Deck.show(Container, "vault");
         Close_Vault_Button.setEnabled(true);
         New_Entry_Button.setEnabled(true);
         Delete_Entry_Button.setEnabled(true);
@@ -708,7 +709,8 @@ public class Main extends javax.swing.JFrame {
         AutoType_Menu.setEnabled(true);
     }
     
-    private void DisableVaultButtons() {
+    private void CloseVaultPage() {
+        Container_Deck.show(Container, "start");
         Close_Vault_Button.setEnabled(false);
         New_Entry_Button.setEnabled(false);
         Delete_Entry_Button.setEnabled(false);
