@@ -678,7 +678,6 @@ public class Main extends javax.swing.JFrame {
             if (fileChooser.getSelectedFile().exists()) {
                 int response = JOptionPane.showConfirmDialog(null, "The file already exists. Do you want to overwrite the file?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                 if (response == JOptionPane.YES_OPTION) {
-                    fileChooser.getSelectedFile().delete();
                     Vault_Location_Field.setText(fileChooser.getSelectedFile().getAbsolutePath());
                 }
             } else

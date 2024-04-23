@@ -57,7 +57,10 @@ public class SQLite {
         String allTables = "CREATE TABLE IF NOT EXISTS AllTables (\"Table ID\" TEXT NOT NULL UNIQUE, \"Table Name\" TEXT, PRIMARY KEY(\"Table ID\"));";
         String vltsTable = "REPLACE INTO Vaults (Path) VALUES(?);";
         try {
-            vltDB = DriverManager.getConnection("jdbc:sqlite:" + new File(vltPath), org.sqlite.mc.SQLiteMCChacha20Config.getDefault().withKey(vltPass).build().toProperties());
+            File vltFile = new File(vltPath);
+            if (vltFile.exists())
+                vltFile.delete();
+            vltDB = DriverManager.getConnection("jdbc:sqlite:" + vltFile, org.sqlite.mc.SQLiteMCChacha20Config.getDefault().withKey(vltPass).build().toProperties());
             Statement vltDBquery = vltDB.createStatement();
             vltDBquery.execute(rootTable);
             vltDBquery.execute(allTables);
