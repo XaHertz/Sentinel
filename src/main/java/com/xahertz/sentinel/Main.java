@@ -36,8 +36,14 @@ public class Main extends javax.swing.JFrame {
         Close_Vault_Button = new javax.swing.JButton();
         ToolBar_Separator_One = new javax.swing.JToolBar.Separator();
         New_Entry_Button = new javax.swing.JButton();
+        Edit_Entry_Button = new javax.swing.JButton();
         Delete_Entry_Button = new javax.swing.JButton();
         ToolBar_Separator_Two = new javax.swing.JToolBar.Separator();
+        Copy_Username_Button = new javax.swing.JButton();
+        Copy_Password_Button = new javax.swing.JButton();
+        Copy_URL_Button = new javax.swing.JButton();
+        Password_Generator_Button = new javax.swing.JButton();
+        ToolBar_Separator_Three = new javax.swing.JToolBar.Separator();
         Settings_Button = new javax.swing.JButton();
         About_Button = new javax.swing.JButton();
         Container = new javax.swing.JPanel();
@@ -88,6 +94,7 @@ public class Main extends javax.swing.JFrame {
         Edit_Menu_Separator_Two = new javax.swing.JPopupMenu.Separator();
         Copy_Username_MenuItem = new javax.swing.JMenuItem();
         Copy_Password_MenuItem = new javax.swing.JMenuItem();
+        Copy_URL_MenuItem = new javax.swing.JMenuItem();
         Tools_Menu = new javax.swing.JMenu();
         Password_Generator_MenuItem = new javax.swing.JMenuItem();
         AutoType_Menu = new javax.swing.JMenu();
@@ -125,11 +132,13 @@ public class Main extends javax.swing.JFrame {
         });
         Main_ToolBar.add(Open_Vault_Button);
 
-        Close_Vault_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/vault.png"))); // NOI18N
+        Close_Vault_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/unlock.png"))); // NOI18N
         Close_Vault_Button.setToolTipText("Close Vault");
+        Close_Vault_Button.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/images/lock-disabled.png"))); // NOI18N
         Close_Vault_Button.setEnabled(false);
         Close_Vault_Button.setFocusable(false);
         Close_Vault_Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        Close_Vault_Button.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/lock.png"))); // NOI18N
         Close_Vault_Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         Close_Vault_Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,14 +156,54 @@ public class Main extends javax.swing.JFrame {
         New_Entry_Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         Main_ToolBar.add(New_Entry_Button);
 
+        Edit_Entry_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/edit.png"))); // NOI18N
+        Edit_Entry_Button.setToolTipText("Edit an Entry");
+        Edit_Entry_Button.setEnabled(false);
+        Edit_Entry_Button.setFocusable(false);
+        Edit_Entry_Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        Edit_Entry_Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        Main_ToolBar.add(Edit_Entry_Button);
+
         Delete_Entry_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cross.png"))); // NOI18N
-        Delete_Entry_Button.setToolTipText("Delete Entry");
+        Delete_Entry_Button.setToolTipText("Delete an Entry");
         Delete_Entry_Button.setEnabled(false);
         Delete_Entry_Button.setFocusable(false);
         Delete_Entry_Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         Delete_Entry_Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         Main_ToolBar.add(Delete_Entry_Button);
         Main_ToolBar.add(ToolBar_Separator_Two);
+
+        Copy_Username_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user.png"))); // NOI18N
+        Copy_Username_Button.setToolTipText("Copy Username");
+        Copy_Username_Button.setEnabled(false);
+        Copy_Username_Button.setFocusable(false);
+        Copy_Username_Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        Copy_Username_Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        Main_ToolBar.add(Copy_Username_Button);
+
+        Copy_Password_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/key.png"))); // NOI18N
+        Copy_Password_Button.setToolTipText("Copy Password");
+        Copy_Password_Button.setEnabled(false);
+        Copy_Password_Button.setFocusable(false);
+        Copy_Password_Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        Copy_Password_Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        Main_ToolBar.add(Copy_Password_Button);
+
+        Copy_URL_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/globe.png"))); // NOI18N
+        Copy_URL_Button.setToolTipText("Copy URL");
+        Copy_URL_Button.setEnabled(false);
+        Copy_URL_Button.setFocusable(false);
+        Copy_URL_Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        Copy_URL_Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        Main_ToolBar.add(Copy_URL_Button);
+
+        Password_Generator_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/electronics.png"))); // NOI18N
+        Password_Generator_Button.setToolTipText("Password Generator");
+        Password_Generator_Button.setFocusable(false);
+        Password_Generator_Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        Password_Generator_Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        Main_ToolBar.add(Password_Generator_Button);
+        Main_ToolBar.add(ToolBar_Separator_Three);
 
         Settings_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/settings.png"))); // NOI18N
         Settings_Button.setFocusable(false);
@@ -202,7 +251,7 @@ public class Main extends javax.swing.JFrame {
         });
 
         StartPage_Import_File_Button.setFont(StartPage_Import_File_Button.getFont().deriveFont(StartPage_Import_File_Button.getFont().getStyle() | java.awt.Font.BOLD, StartPage_Import_File_Button.getFont().getSize()+2));
-        StartPage_Import_File_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/plus.png"))); // NOI18N
+        StartPage_Import_File_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/import.png"))); // NOI18N
         StartPage_Import_File_Button.setText("Import File");
         StartPage_Import_File_Button.setToolTipText("Import Passwords From CSV File");
         StartPage_Import_File_Button.addActionListener(new java.awt.event.ActionListener() {
@@ -482,6 +531,7 @@ public class Main extends javax.swing.JFrame {
         Vault_Menu.add(Open_Vault_MenuItem);
 
         Close_Vault_MenuItem.setText("Close Vault");
+        Close_Vault_MenuItem.setEnabled(false);
         Close_Vault_MenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Close_Vault_MenuItemActionPerformed(evt);
@@ -535,6 +585,10 @@ public class Main extends javax.swing.JFrame {
         Copy_Password_MenuItem.setText("Copy Password");
         Copy_Password_MenuItem.setEnabled(false);
         Edit_Menu.add(Copy_Password_MenuItem);
+
+        Copy_URL_MenuItem.setText("Copy URL");
+        Copy_URL_MenuItem.setEnabled(false);
+        Edit_Menu.add(Copy_URL_MenuItem);
 
         Menu_Bar.add(Edit_Menu);
 
@@ -661,7 +715,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_Open_Vault_ButtonActionPerformed
 
     private void New_Vault_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_New_Vault_MenuItemActionPerformed
-        OpenVaultPage();
+        Container_Deck.show(Container, "new");
     }//GEN-LAST:event_New_Vault_MenuItemActionPerformed
 
     private void StartPage_Import_File_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StartPage_Import_File_ButtonActionPerformed
@@ -697,7 +751,12 @@ public class Main extends javax.swing.JFrame {
         Container_Deck.show(Container, "vault");
         Close_Vault_Button.setEnabled(true);
         New_Entry_Button.setEnabled(true);
+        Edit_Entry_Button.setEnabled(true);
         Delete_Entry_Button.setEnabled(true);
+        Copy_Username_Button.setEnabled(true);
+        Copy_Password_Button.setEnabled(true);
+        Copy_URL_Button.setEnabled(true);
+        Close_Vault_MenuItem.setEnabled(true);
         New_Entry_MenuItem.setEnabled(true);
         Edit_Entry_MenuItem.setEnabled(true);
         Delete_Entry_MenuItem.setEnabled(true);
@@ -706,6 +765,7 @@ public class Main extends javax.swing.JFrame {
         Delete_Group_MenuItem.setEnabled(true);
         Copy_Username_MenuItem.setEnabled(true);
         Copy_Password_MenuItem.setEnabled(true);
+        Copy_URL_MenuItem.setEnabled(true);
         AutoType_Menu.setEnabled(true);
     }
     
@@ -713,7 +773,12 @@ public class Main extends javax.swing.JFrame {
         Container_Deck.show(Container, "start");
         Close_Vault_Button.setEnabled(false);
         New_Entry_Button.setEnabled(false);
+        Edit_Entry_Button.setEnabled(false);
         Delete_Entry_Button.setEnabled(false);
+        Copy_Username_Button.setEnabled(false);
+        Copy_Password_Button.setEnabled(false);
+        Copy_URL_Button.setEnabled(false);
+        Close_Vault_MenuItem.setEnabled(false);
         New_Entry_MenuItem.setEnabled(false);
         Edit_Entry_MenuItem.setEnabled(false);
         Delete_Entry_MenuItem.setEnabled(false);
@@ -722,6 +787,7 @@ public class Main extends javax.swing.JFrame {
         Delete_Group_MenuItem.setEnabled(false);
         Copy_Username_MenuItem.setEnabled(false);
         Copy_Password_MenuItem.setEnabled(false);
+        Copy_URL_MenuItem.setEnabled(false);
         AutoType_Menu.setEnabled(false);
     }
     
@@ -767,12 +833,17 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPasswordField Confirm_Password_Field;
     private javax.swing.JLabel Confirm_Password_Label;
     private javax.swing.JPanel Container;
+    private javax.swing.JButton Copy_Password_Button;
     private javax.swing.JMenuItem Copy_Password_MenuItem;
+    private javax.swing.JButton Copy_URL_Button;
+    private javax.swing.JMenuItem Copy_URL_MenuItem;
+    private javax.swing.JButton Copy_Username_Button;
     private javax.swing.JMenuItem Copy_Username_MenuItem;
     private javax.swing.JButton Delete_Entry_Button;
     private javax.swing.JMenuItem Delete_Entry_MenuItem;
     private javax.swing.JMenuItem Delete_Group_MenuItem;
     private javax.swing.JPanel Details_Panel;
+    private javax.swing.JButton Edit_Entry_Button;
     private javax.swing.JMenuItem Edit_Entry_MenuItem;
     private javax.swing.JMenuItem Edit_Group_MenuItem;
     private javax.swing.JMenu Edit_Menu;
@@ -794,6 +865,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem New_Vault_MenuItem;
     private javax.swing.JButton Open_Vault_Button;
     private javax.swing.JMenuItem Open_Vault_MenuItem;
+    private javax.swing.JButton Password_Generator_Button;
     private javax.swing.JMenuItem Password_Generator_MenuItem;
     private javax.swing.JTable Passwords_Table;
     private javax.swing.JPopupMenu Passwords_Table_PopupMenu;
@@ -810,6 +882,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem Table_PopupMenu_Edit_Entry;
     private javax.swing.JMenuItem Table_PopupMenu_New_Entry;
     private javax.swing.JToolBar.Separator ToolBar_Separator_One;
+    private javax.swing.JToolBar.Separator ToolBar_Separator_Three;
     private javax.swing.JToolBar.Separator ToolBar_Separator_Two;
     private javax.swing.JMenu Tools_Menu;
     private javax.swing.JPanel VaultPage;
