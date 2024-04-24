@@ -12,7 +12,7 @@ public class Main extends javax.swing.JFrame {
      * Creates new form Main
      */
     public Main() {
-        Version = "0.3.0";
+        Version = "0.4.0";
         com.xahertz.internal.SQLite.initVaultList();
         initComponents();
         Container_Deck = (java.awt.CardLayout)Container.getLayout();
@@ -31,6 +31,10 @@ public class Main extends javax.swing.JFrame {
         Table_PopupMenu_New_Entry = new javax.swing.JMenuItem();
         Table_PopupMenu_Edit_Entry = new javax.swing.JMenuItem();
         Table_PopupMenu_Delete_Entry = new javax.swing.JMenuItem();
+        FolderTree_PopupMenu = new javax.swing.JPopupMenu();
+        Tree_PopupMenu_New_Group = new javax.swing.JMenuItem();
+        Tree_PopupMenu_Edit_Group = new javax.swing.JMenuItem();
+        Tree_PopupMenu_Delete_Group = new javax.swing.JMenuItem();
         Main_ToolBar = new javax.swing.JToolBar();
         Open_Vault_Button = new javax.swing.JButton();
         Close_Vault_Button = new javax.swing.JButton();
@@ -127,6 +131,15 @@ public class Main extends javax.swing.JFrame {
 
         Table_PopupMenu_Delete_Entry.setText("Delete Entry");
         Passwords_Table_PopupMenu.add(Table_PopupMenu_Delete_Entry);
+
+        Tree_PopupMenu_New_Group.setText("New Group");
+        FolderTree_PopupMenu.add(Tree_PopupMenu_New_Group);
+
+        Tree_PopupMenu_Edit_Group.setText("Edit Group");
+        FolderTree_PopupMenu.add(Tree_PopupMenu_Edit_Group);
+
+        Tree_PopupMenu_Delete_Group.setText("Delete Group");
+        FolderTree_PopupMenu.add(Tree_PopupMenu_Delete_Group);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sentinel");
@@ -460,6 +473,14 @@ public class Main extends javax.swing.JFrame {
         treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Social");
         treeNode1.add(treeNode2);
         FolderTree.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        FolderTree.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                FolderTreeMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                FolderTreeMousePressed(evt);
+            }
+        });
         FolderTree_ScrollPane.setViewportView(FolderTree);
 
         Passwords_Table.setModel(new javax.swing.table.DefaultTableModel(
@@ -933,6 +954,14 @@ public class Main extends javax.swing.JFrame {
         DisableVaultDataManipulationFunctions();
     }//GEN-LAST:event_Edit_Entry_ButtonActionPerformed
 
+    private void FolderTreeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FolderTreeMousePressed
+        if (evt.isPopupTrigger()) {
+            javax.swing.tree.TreePath selPath = FolderTree.getClosestPathForLocation(evt.getX(), evt.getY());
+            FolderTree.setSelectionPath(selPath);
+            FolderTree_PopupMenu.show(evt.getComponent(), evt.getX(), evt.getY());
+        }
+    }//GEN-LAST:event_FolderTreeMousePressed
+
     private void OpenVaultPage() {
         FolderTree.setModel(com.xahertz.internal.SQLite.allTablesList());
         Passwords_Table.setModel(com.xahertz.internal.Functions.vltTableModel("Root"));
@@ -1065,6 +1094,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel EntryPage_Label;
     private javax.swing.JMenuItem Exit_MenuItem;
     private javax.swing.JTree FolderTree;
+    private javax.swing.JPopupMenu FolderTree_PopupMenu;
     private javax.swing.JScrollPane FolderTree_ScrollPane;
     private javax.swing.JButton Generate_Password_Button;
     private javax.swing.JMenu Help_Menu;
@@ -1106,6 +1136,9 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JToolBar.Separator ToolBar_Separator_Three;
     private javax.swing.JToolBar.Separator ToolBar_Separator_Two;
     private javax.swing.JMenu Tools_Menu;
+    private javax.swing.JMenuItem Tree_PopupMenu_Delete_Group;
+    private javax.swing.JMenuItem Tree_PopupMenu_Edit_Group;
+    private javax.swing.JMenuItem Tree_PopupMenu_New_Group;
     private javax.swing.JLabel URL_Label;
     private javax.swing.JTextField URL_TextField;
     private javax.swing.JLabel Username_Label;
