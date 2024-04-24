@@ -12,7 +12,7 @@ public class Main extends javax.swing.JFrame {
      * Creates new form Main
      */
     public Main() {
-        Version = "0.2.0";
+        Version = "0.3.0";
         com.xahertz.internal.SQLite.initVaultList();
         initComponents();
         Container_Deck = (java.awt.CardLayout)Container.getLayout();
@@ -764,6 +764,8 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_Recent_Vaults_ListMouseClicked
 
     private void OpenVaultPage() {
+        FolderTree.setModel(com.xahertz.internal.SQLite.allTablesList());
+        Passwords_Table.setModel(com.xahertz.internal.Functions.vltTableModel("Root"));
         Container_Deck.show(Container, "vault");
         Close_Vault_Button.setEnabled(true);
         New_Entry_Button.setEnabled(true);

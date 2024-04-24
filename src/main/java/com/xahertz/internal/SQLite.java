@@ -12,6 +12,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 /**
  *
@@ -90,5 +92,34 @@ public class SQLite {
                 JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
+    }
+    
+    public static DefaultTreeModel allTablesList() {
+        DefaultMutableTreeNode treeNode1 = new DefaultMutableTreeNode("Root");
+        DefaultMutableTreeNode treeNode2;
+        String allTables = "SELECT \"Table Name\" FROM AllTables;";
+        try {
+            Statement vltDBquery = vltDB.createStatement();
+            ResultSet vltResult = vltDBquery.executeQuery(allTables);
+            while (vltResult.next()) {
+                treeNode2 = new DefaultMutableTreeNode(vltResult.getString("Table Name"));
+                treeNode1.add(treeNode2);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        return new DefaultTreeModel(treeNode1);
+    }
+    
+    public static ResultSet vltTableData(String vltTableName) {
+        ResultSet vltResult = null;
+        String vltTable = "SELECT * FROM \"" + vltTableName + "\";";
+        try {
+            Statement vltDBquery = vltDB.createStatement();
+            vltResult = vltDBquery.executeQuery(vltTable);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        return vltResult;
     }
 }
