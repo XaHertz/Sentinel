@@ -1037,6 +1037,14 @@ public class Main extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(() -> {
             new Main().setVisible(true);
         });
+        
+        Runtime.getRuntime().addShutdownHook(new Thread() {
+            @Override
+            public void run() {
+                com.xahertz.internal.SQLite.closeVault();
+                com.xahertz.internal.SQLite.closeVaultList();
+            }
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

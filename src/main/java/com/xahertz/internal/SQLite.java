@@ -53,6 +53,18 @@ public class SQLite {
         }
         return listModel;
     }
+    
+    public static void closeVaultList() {
+        if (listDB != null) {
+            try {
+                if (listDB.isValid(5)) {
+                    listDB.close();
+                }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
 
     public static void createNewVault(String vltName, String vltPass, String vltPath) {
         String rootTable = "CREATE TABLE IF NOT EXISTS Root (\"UID\" TEXT NOT NULL UNIQUE, \"Title\" TEXT, \"Username\" TEXT, \"Password\" TEXT, \"URL\" TEXT, \"Notes\" TEXT, PRIMARY KEY(\"UID\"));";
