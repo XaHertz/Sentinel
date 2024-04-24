@@ -25,16 +25,20 @@ public class Functions {
         return builder.toString();
     }
     
-    public static void openVault() {
+    public static boolean openVault() {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Open Existing Vault");
         fileChooser.setFileFilter(new FileNameExtensionFilter("Sentinel Vault File", "vault"));
         if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
             String vltPass = JOptionPane.showInputDialog(null, "Vault File: " + fileChooser.getSelectedFile().getAbsolutePath(), "Enter Password", JOptionPane.PLAIN_MESSAGE);
-            if (!vltPass.equals("")) {
-                com.xahertz.internal.SQLite.openVault(fileChooser.getSelectedFile().getAbsolutePath(), vltPass);
+            if (vltPass != null) {
+                if (!vltPass.equals("")) {
+                    com.xahertz.internal.SQLite.openVault(fileChooser.getSelectedFile().getAbsolutePath(), vltPass);
+                    return true;
+                }
             }
         }
+        return false;
     }
     
     public static TableModel vltTableModel(String vltTableName) {
