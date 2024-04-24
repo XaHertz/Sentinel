@@ -804,7 +804,8 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_Close_Vault_MenuItemActionPerformed
 
     private void Open_Vault_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Open_Vault_MenuItemActionPerformed
-        com.xahertz.internal.Functions.openVault();
+        if (com.xahertz.internal.Functions.openVault())
+            OpenVaultPage();
     }//GEN-LAST:event_Open_Vault_MenuItemActionPerformed
 
     private void Passwords_TableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Passwords_TableMousePressed
@@ -845,13 +846,13 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_NewVault_Cancel_ButtonActionPerformed
 
     private void StartPage_Open_Vault_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StartPage_Open_Vault_ButtonActionPerformed
-        com.xahertz.internal.Functions.openVault();
-        OpenVaultPage();
+        if (com.xahertz.internal.Functions.openVault())
+            OpenVaultPage();
     }//GEN-LAST:event_StartPage_Open_Vault_ButtonActionPerformed
 
     private void Open_Vault_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Open_Vault_ButtonActionPerformed
-        com.xahertz.internal.Functions.openVault();
-        OpenVaultPage();
+        if (com.xahertz.internal.Functions.openVault())
+            OpenVaultPage();
     }//GEN-LAST:event_Open_Vault_ButtonActionPerformed
 
     private void New_Vault_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_New_Vault_MenuItemActionPerformed
@@ -935,6 +936,9 @@ public class Main extends javax.swing.JFrame {
         Passwords_Table.setModel(com.xahertz.internal.Functions.vltTableModel("Root"));
         Container_Deck.show(Container, "vault");
         EnableVaultDataManipulationFunctions();
+        Open_Vault_Button.setEnabled(false);
+        New_Vault_MenuItem.setEnabled(false);
+        Open_Vault_MenuItem.setEnabled(false);
         Close_Vault_Button.setEnabled(true);
         Copy_Username_Button.setEnabled(true);
         Copy_Password_Button.setEnabled(true);
@@ -949,6 +953,9 @@ public class Main extends javax.swing.JFrame {
     private void CloseVaultPage() {
         Container_Deck.show(Container, "start");
         DisableVaultDataManipulationFunctions();
+        Open_Vault_Button.setEnabled(true);
+        New_Vault_MenuItem.setEnabled(true);
+        Open_Vault_MenuItem.setEnabled(true);
         Close_Vault_Button.setEnabled(false);
         Copy_Username_Button.setEnabled(false);
         Copy_Password_Button.setEnabled(false);
