@@ -265,6 +265,11 @@ public class Main extends javax.swing.JFrame {
         Recent_Vaults_Label.setText("Recent Vaults");
 
         Recent_Vaults_List.setModel(com.xahertz.internal.SQLite.VaultList());
+        Recent_Vaults_List.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Recent_Vaults_ListMouseClicked(evt);
+            }
+        });
         Recent_Vaults_ScrollPane.setViewportView(Recent_Vaults_List);
 
         javax.swing.GroupLayout Vault_Actions_PanelLayout = new javax.swing.GroupLayout(Vault_Actions_Panel);
@@ -746,6 +751,17 @@ public class Main extends javax.swing.JFrame {
     private void About_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_About_MenuItemActionPerformed
         JOptionPane.showMessageDialog(null, "<html><h1>Sentinel Password Manager</h1></html>\nVersion " + Version + "\nCopyright \u00A9 2024 XaHertz", "About", JOptionPane.PLAIN_MESSAGE);
     }//GEN-LAST:event_About_MenuItemActionPerformed
+
+    private void Recent_Vaults_ListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Recent_Vaults_ListMouseClicked
+        javax.swing.JList list = (javax.swing.JList)evt.getSource();
+        if (evt.getClickCount() == 2) {
+            String vltPass = JOptionPane.showInputDialog(null, "Vault File: " + list.getSelectedValue(), "Enter Password", JOptionPane.PLAIN_MESSAGE);
+            if (!vltPass.equals("")) {
+                com.xahertz.internal.SQLite.openVault(list.getSelectedValue().toString(), vltPass);
+            }
+            OpenVaultPage();
+        }
+    }//GEN-LAST:event_Recent_Vaults_ListMouseClicked
 
     private void OpenVaultPage() {
         Container_Deck.show(Container, "vault");
