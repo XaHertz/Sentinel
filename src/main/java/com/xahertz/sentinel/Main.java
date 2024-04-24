@@ -68,14 +68,31 @@ public class Main extends javax.swing.JFrame {
         Vault_Location_Label = new javax.swing.JLabel();
         Vault_Location_Field = new javax.swing.JTextField();
         Browse_Button = new javax.swing.JButton();
-        Cancel_Button = new javax.swing.JButton();
-        Finish_Button = new javax.swing.JButton();
+        NewVault_Cancel_Button = new javax.swing.JButton();
+        NewVault_Finish_Button = new javax.swing.JButton();
         VaultPage = new javax.swing.JPanel();
         FolderTree_ScrollPane = new javax.swing.JScrollPane();
         FolderTree = new javax.swing.JTree();
         Passwords_Table_ScrollPane = new javax.swing.JScrollPane();
         Passwords_Table = new javax.swing.JTable();
         Details_Panel = new javax.swing.JPanel();
+        EntryPage = new javax.swing.JPanel();
+        EntryPage_Label = new javax.swing.JLabel();
+        EntryPage_Container = new javax.swing.JPanel();
+        Title_Label = new javax.swing.JLabel();
+        Title_TextField = new javax.swing.JTextField();
+        Username_Label = new javax.swing.JLabel();
+        Username_TextField = new javax.swing.JTextField();
+        Password_Label = new javax.swing.JLabel();
+        Password_Field = new javax.swing.JPasswordField();
+        Generate_Password_Button = new javax.swing.JButton();
+        URL_Label = new javax.swing.JLabel();
+        URL_TextField = new javax.swing.JTextField();
+        Notes_Label = new javax.swing.JLabel();
+        Notes_ScrollPane = new javax.swing.JScrollPane();
+        Notes_TextArea = new javax.swing.JTextArea();
+        EntryPage_Cancel_Button = new javax.swing.JButton();
+        EntryPage_Finish_Button = new javax.swing.JButton();
         Menu_Bar = new javax.swing.JMenuBar();
         Vault_Menu = new javax.swing.JMenu();
         New_Vault_MenuItem = new javax.swing.JMenuItem();
@@ -154,6 +171,11 @@ public class Main extends javax.swing.JFrame {
         New_Entry_Button.setFocusable(false);
         New_Entry_Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         New_Entry_Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        New_Entry_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                New_Entry_ButtonActionPerformed(evt);
+            }
+        });
         Main_ToolBar.add(New_Entry_Button);
 
         Edit_Entry_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/edit.png"))); // NOI18N
@@ -162,6 +184,11 @@ public class Main extends javax.swing.JFrame {
         Edit_Entry_Button.setFocusable(false);
         Edit_Entry_Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         Edit_Entry_Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        Edit_Entry_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Edit_Entry_ButtonActionPerformed(evt);
+            }
+        });
         Main_ToolBar.add(Edit_Entry_Button);
 
         Delete_Entry_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cross.png"))); // NOI18N
@@ -401,19 +428,19 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        Cancel_Button.setFont(Cancel_Button.getFont().deriveFont(Cancel_Button.getFont().getSize()+2f));
-        Cancel_Button.setText("Cancel");
-        Cancel_Button.addActionListener(new java.awt.event.ActionListener() {
+        NewVault_Cancel_Button.setFont(NewVault_Cancel_Button.getFont().deriveFont(NewVault_Cancel_Button.getFont().getSize()+2f));
+        NewVault_Cancel_Button.setText("Cancel");
+        NewVault_Cancel_Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Cancel_ButtonActionPerformed(evt);
+                NewVault_Cancel_ButtonActionPerformed(evt);
             }
         });
 
-        Finish_Button.setFont(Finish_Button.getFont().deriveFont(Finish_Button.getFont().getSize()+2f));
-        Finish_Button.setText("Finish");
-        Finish_Button.addActionListener(new java.awt.event.ActionListener() {
+        NewVault_Finish_Button.setFont(NewVault_Finish_Button.getFont().deriveFont(NewVault_Finish_Button.getFont().getSize()+2f));
+        NewVault_Finish_Button.setText("Finish");
+        NewVault_Finish_Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Finish_ButtonActionPerformed(evt);
+                NewVault_Finish_ButtonActionPerformed(evt);
             }
         });
 
@@ -425,9 +452,9 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap(130, Short.MAX_VALUE)
                 .addGroup(NewVaultPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(NewVaultPageLayout.createSequentialGroup()
-                        .addComponent(Cancel_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(NewVault_Cancel_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(560, 560, 560)
-                        .addComponent(Finish_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(NewVault_Finish_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(NewVault_Container, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(NewVault_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 740, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(130, Short.MAX_VALUE))
@@ -441,8 +468,8 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(NewVault_Container, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(NewVaultPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Finish_Button, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
-                    .addComponent(Cancel_Button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(NewVault_Finish_Button, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                    .addComponent(NewVault_Cancel_Button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(162, Short.MAX_VALUE))
         );
 
@@ -516,6 +543,137 @@ public class Main extends javax.swing.JFrame {
         );
 
         Container.add(VaultPage, "vault");
+
+        EntryPage_Label.setFont(EntryPage_Label.getFont().deriveFont(EntryPage_Label.getFont().getSize()+12f));
+        EntryPage_Label.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        EntryPage_Label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/key.png"))); // NOI18N
+        EntryPage_Label.setText("Entry Page");
+
+        EntryPage_Container.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        Title_Label.setFont(Title_Label.getFont().deriveFont(Title_Label.getFont().getSize()+2f));
+        Title_Label.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        Title_Label.setText("Title");
+
+        Username_Label.setFont(Username_Label.getFont().deriveFont(Username_Label.getFont().getSize()+2f));
+        Username_Label.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        Username_Label.setText("Username");
+
+        Password_Label.setFont(Password_Label.getFont().deriveFont(Password_Label.getFont().getSize()+2f));
+        Password_Label.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        Password_Label.setText("Password");
+
+        Generate_Password_Button.setText("Generate Password");
+
+        URL_Label.setFont(URL_Label.getFont().deriveFont(URL_Label.getFont().getSize()+2f));
+        URL_Label.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        URL_Label.setText("URL");
+
+        Notes_Label.setFont(Notes_Label.getFont().deriveFont(Notes_Label.getFont().getSize()+2f));
+        Notes_Label.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        Notes_Label.setText("Notes");
+
+        Notes_TextArea.setColumns(20);
+        Notes_TextArea.setRows(5);
+        Notes_ScrollPane.setViewportView(Notes_TextArea);
+
+        javax.swing.GroupLayout EntryPage_ContainerLayout = new javax.swing.GroupLayout(EntryPage_Container);
+        EntryPage_Container.setLayout(EntryPage_ContainerLayout);
+        EntryPage_ContainerLayout.setHorizontalGroup(
+            EntryPage_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(EntryPage_ContainerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(EntryPage_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Notes_Label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(URL_Label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Password_Label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Title_Label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Username_Label, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(EntryPage_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EntryPage_ContainerLayout.createSequentialGroup()
+                        .addComponent(Password_Field)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Generate_Password_Button))
+                    .addComponent(Title_TextField)
+                    .addComponent(URL_TextField)
+                    .addComponent(Username_TextField)
+                    .addComponent(Notes_ScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 804, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        EntryPage_ContainerLayout.setVerticalGroup(
+            EntryPage_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(EntryPage_ContainerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(EntryPage_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Title_TextField, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                    .addComponent(Title_Label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(EntryPage_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Username_Label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Username_TextField, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(EntryPage_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Generate_Password_Button, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                    .addComponent(Password_Label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Password_Field))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(EntryPage_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(URL_TextField, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                    .addComponent(URL_Label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(EntryPage_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Notes_ScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
+                    .addComponent(Notes_Label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        EntryPage_Cancel_Button.setFont(EntryPage_Cancel_Button.getFont().deriveFont(EntryPage_Cancel_Button.getFont().getSize()+2f));
+        EntryPage_Cancel_Button.setText("Cancel");
+        EntryPage_Cancel_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EntryPage_Cancel_ButtonActionPerformed(evt);
+            }
+        });
+
+        EntryPage_Finish_Button.setFont(EntryPage_Finish_Button.getFont().deriveFont(EntryPage_Finish_Button.getFont().getSize()+2f));
+        EntryPage_Finish_Button.setText("Finish");
+        EntryPage_Finish_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EntryPage_Finish_ButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout EntryPageLayout = new javax.swing.GroupLayout(EntryPage);
+        EntryPage.setLayout(EntryPageLayout);
+        EntryPageLayout.setHorizontalGroup(
+            EntryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(EntryPageLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addGroup(EntryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(EntryPageLayout.createSequentialGroup()
+                        .addComponent(EntryPage_Cancel_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(EntryPage_Finish_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(EntryPage_Container, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(EntryPage_Label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(50, 50, 50))
+        );
+        EntryPageLayout.setVerticalGroup(
+            EntryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(EntryPageLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(EntryPage_Label)
+                .addGap(18, 18, 18)
+                .addComponent(EntryPage_Container, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(EntryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(EntryPage_Cancel_Button)
+                    .addComponent(EntryPage_Finish_Button))
+                .addGap(50, 50, 50))
+        );
+
+        Container.add(EntryPage, "entry");
 
         Vault_Menu.setText("Vault");
 
@@ -683,7 +841,7 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_Passwords_TableMousePressed
 
-    private void Finish_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Finish_ButtonActionPerformed
+    private void NewVault_Finish_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewVault_Finish_ButtonActionPerformed
         String vltName = Vault_Name_Field.getText();
         String vltPass = new String(Vault_Password_Field.getPassword());
         String cnfPass = new String(Confirm_Password_Field.getPassword());
@@ -703,11 +861,11 @@ public class Main extends javax.swing.JFrame {
             Vault_Location_Field.setText("");
             OpenVaultPage();
         }
-    }//GEN-LAST:event_Finish_ButtonActionPerformed
+    }//GEN-LAST:event_NewVault_Finish_ButtonActionPerformed
 
-    private void Cancel_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cancel_ButtonActionPerformed
+    private void NewVault_Cancel_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewVault_Cancel_ButtonActionPerformed
         Container_Deck.show(Container, "start");
-    }//GEN-LAST:event_Cancel_ButtonActionPerformed
+    }//GEN-LAST:event_NewVault_Cancel_ButtonActionPerformed
 
     private void StartPage_Open_Vault_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StartPage_Open_Vault_ButtonActionPerformed
         com.xahertz.internal.Functions.openVault();
@@ -763,24 +921,52 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_Recent_Vaults_ListMouseClicked
 
+    private void New_Entry_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_New_Entry_ButtonActionPerformed
+        EntryPage_Label.setText("New Entry");
+        Container_Deck.show(Container, "entry");
+        DisableVaultDataManipulationFunctions();
+    }//GEN-LAST:event_New_Entry_ButtonActionPerformed
+
+    private void EntryPage_Cancel_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EntryPage_Cancel_ButtonActionPerformed
+        Container_Deck.show(Container, "vault");
+        EnableVaultDataManipulationFunctions();
+    }//GEN-LAST:event_EntryPage_Cancel_ButtonActionPerformed
+
+    private void EntryPage_Finish_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EntryPage_Finish_ButtonActionPerformed
+        String vltTableName = "Root";
+        String UID = "SVLT-" + new java.text.SimpleDateFormat("yyMMdd-HHmmss").format(new java.util.Date())+ "-" + com.xahertz.internal.Functions.randomID(8);
+        String Title = Title_TextField.getText();
+        String Username = Username_TextField.getText();
+        String Password = new String(Password_Field.getPassword());
+        String URL = URL_TextField.getText();
+        String Notes = Notes_TextArea.getText();
+        com.xahertz.internal.SQLite.newTableEntry(vltTableName, UID, Title, Username, Password, URL, Notes);
+        Passwords_Table.setModel(com.xahertz.internal.Functions.vltTableModel("Root"));
+        Container_Deck.show(Container, "vault");
+        EnableVaultDataManipulationFunctions();
+        Title_TextField.setText("");
+        Username_TextField.setText("");
+        Password_Field.setText("");
+        URL_TextField.setText("");
+        Notes_TextArea.setText("");
+    }//GEN-LAST:event_EntryPage_Finish_ButtonActionPerformed
+
+    private void Edit_Entry_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Edit_Entry_ButtonActionPerformed
+        EntryPage_Label.setText("Edit Entry");
+        Container_Deck.show(Container, "entry");
+        DisableVaultDataManipulationFunctions();
+    }//GEN-LAST:event_Edit_Entry_ButtonActionPerformed
+
     private void OpenVaultPage() {
         FolderTree.setModel(com.xahertz.internal.SQLite.allTablesList());
         Passwords_Table.setModel(com.xahertz.internal.Functions.vltTableModel("Root"));
         Container_Deck.show(Container, "vault");
+        EnableVaultDataManipulationFunctions();
         Close_Vault_Button.setEnabled(true);
-        New_Entry_Button.setEnabled(true);
-        Edit_Entry_Button.setEnabled(true);
-        Delete_Entry_Button.setEnabled(true);
         Copy_Username_Button.setEnabled(true);
         Copy_Password_Button.setEnabled(true);
         Copy_URL_Button.setEnabled(true);
         Close_Vault_MenuItem.setEnabled(true);
-        New_Entry_MenuItem.setEnabled(true);
-        Edit_Entry_MenuItem.setEnabled(true);
-        Delete_Entry_MenuItem.setEnabled(true);
-        New_Group_MenuItem.setEnabled(true);
-        Edit_Group_MenuItem.setEnabled(true);
-        Delete_Group_MenuItem.setEnabled(true);
         Copy_Username_MenuItem.setEnabled(true);
         Copy_Password_MenuItem.setEnabled(true);
         Copy_URL_MenuItem.setEnabled(true);
@@ -789,24 +975,40 @@ public class Main extends javax.swing.JFrame {
     
     private void CloseVaultPage() {
         Container_Deck.show(Container, "start");
+        DisableVaultDataManipulationFunctions();
         Close_Vault_Button.setEnabled(false);
-        New_Entry_Button.setEnabled(false);
-        Edit_Entry_Button.setEnabled(false);
-        Delete_Entry_Button.setEnabled(false);
         Copy_Username_Button.setEnabled(false);
         Copy_Password_Button.setEnabled(false);
         Copy_URL_Button.setEnabled(false);
         Close_Vault_MenuItem.setEnabled(false);
+        Copy_Username_MenuItem.setEnabled(false);
+        Copy_Password_MenuItem.setEnabled(false);
+        Copy_URL_MenuItem.setEnabled(false);
+        AutoType_Menu.setEnabled(false);
+    }
+    
+    private void EnableVaultDataManipulationFunctions() {
+        New_Entry_Button.setEnabled(true);
+        Edit_Entry_Button.setEnabled(true);
+        Delete_Entry_Button.setEnabled(true);
+        New_Entry_MenuItem.setEnabled(true);
+        Edit_Entry_MenuItem.setEnabled(true);
+        Delete_Entry_MenuItem.setEnabled(true);
+        New_Group_MenuItem.setEnabled(true);
+        Edit_Group_MenuItem.setEnabled(true);
+        Delete_Group_MenuItem.setEnabled(true);
+    }
+    
+    private void DisableVaultDataManipulationFunctions() {
+        New_Entry_Button.setEnabled(false);
+        Edit_Entry_Button.setEnabled(false);
+        Delete_Entry_Button.setEnabled(false);
         New_Entry_MenuItem.setEnabled(false);
         Edit_Entry_MenuItem.setEnabled(false);
         Delete_Entry_MenuItem.setEnabled(false);
         New_Group_MenuItem.setEnabled(false);
         Edit_Group_MenuItem.setEnabled(false);
         Delete_Group_MenuItem.setEnabled(false);
-        Copy_Username_MenuItem.setEnabled(false);
-        Copy_Password_MenuItem.setEnabled(false);
-        Copy_URL_MenuItem.setEnabled(false);
-        AutoType_Menu.setEnabled(false);
     }
     
     /**
@@ -845,7 +1047,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem AutoType_Password_MenuItem;
     private javax.swing.JMenuItem AutoType_Usename_MenuItem;
     private javax.swing.JButton Browse_Button;
-    private javax.swing.JButton Cancel_Button;
     private javax.swing.JButton Close_Vault_Button;
     private javax.swing.JMenuItem Close_Vault_MenuItem;
     private javax.swing.JPasswordField Confirm_Password_Field;
@@ -867,24 +1068,36 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenu Edit_Menu;
     private javax.swing.JPopupMenu.Separator Edit_Menu_Separator_One;
     private javax.swing.JPopupMenu.Separator Edit_Menu_Separator_Two;
+    private javax.swing.JPanel EntryPage;
+    private javax.swing.JButton EntryPage_Cancel_Button;
+    private javax.swing.JPanel EntryPage_Container;
+    private javax.swing.JButton EntryPage_Finish_Button;
+    private javax.swing.JLabel EntryPage_Label;
     private javax.swing.JMenuItem Exit_MenuItem;
-    private javax.swing.JButton Finish_Button;
     private javax.swing.JTree FolderTree;
     private javax.swing.JScrollPane FolderTree_ScrollPane;
+    private javax.swing.JButton Generate_Password_Button;
     private javax.swing.JMenu Help_Menu;
     private javax.swing.JToolBar Main_ToolBar;
     private javax.swing.JMenuBar Menu_Bar;
     private javax.swing.JPanel NewVaultPage;
+    private javax.swing.JButton NewVault_Cancel_Button;
     private javax.swing.JPanel NewVault_Container;
+    private javax.swing.JButton NewVault_Finish_Button;
     private javax.swing.JLabel NewVault_Label;
     private javax.swing.JButton New_Entry_Button;
     private javax.swing.JMenuItem New_Entry_MenuItem;
     private javax.swing.JMenuItem New_Group_MenuItem;
     private javax.swing.JMenuItem New_Vault_MenuItem;
+    private javax.swing.JLabel Notes_Label;
+    private javax.swing.JScrollPane Notes_ScrollPane;
+    private javax.swing.JTextArea Notes_TextArea;
     private javax.swing.JButton Open_Vault_Button;
     private javax.swing.JMenuItem Open_Vault_MenuItem;
+    private javax.swing.JPasswordField Password_Field;
     private javax.swing.JButton Password_Generator_Button;
     private javax.swing.JMenuItem Password_Generator_MenuItem;
+    private javax.swing.JLabel Password_Label;
     private javax.swing.JTable Passwords_Table;
     private javax.swing.JPopupMenu Passwords_Table_PopupMenu;
     private javax.swing.JScrollPane Passwords_Table_ScrollPane;
@@ -899,10 +1112,16 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem Table_PopupMenu_Delete_Entry;
     private javax.swing.JMenuItem Table_PopupMenu_Edit_Entry;
     private javax.swing.JMenuItem Table_PopupMenu_New_Entry;
+    private javax.swing.JLabel Title_Label;
+    private javax.swing.JTextField Title_TextField;
     private javax.swing.JToolBar.Separator ToolBar_Separator_One;
     private javax.swing.JToolBar.Separator ToolBar_Separator_Three;
     private javax.swing.JToolBar.Separator ToolBar_Separator_Two;
     private javax.swing.JMenu Tools_Menu;
+    private javax.swing.JLabel URL_Label;
+    private javax.swing.JTextField URL_TextField;
+    private javax.swing.JLabel Username_Label;
+    private javax.swing.JTextField Username_TextField;
     private javax.swing.JPanel VaultPage;
     private javax.swing.JPanel Vault_Actions_Panel;
     private javax.swing.JTextField Vault_Location_Field;

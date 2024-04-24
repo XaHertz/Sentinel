@@ -285,6 +285,9 @@
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="New_Entry_ButtonActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="Edit_Entry_Button">
           <Properties>
@@ -297,6 +300,9 @@
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Edit_Entry_ButtonActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="Delete_Entry_Button">
           <Properties>
@@ -584,9 +590,9 @@
                       <EmptySpace pref="130" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="Cancel_Button" min="-2" pref="90" max="-2" attributes="0"/>
+                              <Component id="NewVault_Cancel_Button" min="-2" pref="90" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="560" max="-2" attributes="0"/>
-                              <Component id="Finish_Button" min="-2" pref="90" max="-2" attributes="0"/>
+                              <Component id="NewVault_Finish_Button" min="-2" pref="90" max="-2" attributes="0"/>
                           </Group>
                           <Component id="NewVault_Container" max="32767" attributes="0"/>
                           <Component id="NewVault_Label" min="-2" pref="740" max="-2" attributes="0"/>
@@ -604,8 +610,8 @@
                       <Component id="NewVault_Container" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="Finish_Button" pref="31" max="32767" attributes="0"/>
-                          <Component id="Cancel_Button" max="32767" attributes="0"/>
+                          <Component id="NewVault_Finish_Button" pref="31" max="32767" attributes="0"/>
+                          <Component id="NewVault_Cancel_Button" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace pref="162" max="32767" attributes="0"/>
                   </Group>
@@ -755,30 +761,30 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="Cancel_Button">
+            <Component class="javax.swing.JButton" name="NewVault_Cancel_Button">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
                   <FontInfo relative="true">
-                    <Font component="Cancel_Button" property="font" relativeSize="true" size="2"/>
+                    <Font component="NewVault_Cancel_Button" property="font" relativeSize="true" size="2"/>
                   </FontInfo>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Cancel"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Cancel_ButtonActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NewVault_Cancel_ButtonActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="Finish_Button">
+            <Component class="javax.swing.JButton" name="NewVault_Finish_Button">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
                   <FontInfo relative="true">
-                    <Font component="Finish_Button" property="font" relativeSize="true" size="2"/>
+                    <Font component="NewVault_Finish_Button" property="font" relativeSize="true" size="2"/>
                   </FontInfo>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Finish"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Finish_ButtonActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NewVault_Finish_ButtonActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -887,6 +893,248 @@
                 </DimensionLayout>
               </Layout>
             </Container>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="EntryPage">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+              <CardConstraints cardName="entry"/>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="EntryPage_Cancel_Button" min="-2" pref="90" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="EntryPage_Finish_Button" min="-2" pref="90" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="EntryPage_Container" max="32767" attributes="0"/>
+                          <Component id="EntryPage_Label" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="EntryPage_Label" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="EntryPage_Container" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="EntryPage_Cancel_Button" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="EntryPage_Finish_Button" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="EntryPage_Label">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
+                  <FontInfo relative="true">
+                    <Font component="EntryPage_Label" property="font" relativeSize="true" size="12"/>
+                  </FontInfo>
+                </Property>
+                <Property name="horizontalAlignment" type="int" value="2"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/images/key.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Entry Page"/>
+              </Properties>
+            </Component>
+            <Container class="javax.swing.JPanel" name="EntryPage_Container">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                    <EtchetBorder/>
+                  </Border>
+                </Property>
+              </Properties>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="Notes_Label" max="32767" attributes="0"/>
+                              <Component id="URL_Label" alignment="0" max="32767" attributes="0"/>
+                              <Component id="Password_Label" alignment="0" max="32767" attributes="0"/>
+                              <Component id="Title_Label" alignment="0" max="32767" attributes="0"/>
+                              <Component id="Username_Label" alignment="0" pref="74" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="Password_Field" max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="Generate_Password_Button" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="Title_TextField" max="32767" attributes="0"/>
+                              <Component id="URL_TextField" max="32767" attributes="0"/>
+                              <Component id="Username_TextField" alignment="0" max="32767" attributes="0"/>
+                              <Component id="Notes_ScrollPane" alignment="0" pref="804" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="Title_TextField" alignment="0" pref="28" max="32767" attributes="0"/>
+                              <Component id="Title_Label" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="Username_Label" max="32767" attributes="0"/>
+                              <Component id="Username_TextField" pref="28" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="Generate_Password_Button" pref="28" max="32767" attributes="0"/>
+                              <Component id="Password_Label" alignment="0" max="32767" attributes="0"/>
+                              <Component id="Password_Field" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="URL_TextField" alignment="0" pref="28" max="32767" attributes="0"/>
+                              <Component id="URL_Label" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="Notes_ScrollPane" pref="176" max="32767" attributes="0"/>
+                              <Component id="Notes_Label" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JLabel" name="Title_Label">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
+                      <FontInfo relative="true">
+                        <Font component="Title_Label" property="font" relativeSize="true" size="2"/>
+                      </FontInfo>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="4"/>
+                    <Property name="text" type="java.lang.String" value="Title"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="Title_TextField">
+                </Component>
+                <Component class="javax.swing.JLabel" name="Username_Label">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
+                      <FontInfo relative="true">
+                        <Font component="Username_Label" property="font" relativeSize="true" size="2"/>
+                      </FontInfo>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="4"/>
+                    <Property name="text" type="java.lang.String" value="Username"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="Username_TextField">
+                </Component>
+                <Component class="javax.swing.JLabel" name="Password_Label">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
+                      <FontInfo relative="true">
+                        <Font component="Password_Label" property="font" relativeSize="true" size="2"/>
+                      </FontInfo>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="4"/>
+                    <Property name="text" type="java.lang.String" value="Password"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JPasswordField" name="Password_Field">
+                </Component>
+                <Component class="javax.swing.JButton" name="Generate_Password_Button">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Generate Password"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="URL_Label">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
+                      <FontInfo relative="true">
+                        <Font component="URL_Label" property="font" relativeSize="true" size="2"/>
+                      </FontInfo>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="4"/>
+                    <Property name="text" type="java.lang.String" value="URL"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="URL_TextField">
+                </Component>
+                <Component class="javax.swing.JLabel" name="Notes_Label">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
+                      <FontInfo relative="true">
+                        <Font component="Notes_Label" property="font" relativeSize="true" size="2"/>
+                      </FontInfo>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="4"/>
+                    <Property name="text" type="java.lang.String" value="Notes"/>
+                  </Properties>
+                </Component>
+                <Container class="javax.swing.JScrollPane" name="Notes_ScrollPane">
+                  <AuxValues>
+                    <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                  </AuxValues>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                  <SubComponents>
+                    <Component class="javax.swing.JTextArea" name="Notes_TextArea">
+                      <Properties>
+                        <Property name="columns" type="int" value="20"/>
+                        <Property name="rows" type="int" value="5"/>
+                      </Properties>
+                    </Component>
+                  </SubComponents>
+                </Container>
+              </SubComponents>
+            </Container>
+            <Component class="javax.swing.JButton" name="EntryPage_Cancel_Button">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
+                  <FontInfo relative="true">
+                    <Font component="EntryPage_Cancel_Button" property="font" relativeSize="true" size="2"/>
+                  </FontInfo>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Cancel"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EntryPage_Cancel_ButtonActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="EntryPage_Finish_Button">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
+                  <FontInfo relative="true">
+                    <Font component="EntryPage_Finish_Button" property="font" relativeSize="true" size="2"/>
+                  </FontInfo>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Finish"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EntryPage_Finish_ButtonActionPerformed"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
       </SubComponents>

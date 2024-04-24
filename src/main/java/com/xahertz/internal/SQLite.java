@@ -122,4 +122,20 @@ public class SQLite {
         }
         return vltResult;
     }
+    
+    public static void newTableEntry(String vltTableName, String UID, String Title, String Username, String Password, String URL, String Notes) {
+        String vltTable = "REPLACE INTO \"" + vltTableName + "\" (\"UID\", \"Title\", \"Username\", \"Password\", \"URL\", \"Notes\") VALUES(?, ?, ?, ?, ?, ?);";
+        try {
+            PreparedStatement vltDBquery = vltDB.prepareStatement(vltTable);
+            vltDBquery.setString(1, UID);
+            vltDBquery.setString(2, Title);
+            vltDBquery.setString(3, Username);
+            vltDBquery.setString(4, Password);
+            vltDBquery.setString(5, URL);
+            vltDBquery.setString(6, Notes);
+            vltDBquery.executeUpdate();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
 }

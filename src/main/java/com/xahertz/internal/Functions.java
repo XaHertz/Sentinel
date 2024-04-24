@@ -1,5 +1,6 @@
 package com.xahertz.internal;
 
+import java.security.SecureRandom;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -14,6 +15,16 @@ import javax.swing.table.TableModel;
  * @author XaHertz
  */
 public class Functions {
+    static String Seed = "0123456789";
+    static SecureRandom random = new SecureRandom();
+    
+    public static String randomID(int length) {
+        StringBuilder builder = new StringBuilder(length);
+        for (int i=0; i<length; i++)
+            builder.append(Seed.charAt(random.nextInt(Seed.length())));
+        return builder.toString();
+    }
+    
     public static void openVault() {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Open Existing Vault");
