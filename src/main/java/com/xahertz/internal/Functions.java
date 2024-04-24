@@ -36,15 +36,6 @@ public class Functions {
             }
         }
     }
-
-    public static void importVaultData() {
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogTitle("Import from CSV");
-        fileChooser.setFileFilter(new FileNameExtensionFilter("CSV File", "csv"));
-        if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-            JOptionPane.showMessageDialog(null, fileChooser.getSelectedFile(), "Success", JOptionPane.INFORMATION_MESSAGE);
-        }
-    }
     
     public static TableModel vltTableModel(String vltTableName) {
         ResultSet vltResult = com.xahertz.internal.SQLite.vltTableData(vltTableName);

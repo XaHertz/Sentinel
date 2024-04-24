@@ -367,16 +367,6 @@
         </Component>
         <Component class="javax.swing.JToolBar$Separator" name="ToolBar_Separator_Three">
         </Component>
-        <Component class="javax.swing.JButton" name="Settings_Button">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/images/settings.png"/>
-            </Property>
-            <Property name="focusable" type="boolean" value="false"/>
-            <Property name="horizontalTextPosition" type="int" value="0"/>
-            <Property name="verticalTextPosition" type="int" value="3"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JButton" name="About_Button">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
@@ -457,11 +447,9 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="Recent_Vaults_ScrollPane" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="StartPage_Create_Vault_Button" min="-2" pref="210" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="StartPage_Open_Vault_Button" pref="220" max="32767" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="StartPage_Import_File_Button" min="-2" pref="210" max="-2" attributes="0"/>
+                                  <Component id="StartPage_Create_Vault_Button" pref="328" max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="StartPage_Open_Vault_Button" min="-2" pref="330" max="-2" attributes="0"/>
                               </Group>
                               <Component id="Recent_Vaults_Label" alignment="0" max="32767" attributes="0"/>
                           </Group>
@@ -476,7 +464,6 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="StartPage_Create_Vault_Button" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                               <Component id="StartPage_Open_Vault_Button" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                              <Component id="StartPage_Import_File_Button" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="Recent_Vaults_Label" min="-2" max="-2" attributes="0"/>
@@ -498,8 +485,7 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/images/vault.png"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Create Vault"/>
-                    <Property name="toolTipText" type="java.lang.String" value="Create New Vault"/>
+                    <Property name="text" type="java.lang.String" value="Create New Vault"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="StartPage_Create_Vault_ButtonActionPerformed"/>
@@ -515,28 +501,10 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/images/open.png"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Open Vault"/>
-                    <Property name="toolTipText" type="java.lang.String" value="Open Existing Vault"/>
+                    <Property name="text" type="java.lang.String" value="Open Existing Vault"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="StartPage_Open_Vault_ButtonActionPerformed"/>
-                  </Events>
-                </Component>
-                <Component class="javax.swing.JButton" name="StartPage_Import_File_Button">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
-                      <FontInfo relative="true">
-                        <Font bold="true" component="StartPage_Import_File_Button" property="font" relativeSize="true" size="2"/>
-                      </FontInfo>
-                    </Property>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/import.png"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="Import File"/>
-                    <Property name="toolTipText" type="java.lang.String" value="Import Passwords From CSV File"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="StartPage_Import_File_ButtonActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="Recent_Vaults_Label">

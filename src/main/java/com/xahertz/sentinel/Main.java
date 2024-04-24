@@ -44,7 +44,6 @@ public class Main extends javax.swing.JFrame {
         Copy_URL_Button = new javax.swing.JButton();
         Password_Generator_Button = new javax.swing.JButton();
         ToolBar_Separator_Three = new javax.swing.JToolBar.Separator();
-        Settings_Button = new javax.swing.JButton();
         About_Button = new javax.swing.JButton();
         Container = new javax.swing.JPanel();
         StartPage = new javax.swing.JPanel();
@@ -52,7 +51,6 @@ public class Main extends javax.swing.JFrame {
         Vault_Actions_Panel = new javax.swing.JPanel();
         StartPage_Create_Vault_Button = new javax.swing.JButton();
         StartPage_Open_Vault_Button = new javax.swing.JButton();
-        StartPage_Import_File_Button = new javax.swing.JButton();
         Recent_Vaults_Label = new javax.swing.JLabel();
         Recent_Vaults_ScrollPane = new javax.swing.JScrollPane();
         Recent_Vaults_List = new javax.swing.JList<>();
@@ -232,12 +230,6 @@ public class Main extends javax.swing.JFrame {
         Main_ToolBar.add(Password_Generator_Button);
         Main_ToolBar.add(ToolBar_Separator_Three);
 
-        Settings_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/settings.png"))); // NOI18N
-        Settings_Button.setFocusable(false);
-        Settings_Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        Settings_Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        Main_ToolBar.add(Settings_Button);
-
         About_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/info.png"))); // NOI18N
         About_Button.setFocusable(false);
         About_Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -259,8 +251,7 @@ public class Main extends javax.swing.JFrame {
 
         StartPage_Create_Vault_Button.setFont(StartPage_Create_Vault_Button.getFont().deriveFont(StartPage_Create_Vault_Button.getFont().getStyle() | java.awt.Font.BOLD, StartPage_Create_Vault_Button.getFont().getSize()+2));
         StartPage_Create_Vault_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/vault.png"))); // NOI18N
-        StartPage_Create_Vault_Button.setText("Create Vault");
-        StartPage_Create_Vault_Button.setToolTipText("Create New Vault");
+        StartPage_Create_Vault_Button.setText("Create New Vault");
         StartPage_Create_Vault_Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 StartPage_Create_Vault_ButtonActionPerformed(evt);
@@ -269,21 +260,10 @@ public class Main extends javax.swing.JFrame {
 
         StartPage_Open_Vault_Button.setFont(StartPage_Open_Vault_Button.getFont().deriveFont(StartPage_Open_Vault_Button.getFont().getStyle() | java.awt.Font.BOLD, StartPage_Open_Vault_Button.getFont().getSize()+2));
         StartPage_Open_Vault_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/open.png"))); // NOI18N
-        StartPage_Open_Vault_Button.setText("Open Vault");
-        StartPage_Open_Vault_Button.setToolTipText("Open Existing Vault");
+        StartPage_Open_Vault_Button.setText("Open Existing Vault");
         StartPage_Open_Vault_Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 StartPage_Open_Vault_ButtonActionPerformed(evt);
-            }
-        });
-
-        StartPage_Import_File_Button.setFont(StartPage_Import_File_Button.getFont().deriveFont(StartPage_Import_File_Button.getFont().getStyle() | java.awt.Font.BOLD, StartPage_Import_File_Button.getFont().getSize()+2));
-        StartPage_Import_File_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/import.png"))); // NOI18N
-        StartPage_Import_File_Button.setText("Import File");
-        StartPage_Import_File_Button.setToolTipText("Import Passwords From CSV File");
-        StartPage_Import_File_Button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                StartPage_Import_File_ButtonActionPerformed(evt);
             }
         });
 
@@ -308,11 +288,9 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(Vault_Actions_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Recent_Vaults_ScrollPane)
                     .addGroup(Vault_Actions_PanelLayout.createSequentialGroup()
-                        .addComponent(StartPage_Create_Vault_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(StartPage_Open_Vault_Button, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(StartPage_Import_File_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(StartPage_Create_Vault_Button, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(StartPage_Open_Vault_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(Recent_Vaults_Label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -322,8 +300,7 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(Vault_Actions_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(StartPage_Create_Vault_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(StartPage_Open_Vault_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(StartPage_Import_File_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(StartPage_Open_Vault_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(Recent_Vaults_Label)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -881,10 +858,6 @@ public class Main extends javax.swing.JFrame {
         Container_Deck.show(Container, "new");
     }//GEN-LAST:event_New_Vault_MenuItemActionPerformed
 
-    private void StartPage_Import_File_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StartPage_Import_File_ButtonActionPerformed
-        com.xahertz.internal.Functions.importVaultData();
-    }//GEN-LAST:event_StartPage_Import_File_ButtonActionPerformed
-
     private void Browse_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Browse_ButtonActionPerformed
         javax.swing.JFileChooser fileChooser = new javax.swing.JFileChooser();
         fileChooser.setDialogTitle("Save Vault as");
@@ -1112,10 +1085,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel Recent_Vaults_Label;
     private javax.swing.JList<String> Recent_Vaults_List;
     private javax.swing.JScrollPane Recent_Vaults_ScrollPane;
-    private javax.swing.JButton Settings_Button;
     private javax.swing.JPanel StartPage;
     private javax.swing.JButton StartPage_Create_Vault_Button;
-    private javax.swing.JButton StartPage_Import_File_Button;
     private javax.swing.JButton StartPage_Open_Vault_Button;
     private javax.swing.JMenuItem Table_PopupMenu_Delete_Entry;
     private javax.swing.JMenuItem Table_PopupMenu_Edit_Entry;
