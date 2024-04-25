@@ -31,6 +31,10 @@ public class Main extends javax.swing.JFrame {
         Table_PopupMenu_New_Entry = new javax.swing.JMenuItem();
         Table_PopupMenu_Edit_Entry = new javax.swing.JMenuItem();
         Table_PopupMenu_Delete_Entry = new javax.swing.JMenuItem();
+        Table_PopupMenu_Separator = new javax.swing.JPopupMenu.Separator();
+        Table_PopupMenu_Copy_Username = new javax.swing.JMenuItem();
+        Table_PopupMenu_Copy_Password = new javax.swing.JMenuItem();
+        Table_PopupMenu_Copy_URL = new javax.swing.JMenuItem();
         FolderTree_PopupMenu = new javax.swing.JPopupMenu();
         Tree_PopupMenu_New_Group = new javax.swing.JMenuItem();
         Tree_PopupMenu_Edit_Group = new javax.swing.JMenuItem();
@@ -131,6 +135,16 @@ public class Main extends javax.swing.JFrame {
 
         Table_PopupMenu_Delete_Entry.setText("Delete Entry");
         Passwords_Table_PopupMenu.add(Table_PopupMenu_Delete_Entry);
+        Passwords_Table_PopupMenu.add(Table_PopupMenu_Separator);
+
+        Table_PopupMenu_Copy_Username.setText("Copy Username");
+        Passwords_Table_PopupMenu.add(Table_PopupMenu_Copy_Username);
+
+        Table_PopupMenu_Copy_Password.setText("Copy Password");
+        Passwords_Table_PopupMenu.add(Table_PopupMenu_Copy_Password);
+
+        Table_PopupMenu_Copy_URL.setText("Copy URL");
+        Passwords_Table_PopupMenu.add(Table_PopupMenu_Copy_URL);
 
         Tree_PopupMenu_New_Group.setText("New Group");
         FolderTree_PopupMenu.add(Tree_PopupMenu_New_Group);
@@ -473,16 +487,15 @@ public class Main extends javax.swing.JFrame {
         treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Social");
         treeNode1.add(treeNode2);
         FolderTree.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        FolderTree.setComponentPopupMenu(FolderTree_PopupMenu);
         FolderTree.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                FolderTreeMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
                 FolderTreeMousePressed(evt);
             }
         });
         FolderTree_ScrollPane.setViewportView(FolderTree);
 
+        Passwords_Table.setAutoCreateRowSorter(true);
         Passwords_Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -494,6 +507,8 @@ public class Main extends javax.swing.JFrame {
                 "Title", "Username", "URL", "Notes"
             }
         ));
+        Passwords_Table.setComponentPopupMenu(Passwords_Table_PopupMenu);
+        Passwords_Table.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         Passwords_Table.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 Passwords_TableMousePressed(evt);
@@ -831,12 +846,10 @@ public class Main extends javax.swing.JFrame {
 
     private void Passwords_TableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Passwords_TableMousePressed
         if (evt.getButton() == java.awt.event.MouseEvent.BUTTON3) {
-            Passwords_Table = (javax.swing.JTable)evt.getSource();
             int row = Passwords_Table.rowAtPoint(evt.getPoint());
             int column = Passwords_Table.columnAtPoint(evt.getPoint());
             if (!Passwords_Table.isRowSelected(row))
                 Passwords_Table.changeSelection(row, column, false, false);
-            Passwords_Table_PopupMenu.show(Passwords_Table, evt.getX(), evt.getY());
         }
     }//GEN-LAST:event_Passwords_TableMousePressed
 
@@ -955,11 +968,8 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_Edit_Entry_ButtonActionPerformed
 
     private void FolderTreeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FolderTreeMousePressed
-        if (evt.isPopupTrigger()) {
-            javax.swing.tree.TreePath selPath = FolderTree.getClosestPathForLocation(evt.getX(), evt.getY());
-            FolderTree.setSelectionPath(selPath);
-            FolderTree_PopupMenu.show(evt.getComponent(), evt.getX(), evt.getY());
-        }
+        javax.swing.tree.TreePath selPath = FolderTree.getClosestPathForLocation(evt.getX(), evt.getY());
+        FolderTree.setSelectionPath(selPath);
     }//GEN-LAST:event_FolderTreeMousePressed
 
     private void OpenVaultPage() {
@@ -1127,9 +1137,13 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel StartPage;
     private javax.swing.JButton StartPage_Create_Vault_Button;
     private javax.swing.JButton StartPage_Open_Vault_Button;
+    private javax.swing.JMenuItem Table_PopupMenu_Copy_Password;
+    private javax.swing.JMenuItem Table_PopupMenu_Copy_URL;
+    private javax.swing.JMenuItem Table_PopupMenu_Copy_Username;
     private javax.swing.JMenuItem Table_PopupMenu_Delete_Entry;
     private javax.swing.JMenuItem Table_PopupMenu_Edit_Entry;
     private javax.swing.JMenuItem Table_PopupMenu_New_Entry;
+    private javax.swing.JPopupMenu.Separator Table_PopupMenu_Separator;
     private javax.swing.JLabel Title_Label;
     private javax.swing.JTextField Title_TextField;
     private javax.swing.JToolBar.Separator ToolBar_Separator_One;
