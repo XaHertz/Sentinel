@@ -39,7 +39,7 @@ public class SQLite {
         }
     }
     
-    public static DefaultListModel<String> VaultList() {
+    public static DefaultListModel<String> getVaultList() {
         DefaultListModel<String> listModel = new DefaultListModel<>();
         String vltsTable = "SELECT Path FROM Vaults;";
         try {
@@ -52,6 +52,17 @@ public class SQLite {
             JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.ERROR_MESSAGE);
         }
         return listModel;
+    }
+    
+    public static void setVaultList(String vltPath) {
+        String vltsTable = "REPLACE INTO Vaults (Path) VALUES(?);";
+        try {
+            PreparedStatement listDBquery = listDB.prepareStatement(vltsTable);
+            listDBquery.setString(1, vltPath);
+            listDBquery.executeUpdate();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
     
     public static void closeVaultList() {
@@ -69,7 +80,6 @@ public class SQLite {
     public static void createNewVault(String vltName, String vltPass, String vltPath) {
         String rootTable = "CREATE TABLE IF NOT EXISTS Root (\"UID\" TEXT NOT NULL UNIQUE, \"Title\" TEXT, \"Username\" TEXT, \"Password\" TEXT, \"URL\" TEXT, \"Notes\" TEXT, PRIMARY KEY(\"UID\"));";
         String allTables = "CREATE TABLE IF NOT EXISTS AllTables (\"Table ID\" TEXT NOT NULL UNIQUE, \"Table Name\" TEXT, PRIMARY KEY(\"Table ID\"));";
-        String vltsTable = "REPLACE INTO Vaults (Path) VALUES(?);";
         try {
             File vltFile = new File(vltPath);
             if (vltFile.exists())
@@ -78,9 +88,6 @@ public class SQLite {
             Statement vltDBquery = vltDB.createStatement();
             vltDBquery.execute(rootTable);
             vltDBquery.execute(allTables);
-            PreparedStatement listDBquery = listDB.prepareStatement(vltsTable);
-            listDBquery.setString(1, vltPath);
-            listDBquery.executeUpdate();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.ERROR_MESSAGE);
         }

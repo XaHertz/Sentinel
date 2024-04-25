@@ -299,7 +299,7 @@ public class Main extends javax.swing.JFrame {
         Recent_Vaults_Label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Recent_Vaults_Label.setText("Recent Vaults");
 
-        Recent_Vaults_List.setModel(com.xahertz.internal.SQLite.VaultList());
+        Recent_Vaults_List.setModel(com.xahertz.internal.SQLite.getVaultList());
         Recent_Vaults_List.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Recent_Vaults_ListMouseClicked(evt);
@@ -872,7 +872,7 @@ public class Main extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "The Passwords in Password Fields do not Match. Please Try Again!", "Password Mismatch", JOptionPane.ERROR_MESSAGE);
         else {
             com.xahertz.internal.SQLite.createNewVault(vltName, vltPass, vltPath);
-            Recent_Vaults_List.setModel(com.xahertz.internal.SQLite.VaultList());
+            com.xahertz.internal.SQLite.setVaultList(vltPath);
             Vault_Name_Field.setText("");
             Vault_Password_Field.setText("");
             Confirm_Password_Field.setText("");
@@ -989,6 +989,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_FolderTreeValueChanged
 
     private void OpenVaultPage() {
+        Recent_Vaults_List.setModel(com.xahertz.internal.SQLite.getVaultList());
         FolderTree.setModel(com.xahertz.internal.SQLite.allTablesList());
         Passwords_Table.setModel(com.xahertz.internal.Functions.vltTableModel("Root"));
         Container_Deck.show(Container, "vault");

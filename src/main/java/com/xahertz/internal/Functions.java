@@ -34,6 +34,7 @@ public class Functions {
             if (vltPass != null) {
                 if (!vltPass.equals("")) {
                     SQLite.openVault(fileChooser.getSelectedFile().getAbsolutePath(), vltPass);
+                    SQLite.setVaultList(fileChooser.getSelectedFile().getAbsolutePath());
                     return true;
                 }
             }
