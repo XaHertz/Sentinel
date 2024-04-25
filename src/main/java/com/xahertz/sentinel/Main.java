@@ -148,6 +148,11 @@ public class Main extends javax.swing.JFrame {
         Passwords_Table_PopupMenu.add(Table_PopupMenu_Copy_URL);
 
         Tree_PopupMenu_New_Group.setText("New Group");
+        Tree_PopupMenu_New_Group.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Tree_PopupMenu_New_GroupActionPerformed(evt);
+            }
+        });
         FolderTree_PopupMenu.add(Tree_PopupMenu_New_Group);
 
         Tree_PopupMenu_Edit_Group.setText("Edit Group");
@@ -749,6 +754,11 @@ public class Main extends javax.swing.JFrame {
 
         New_Group_MenuItem.setText("New Group");
         New_Group_MenuItem.setEnabled(false);
+        New_Group_MenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                New_Group_MenuItemActionPerformed(evt);
+            }
+        });
         Edit_Menu.add(New_Group_MenuItem);
 
         Edit_Group_MenuItem.setText("Edit Group");
@@ -982,12 +992,40 @@ public class Main extends javax.swing.JFrame {
         FolderTree.setSelectionPath(selPath);
     }//GEN-LAST:event_FolderTreeMousePressed
 
+    private void New_Group_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_New_Group_MenuItemActionPerformed
+        New_Group_ActionPerformed();
+    }//GEN-LAST:event_New_Group_MenuItemActionPerformed
+
+    private void Tree_PopupMenu_New_GroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Tree_PopupMenu_New_GroupActionPerformed
+        New_Group_ActionPerformed();
+    }//GEN-LAST:event_Tree_PopupMenu_New_GroupActionPerformed
+
     private void FolderTreeValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_FolderTreeValueChanged
-        String vltTableName = evt.getNewLeadSelectionPath().getLastPathComponent().toString();
-        Passwords_Table.setModel(com.xahertz.internal.Functions.vltTableModel(vltTableName));
-        Vault_Table_Name = vltTableName;
+        if (evt.getNewLeadSelectionPath() != null){
+            String vltTableName = evt.getNewLeadSelectionPath().getLastPathComponent().toString();
+            Passwords_Table.setModel(com.xahertz.internal.Functions.vltTableModel(vltTableName));
+            Vault_Table_Name = vltTableName;
+        }
     }//GEN-LAST:event_FolderTreeValueChanged
 
+    private void New_Group_ActionPerformed() {
+        String vltTableName = JOptionPane.showInputDialog(null, "Enter a Name:", "New Group", JOptionPane.PLAIN_MESSAGE);
+        if (vltTableName != null) {
+            if (!vltTableName.equals("")) {
+                if (vltTableName.equals("Root"))
+                    JOptionPane.showMessageDialog(null, "\"Root\" can't be used as a Group Name.", "Error", JOptionPane.ERROR_MESSAGE);
+                else if (com.xahertz.internal.SQLite.vltTableExists(vltTableName))
+                    JOptionPane.showMessageDialog(null, "A Group Nameed \"" + vltTableName + "\" Already Exists.", "Error", JOptionPane.ERROR_MESSAGE);
+                else {
+                    com.xahertz.internal.SQLite.newTable(vltTableName);
+                    FolderTree.setModel(com.xahertz.internal.SQLite.allTablesList());
+                    Passwords_Table.setModel(com.xahertz.internal.Functions.vltTableModel(vltTableName));
+                    Vault_Table_Name = vltTableName;
+                }
+            }
+        }
+    }
+    
     private void OpenVaultPage() {
         Recent_Vaults_List.setModel(com.xahertz.internal.SQLite.getVaultList());
         FolderTree.setModel(com.xahertz.internal.SQLite.allTablesList());

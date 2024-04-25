@@ -79,7 +79,7 @@ public class SQLite {
 
     public static void createNewVault(String vltName, String vltPass, String vltPath) {
         String rootTable = "CREATE TABLE IF NOT EXISTS Root (\"UID\" TEXT NOT NULL UNIQUE, \"Title\" TEXT, \"Username\" TEXT, \"Password\" TEXT, \"URL\" TEXT, \"Notes\" TEXT, PRIMARY KEY(\"UID\"));";
-        String allTables = "CREATE TABLE IF NOT EXISTS AllTables (\"Table ID\" TEXT NOT NULL UNIQUE, \"Table Name\" TEXT, PRIMARY KEY(\"Table ID\"));";
+        String allTables = "CREATE TABLE IF NOT EXISTS AllTables (\"Table Name\" TEXT NOT NULL UNIQUE, PRIMARY KEY(\"Table Name\"));";
         try {
             File vltFile = new File(vltPath);
             if (vltFile.exists())
@@ -128,6 +128,38 @@ public class SQLite {
             JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.ERROR_MESSAGE);
         }
         return new DefaultTreeModel(treeNode1);
+    }
+    
+    public static boolean vltTableExists(String vltTableName) {
+        String allTables = "SELECT \"Table Name\" FROM AllTables;";
+        boolean Exists = false;
+        try {
+            Statement vltDBquery = vltDB.createStatement();
+            ResultSet vltResult = vltDBquery.executeQuery(allTables);
+            while (vltResult.next()) {
+                if (vltResult.getString("Table Name") == null ? vltTableName == null : vltResult.getString("Table Name").equals(vltTableName))
+                    Exists = true;
+                if (vltTableName == null)
+                    Exists = false;
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        return Exists;
+    }
+    
+    public static void newTable(String vltTableName){
+        String allTables = "REPLACE INTO AllTables (\"Table Name\") VALUES(?);";
+        String vltTable = "CREATE TABLE IF NOT EXISTS \"" + vltTableName + "\" (\"UID\" TEXT NOT NULL UNIQUE, \"Title\" TEXT, \"Username\" TEXT, \"Password\" TEXT, \"URL\" TEXT, \"Notes\" TEXT, PRIMARY KEY(\"UID\"));";
+        try {
+            PreparedStatement vltDBquery = vltDB.prepareStatement(allTables);
+            vltDBquery.setString(1, vltTableName);
+            vltDBquery.executeUpdate();
+            Statement vltDBquery2 = vltDB.createStatement();
+            vltDBquery2.execute(vltTable);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
     
     public static ResultSet vltTableData(String vltTableName) {

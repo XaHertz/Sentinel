@@ -52,6 +52,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="New Group"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Tree_PopupMenu_New_GroupActionPerformed"/>
+          </Events>
         </MenuItem>
         <MenuItem class="javax.swing.JMenuItem" name="Tree_PopupMenu_Edit_Group">
           <Properties>
@@ -139,6 +142,9 @@
                 <Property name="text" type="java.lang.String" value="New Group"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="New_Group_MenuItemActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="Edit_Group_MenuItem">
               <Properties>
