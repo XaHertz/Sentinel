@@ -33,7 +33,7 @@ public class Functions {
             String vltPass = JOptionPane.showInputDialog(null, "Vault File: " + fileChooser.getSelectedFile().getAbsolutePath(), "Enter Password", JOptionPane.PLAIN_MESSAGE);
             if (vltPass != null) {
                 if (!vltPass.equals("")) {
-                    com.xahertz.internal.SQLite.openVault(fileChooser.getSelectedFile().getAbsolutePath(), vltPass);
+                    SQLite.openVault(fileChooser.getSelectedFile().getAbsolutePath(), vltPass);
                     return true;
                 }
             }
@@ -42,7 +42,7 @@ public class Functions {
     }
     
     public static TableModel vltTableModel(String vltTableName) {
-        ResultSet vltResult = com.xahertz.internal.SQLite.vltTableData(vltTableName);
+        ResultSet vltResult = SQLite.vltTableData(vltTableName);
         DefaultTableModel vltTableModel = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int rowIndex, int columnIndex) {

@@ -13,6 +13,7 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         Version = "0.4.0";
+        Vault_Table_Name = "Root";
         com.xahertz.internal.SQLite.initVaultList();
         initComponents();
         Container_Deck = (java.awt.CardLayout)Container.getLayout();
@@ -493,6 +494,11 @@ public class Main extends javax.swing.JFrame {
                 FolderTreeMousePressed(evt);
             }
         });
+        FolderTree.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
+            public void valueChanged(javax.swing.event.TreeSelectionEvent evt) {
+                FolderTreeValueChanged(evt);
+            }
+        });
         FolderTree_ScrollPane.setViewportView(FolderTree);
 
         Passwords_Table.setAutoCreateRowSorter(true);
@@ -932,7 +938,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_Recent_Vaults_ListMouseClicked
 
     private void New_Entry_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_New_Entry_ButtonActionPerformed
-        EntryPage_Label.setText("New Entry");
+        EntryPage_Label.setText(Vault_Table_Name + " \u2022 New Entry");
         Container_Deck.show(Container, "entry");
         DisableVaultDataManipulationFunctions();
     }//GEN-LAST:event_New_Entry_ButtonActionPerformed
@@ -940,18 +946,22 @@ public class Main extends javax.swing.JFrame {
     private void EntryPage_Cancel_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EntryPage_Cancel_ButtonActionPerformed
         Container_Deck.show(Container, "vault");
         EnableVaultDataManipulationFunctions();
+        Title_TextField.setText("");
+        Username_TextField.setText("");
+        Password_Field.setText("");
+        URL_TextField.setText("");
+        Notes_TextArea.setText("");
     }//GEN-LAST:event_EntryPage_Cancel_ButtonActionPerformed
 
     private void EntryPage_Finish_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EntryPage_Finish_ButtonActionPerformed
-        String vltTableName = "Root";
         String UID = "SVLT-" + new java.text.SimpleDateFormat("yyMMdd-HHmmss").format(new java.util.Date())+ "-" + com.xahertz.internal.Functions.randomID(8);
         String Title = Title_TextField.getText();
         String Username = Username_TextField.getText();
         String Password = new String(Password_Field.getPassword());
         String URL = URL_TextField.getText();
         String Notes = Notes_TextArea.getText();
-        com.xahertz.internal.SQLite.newTableEntry(vltTableName, UID, Title, Username, Password, URL, Notes);
-        Passwords_Table.setModel(com.xahertz.internal.Functions.vltTableModel("Root"));
+        com.xahertz.internal.SQLite.newTableEntry(Vault_Table_Name, UID, Title, Username, Password, URL, Notes);
+        Passwords_Table.setModel(com.xahertz.internal.Functions.vltTableModel(Vault_Table_Name));
         Container_Deck.show(Container, "vault");
         EnableVaultDataManipulationFunctions();
         Title_TextField.setText("");
@@ -962,7 +972,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_EntryPage_Finish_ButtonActionPerformed
 
     private void Edit_Entry_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Edit_Entry_ButtonActionPerformed
-        EntryPage_Label.setText("Edit Entry");
+        EntryPage_Label.setText(Vault_Table_Name + " \u2022 Edit Entry");
         Container_Deck.show(Container, "entry");
         DisableVaultDataManipulationFunctions();
     }//GEN-LAST:event_Edit_Entry_ButtonActionPerformed
@@ -971,6 +981,12 @@ public class Main extends javax.swing.JFrame {
         javax.swing.tree.TreePath selPath = FolderTree.getClosestPathForLocation(evt.getX(), evt.getY());
         FolderTree.setSelectionPath(selPath);
     }//GEN-LAST:event_FolderTreeMousePressed
+
+    private void FolderTreeValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_FolderTreeValueChanged
+        String vltTableName = evt.getNewLeadSelectionPath().getLastPathComponent().toString();
+        Passwords_Table.setModel(com.xahertz.internal.Functions.vltTableModel(vltTableName));
+        Vault_Table_Name = vltTableName;
+    }//GEN-LAST:event_FolderTreeValueChanged
 
     private void OpenVaultPage() {
         FolderTree.setModel(com.xahertz.internal.SQLite.allTablesList());
@@ -1170,5 +1186,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel Welcome_Label;
     // End of variables declaration//GEN-END:variables
     private final java.awt.CardLayout Container_Deck;
+    public static String Vault_Table_Name;
     public static String Version;
 }

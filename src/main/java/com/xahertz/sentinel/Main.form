@@ -855,6 +855,7 @@
                   </Properties>
                   <Events>
                     <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="FolderTreeMousePressed"/>
+                    <EventHandler event="valueChanged" listener="javax.swing.event.TreeSelectionListener" parameters="javax.swing.event.TreeSelectionEvent" handler="FolderTreeValueChanged"/>
                   </Events>
                 </Component>
               </SubComponents>
