@@ -561,6 +561,11 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="276" max="-2" attributes="0"/>
+                          <Component id="Clear_List_Button" min="-2" pref="124" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -574,7 +579,9 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="Recent_Vaults_Label" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="Recent_Vaults_ScrollPane" pref="194" max="32767" attributes="0"/>
+                          <Component id="Recent_Vaults_ScrollPane" pref="165" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="Clear_List_Button" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -646,6 +653,14 @@
                     </Component>
                   </SubComponents>
                 </Container>
+                <Component class="javax.swing.JButton" name="Clear_List_Button">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Clear Vaults List"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Clear_List_ButtonActionPerformed"/>
+                  </Events>
+                </Component>
               </SubComponents>
             </Container>
           </SubComponents>

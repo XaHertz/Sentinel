@@ -65,6 +65,16 @@ public class SQLite {
         }
     }
     
+    public static void remVaultList(){
+        String vltsTable = "DELETE FROM Vaults;";
+        try {
+            Statement listDBquery = listDB.createStatement();
+            listDBquery.execute(vltsTable);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
     public static void closeVaultList() {
         if (listDB != null) {
             try {

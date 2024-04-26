@@ -63,6 +63,7 @@ public class Main extends javax.swing.JFrame {
         Recent_Vaults_Label = new javax.swing.JLabel();
         Recent_Vaults_ScrollPane = new javax.swing.JScrollPane();
         Recent_Vaults_List = new javax.swing.JList<>();
+        Clear_List_Button = new javax.swing.JButton();
         NewVaultPage = new javax.swing.JPanel();
         NewVault_Label = new javax.swing.JLabel();
         NewVault_Container = new javax.swing.JPanel();
@@ -375,6 +376,13 @@ public class Main extends javax.swing.JFrame {
         });
         Recent_Vaults_ScrollPane.setViewportView(Recent_Vaults_List);
 
+        Clear_List_Button.setText("Clear Vaults List");
+        Clear_List_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Clear_List_ButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout Vault_Actions_PanelLayout = new javax.swing.GroupLayout(Vault_Actions_Panel);
         Vault_Actions_Panel.setLayout(Vault_Actions_PanelLayout);
         Vault_Actions_PanelLayout.setHorizontalGroup(
@@ -389,6 +397,10 @@ public class Main extends javax.swing.JFrame {
                         .addComponent(StartPage_Open_Vault_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(Recent_Vaults_Label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(Vault_Actions_PanelLayout.createSequentialGroup()
+                .addGap(276, 276, 276)
+                .addComponent(Clear_List_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         Vault_Actions_PanelLayout.setVerticalGroup(
             Vault_Actions_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -400,7 +412,9 @@ public class Main extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(Recent_Vaults_Label)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Recent_Vaults_ScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
+                .addComponent(Recent_Vaults_ScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Clear_List_Button)
                 .addContainerGap())
         );
 
@@ -1232,6 +1246,11 @@ public class Main extends javax.swing.JFrame {
             Password_Field.setEchoChar('\u2022');
     }//GEN-LAST:event_Password_Field_ToggleButtonItemStateChanged
 
+    private void Clear_List_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Clear_List_ButtonActionPerformed
+        com.xahertz.internal.SQLite.remVaultList();
+        Recent_Vaults_List.setModel(com.xahertz.internal.SQLite.getVaultList());
+    }//GEN-LAST:event_Clear_List_ButtonActionPerformed
+
     private void New_Entry_ActionPerformed() {
         UID = "SVLT-" + new java.text.SimpleDateFormat("yyMMdd-HHmmss").format(new java.util.Date())+ "-" + com.xahertz.internal.Functions.randomID(8);
         EntryPage_Label.setText(Vault_Table_Name + " \u2022 New Entry");
@@ -1458,6 +1477,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem AutoType_Password_MenuItem;
     private javax.swing.JMenuItem AutoType_Usename_MenuItem;
     private javax.swing.JButton Browse_Button;
+    private javax.swing.JButton Clear_List_Button;
     private javax.swing.JButton Close_Vault_Button;
     private javax.swing.JMenuItem Close_Vault_MenuItem;
     private javax.swing.JPasswordField Confirm_Password_Field;
