@@ -193,7 +193,7 @@ public class SQLite {
     
     public static ResultSet vltTableData(String vltTableName) {
         ResultSet vltResult = null;
-        String vltTable = "SELECT * FROM \"" + vltTableName + "\";";
+        String vltTable = String.format("SELECT * FROM \"%s\";", vltTableName);
         try {
             Statement vltDBquery = vltDB.createStatement();
             vltResult = vltDBquery.executeQuery(vltTable);
@@ -213,6 +213,17 @@ public class SQLite {
             vltDBquery.setString(4, Password);
             vltDBquery.setString(5, URL);
             vltDBquery.setString(6, Notes);
+            vltDBquery.executeUpdate();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    public static void remTableEntry(String vltTableName, String UID) {
+        String vltTable = String.format("DELETE FROM \"%s\" WHERE \"UID\" = ?;", vltTableName);
+        try {
+            PreparedStatement vltDBquery = vltDB.prepareStatement(vltTable);
+            vltDBquery.setString(1, UID);
             vltDBquery.executeUpdate();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.ERROR_MESSAGE);

@@ -51,7 +51,7 @@ public class Functions {
             }
             Class[] types = new Class [] {
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
-                java.lang.Object.class, java.lang.Object.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
             @Override
             public Class getColumnClass(int columnIndex) {
@@ -63,15 +63,17 @@ public class Functions {
             vltTableModel.addColumn(vltMeta.getColumnLabel(1));
             vltTableModel.addColumn(vltMeta.getColumnLabel(2));
             vltTableModel.addColumn(vltMeta.getColumnLabel(3));
+            vltTableModel.addColumn(vltMeta.getColumnLabel(4));
             vltTableModel.addColumn(vltMeta.getColumnLabel(5));
             vltTableModel.addColumn(vltMeta.getColumnLabel(6));
-            Object[] row = new Object[5];
+            Object[] row = new Object[6];
             while (vltResult.next()) {
                 row[0] = vltResult.getObject(1);
                 row[1] = vltResult.getObject(2);
                 row[2] = vltResult.getObject(3);
-                row[3] = vltResult.getObject(5);
-                row[4] = vltResult.getObject(6);
+                row[3] = vltResult.getObject(4);
+                row[4] = vltResult.getObject(5);
+                row[5] = vltResult.getObject(6);
                 vltTableModel.addRow(row);
             }
             return vltTableModel;

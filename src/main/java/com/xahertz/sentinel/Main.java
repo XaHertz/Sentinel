@@ -129,12 +129,27 @@ public class Main extends javax.swing.JFrame {
         About_MenuItem = new javax.swing.JMenuItem();
 
         Table_PopupMenu_New_Entry.setText("New Entry");
+        Table_PopupMenu_New_Entry.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Table_PopupMenu_New_EntryActionPerformed(evt);
+            }
+        });
         Passwords_Table_PopupMenu.add(Table_PopupMenu_New_Entry);
 
         Table_PopupMenu_Edit_Entry.setText("Edit Entry");
+        Table_PopupMenu_Edit_Entry.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Table_PopupMenu_Edit_EntryActionPerformed(evt);
+            }
+        });
         Passwords_Table_PopupMenu.add(Table_PopupMenu_Edit_Entry);
 
         Table_PopupMenu_Delete_Entry.setText("Delete Entry");
+        Table_PopupMenu_Delete_Entry.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Table_PopupMenu_Delete_EntryActionPerformed(evt);
+            }
+        });
         Passwords_Table_PopupMenu.add(Table_PopupMenu_Delete_Entry);
         Passwords_Table_PopupMenu.add(Table_PopupMenu_Separator);
 
@@ -238,6 +253,11 @@ public class Main extends javax.swing.JFrame {
         Delete_Entry_Button.setFocusable(false);
         Delete_Entry_Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         Delete_Entry_Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        Delete_Entry_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Delete_Entry_ButtonActionPerformed(evt);
+            }
+        });
         Main_ToolBar.add(Delete_Entry_Button);
         Main_ToolBar.add(ToolBar_Separator_Two);
 
@@ -496,12 +516,6 @@ public class Main extends javax.swing.JFrame {
         Container.add(NewVaultPage, "new");
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Root");
-        javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Work");
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Entertainment");
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Social");
-        treeNode1.add(treeNode2);
         FolderTree.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         FolderTree.setComponentPopupMenu(FolderTree_PopupMenu);
         FolderTree.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -519,9 +533,6 @@ public class Main extends javax.swing.JFrame {
         Passwords_Table.setAutoCreateRowSorter(true);
         Passwords_Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
                 {null, null, null, null}
             },
             new String [] {
@@ -751,14 +762,29 @@ public class Main extends javax.swing.JFrame {
 
         New_Entry_MenuItem.setText("New Entry");
         New_Entry_MenuItem.setEnabled(false);
+        New_Entry_MenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                New_Entry_MenuItemActionPerformed(evt);
+            }
+        });
         Edit_Menu.add(New_Entry_MenuItem);
 
         Edit_Entry_MenuItem.setText("Edit Entry");
         Edit_Entry_MenuItem.setEnabled(false);
+        Edit_Entry_MenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Edit_Entry_MenuItemActionPerformed(evt);
+            }
+        });
         Edit_Menu.add(Edit_Entry_MenuItem);
 
         Delete_Entry_MenuItem.setText("Delete Entry");
         Delete_Entry_MenuItem.setEnabled(false);
+        Delete_Entry_MenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Delete_Entry_MenuItemActionPerformed(evt);
+            }
+        });
         Edit_Menu.add(Delete_Entry_MenuItem);
         Edit_Menu.add(Edit_Menu_Separator_One);
 
@@ -968,9 +994,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_Recent_Vaults_ListMouseClicked
 
     private void New_Entry_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_New_Entry_ButtonActionPerformed
-        EntryPage_Label.setText(Vault_Table_Name + " \u2022 New Entry");
-        Container_Deck.show(Container, "entry");
-        DisableVaultDataManipulationFunctions();
+        New_Entry_ActionPerformed();
     }//GEN-LAST:event_New_Entry_ButtonActionPerformed
 
     private void EntryPage_Cancel_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EntryPage_Cancel_ButtonActionPerformed
@@ -984,7 +1008,6 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_EntryPage_Cancel_ButtonActionPerformed
 
     private void EntryPage_Finish_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EntryPage_Finish_ButtonActionPerformed
-        String UID = "SVLT-" + new java.text.SimpleDateFormat("yyMMdd-HHmmss").format(new java.util.Date())+ "-" + com.xahertz.internal.Functions.randomID(8);
         String Title = Title_TextField.getText();
         String Username = Username_TextField.getText();
         String Password = new String(Password_Field.getPassword());
@@ -1002,9 +1025,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_EntryPage_Finish_ButtonActionPerformed
 
     private void Edit_Entry_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Edit_Entry_ButtonActionPerformed
-        EntryPage_Label.setText(Vault_Table_Name + " \u2022 Edit Entry");
-        Container_Deck.show(Container, "entry");
-        DisableVaultDataManipulationFunctions();
+        Edit_Entry_ActionPerformed();
     }//GEN-LAST:event_Edit_Entry_ButtonActionPerformed
 
     private void FolderTreeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FolderTreeMousePressed
@@ -1044,6 +1065,71 @@ public class Main extends javax.swing.JFrame {
         Delete_Group_ActionPerformed();
     }//GEN-LAST:event_Tree_PopupMenu_Delete_GroupActionPerformed
 
+    private void New_Entry_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_New_Entry_MenuItemActionPerformed
+        New_Entry_ActionPerformed();
+    }//GEN-LAST:event_New_Entry_MenuItemActionPerformed
+
+    private void Table_PopupMenu_New_EntryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Table_PopupMenu_New_EntryActionPerformed
+        New_Entry_ActionPerformed();
+    }//GEN-LAST:event_Table_PopupMenu_New_EntryActionPerformed
+
+    private void Edit_Entry_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Edit_Entry_MenuItemActionPerformed
+        Edit_Entry_ActionPerformed();
+    }//GEN-LAST:event_Edit_Entry_MenuItemActionPerformed
+
+    private void Table_PopupMenu_Edit_EntryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Table_PopupMenu_Edit_EntryActionPerformed
+        Edit_Entry_ActionPerformed();
+    }//GEN-LAST:event_Table_PopupMenu_Edit_EntryActionPerformed
+
+    private void Delete_Entry_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Delete_Entry_ButtonActionPerformed
+        Delete_Entry_ActionPerformed();
+    }//GEN-LAST:event_Delete_Entry_ButtonActionPerformed
+
+    private void Delete_Entry_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Delete_Entry_MenuItemActionPerformed
+        Delete_Entry_ActionPerformed();
+    }//GEN-LAST:event_Delete_Entry_MenuItemActionPerformed
+
+    private void Table_PopupMenu_Delete_EntryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Table_PopupMenu_Delete_EntryActionPerformed
+        Delete_Entry_ActionPerformed();
+    }//GEN-LAST:event_Table_PopupMenu_Delete_EntryActionPerformed
+
+    private void New_Entry_ActionPerformed() {
+        UID = "SVLT-" + new java.text.SimpleDateFormat("yyMMdd-HHmmss").format(new java.util.Date())+ "-" + com.xahertz.internal.Functions.randomID(8);
+        EntryPage_Label.setText(Vault_Table_Name + " \u2022 New Entry");
+        Container_Deck.show(Container, "entry");
+        DisableVaultDataManipulationFunctions();
+    }
+    
+    private void Edit_Entry_ActionPerformed(){
+        int row = Passwords_Table.getSelectedRow();
+        if (row == -1)
+            JOptionPane.showMessageDialog(null, "Please Select an Entry to Edit.", "Entry Not Selected", JOptionPane.ERROR_MESSAGE);
+        else {
+            UID = Passwords_Table.getValueAt(row, 0).toString();
+            Title_TextField.setText(Passwords_Table.getValueAt(row, 1).toString());
+            Username_TextField.setText(Passwords_Table.getValueAt(row, 2).toString());
+            Password_Field.setText(Passwords_Table.getValueAt(row, 3).toString());
+            URL_TextField.setText(Passwords_Table.getValueAt(row, 4).toString());
+            Notes_TextArea.setText(Passwords_Table.getValueAt(row, 5).toString());
+            EntryPage_Label.setText(Vault_Table_Name + " \u2022 " + Passwords_Table.getValueAt(row, 1).toString() + " \u2022 Edit Entry");
+            Container_Deck.show(Container, "entry");
+            DisableVaultDataManipulationFunctions();
+        }
+    }
+    
+    private void Delete_Entry_ActionPerformed() {
+        int row = Passwords_Table.getSelectedRow();
+        if (row == -1)
+            JOptionPane.showMessageDialog(null, "Please Select an Entry to be Deleted.", "Entry Not Selected", JOptionPane.ERROR_MESSAGE);
+        else {
+            int response = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this Entry?.", "Delete Entry: " + Passwords_Table.getValueAt(row, 1).toString(), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (response == JOptionPane.YES_OPTION) {
+                com.xahertz.internal.SQLite.remTableEntry(Vault_Table_Name, Passwords_Table.getValueAt(row, 0).toString());
+                Passwords_Table.setModel(com.xahertz.internal.Functions.vltTableModel(Vault_Table_Name));
+            }
+        }
+    }
+    
     private void New_Group_ActionPerformed() {
         String vltTableName = JOptionPane.showInputDialog(null, "Enter a Name:", "New Group", JOptionPane.PLAIN_MESSAGE);
         if (vltTableName != null) {
@@ -1299,4 +1385,5 @@ public class Main extends javax.swing.JFrame {
     private final java.awt.CardLayout Container_Deck;
     public static String Vault_Table_Name;
     public static String Version;
+    public static String UID;
 }

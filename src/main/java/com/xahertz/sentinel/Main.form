@@ -12,16 +12,25 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="New Entry"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Table_PopupMenu_New_EntryActionPerformed"/>
+          </Events>
         </MenuItem>
         <MenuItem class="javax.swing.JMenuItem" name="Table_PopupMenu_Edit_Entry">
           <Properties>
             <Property name="text" type="java.lang.String" value="Edit Entry"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Table_PopupMenu_Edit_EntryActionPerformed"/>
+          </Events>
         </MenuItem>
         <MenuItem class="javax.swing.JMenuItem" name="Table_PopupMenu_Delete_Entry">
           <Properties>
             <Property name="text" type="java.lang.String" value="Delete Entry"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Table_PopupMenu_Delete_EntryActionPerformed"/>
+          </Events>
         </MenuItem>
         <Component class="javax.swing.JPopupMenu$Separator" name="Table_PopupMenu_Separator">
         </Component>
@@ -128,18 +137,27 @@
                 <Property name="text" type="java.lang.String" value="New Entry"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="New_Entry_MenuItemActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="Edit_Entry_MenuItem">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Edit Entry"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Edit_Entry_MenuItemActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="Delete_Entry_MenuItem">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Delete Entry"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Delete_Entry_MenuItemActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="Edit_Menu_Separator_One">
             </MenuItem>
@@ -373,6 +391,9 @@
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Delete_Entry_ButtonActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JToolBar$Separator" name="ToolBar_Separator_Two">
         </Component>
@@ -865,7 +886,7 @@
                 <Component class="javax.swing.JTree" name="FolderTree">
                   <Properties>
                     <Property name="model" type="javax.swing.tree.TreeModel" editor="org.netbeans.modules.form.editors2.TreeModelEditor">
-                      <TreeModel code="Root&#xa; Work&#xa; Entertainment&#xa; Social"/>
+                      <TreeModel code="Root"/>
                     </Property>
                     <Property name="componentPopupMenu" type="javax.swing.JPopupMenu" editor="org.netbeans.modules.form.ComponentChooserEditor">
                       <ComponentRef name="FolderTree_PopupMenu"/>
@@ -889,7 +910,7 @@
                   <Properties>
                     <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="4" rowCount="4">
+                      <Table columnCount="4" rowCount="1">
                         <Column editable="true" title="Title" type="java.lang.Object"/>
                         <Column editable="true" title="Username" type="java.lang.Object"/>
                         <Column editable="true" title="URL" type="java.lang.Object"/>
