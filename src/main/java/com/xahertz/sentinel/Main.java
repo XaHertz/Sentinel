@@ -12,7 +12,7 @@ public class Main extends javax.swing.JFrame {
      * Creates new form Main
      */
     public Main() {
-        Version = "0.5.0";
+        Version = "0.6.0";
         Vault_Table_Name = "Root";
         com.xahertz.internal.SQLite.initVaultList();
         initComponents();
@@ -1294,6 +1294,8 @@ public class Main extends javax.swing.JFrame {
             if (!vltTableName.equals("")) {
                 if (vltTableName.equals("Root"))
                     JOptionPane.showMessageDialog(null, "\"Root\" can't be used as a Group Name.", "Error", JOptionPane.ERROR_MESSAGE);
+                if (vltTableName.equals("Configuration"))
+                    JOptionPane.showMessageDialog(null, "\"Configuration\" can't be used as a Group Name.", "Error", JOptionPane.ERROR_MESSAGE);
                 else if (com.xahertz.internal.SQLite.vltTableExists(vltTableName))
                     JOptionPane.showMessageDialog(null, "A Group Nameed \"" + vltTableName + "\" Already Exists.", "Error", JOptionPane.ERROR_MESSAGE);
                 else {
@@ -1373,6 +1375,7 @@ public class Main extends javax.swing.JFrame {
     }
     
     private void OpenVaultPage() {
+        setTitle("Vault : " + com.xahertz.internal.SQLite.vltName() + "  \u2013  Sentinel");
         Recent_Vaults_List.setModel(com.xahertz.internal.SQLite.getVaultList());
         FolderTree.setModel(com.xahertz.internal.SQLite.allTablesList());
         Passwords_Table.setModel(com.xahertz.internal.Functions.vltTableModel("Root"));
@@ -1393,6 +1396,7 @@ public class Main extends javax.swing.JFrame {
     }
     
     private void CloseVaultPage() {
+        setTitle("Sentinel");
         Container_Deck.show(Container, "start");
         DisableVaultDataManipulationFunctions();
         Open_Vault_Button.setEnabled(true);

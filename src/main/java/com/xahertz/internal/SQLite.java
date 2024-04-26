@@ -90,6 +90,8 @@ public class SQLite {
     public static void createNewVault(String vltName, String vltPass, String vltPath) {
         String rootTable = "CREATE TABLE IF NOT EXISTS Root (\"UID\" TEXT NOT NULL UNIQUE, \"Title\" TEXT, \"Username\" TEXT, \"Password\" TEXT, \"URL\" TEXT, \"Notes\" TEXT, PRIMARY KEY(\"UID\"));";
         String allTables = "CREATE TABLE IF NOT EXISTS AllTables (\"Table Name\" TEXT NOT NULL UNIQUE, PRIMARY KEY(\"Table Name\"));";
+        String confTable = "CREATE TABLE IF NOT EXISTS Configuration (Parameter TEXT NOT NULL UNIQUE, Value TEXT, PRIMARY KEY(Parameter));";
+        String confValue = "INSERT INTO Configuration (Parameter, Value) VALUES('Vault Name', ?);";
         try {
             File vltFile = new File(vltPath);
             if (vltFile.exists())
@@ -97,7 +99,11 @@ public class SQLite {
             vltDB = DriverManager.getConnection("jdbc:sqlite:" + vltFile, org.sqlite.mc.SQLiteMCChacha20Config.getDefault().withKey(vltPass).build().toProperties());
             Statement vltDBquery = vltDB.createStatement();
             vltDBquery.execute(rootTable);
+            vltDBquery.execute(confTable);
             vltDBquery.execute(allTables);
+            PreparedStatement vltDBquery2 = vltDB.prepareStatement(confValue);
+            vltDBquery2.setString(1, vltName);
+            vltDBquery2.executeUpdate();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -121,6 +127,19 @@ public class SQLite {
                 JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
+    }
+    
+    public static String vltName() {
+        String allTables = "SELECT Value FROM Configuration WHERE Parameter = 'Vault Name';";
+        String vltName = null;
+        try {
+            Statement vltDBquery = vltDB.createStatement();
+            ResultSet vltResult = vltDBquery.executeQuery(allTables);
+            vltName = vltResult.getString("Value");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        return vltName;
     }
     
     public static DefaultTreeModel allTablesList() {
