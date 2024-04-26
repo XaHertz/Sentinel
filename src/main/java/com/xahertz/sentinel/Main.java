@@ -154,12 +154,27 @@ public class Main extends javax.swing.JFrame {
         Passwords_Table_PopupMenu.add(Table_PopupMenu_Separator);
 
         Table_PopupMenu_Copy_Username.setText("Copy Username");
+        Table_PopupMenu_Copy_Username.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Table_PopupMenu_Copy_UsernameActionPerformed(evt);
+            }
+        });
         Passwords_Table_PopupMenu.add(Table_PopupMenu_Copy_Username);
 
         Table_PopupMenu_Copy_Password.setText("Copy Password");
+        Table_PopupMenu_Copy_Password.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Table_PopupMenu_Copy_PasswordActionPerformed(evt);
+            }
+        });
         Passwords_Table_PopupMenu.add(Table_PopupMenu_Copy_Password);
 
         Table_PopupMenu_Copy_URL.setText("Copy URL");
+        Table_PopupMenu_Copy_URL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Table_PopupMenu_Copy_URLActionPerformed(evt);
+            }
+        });
         Passwords_Table_PopupMenu.add(Table_PopupMenu_Copy_URL);
 
         Tree_PopupMenu_New_Group.setText("New Group");
@@ -267,6 +282,11 @@ public class Main extends javax.swing.JFrame {
         Copy_Username_Button.setFocusable(false);
         Copy_Username_Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         Copy_Username_Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        Copy_Username_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Copy_Username_ButtonActionPerformed(evt);
+            }
+        });
         Main_ToolBar.add(Copy_Username_Button);
 
         Copy_Password_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/key.png"))); // NOI18N
@@ -275,6 +295,11 @@ public class Main extends javax.swing.JFrame {
         Copy_Password_Button.setFocusable(false);
         Copy_Password_Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         Copy_Password_Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        Copy_Password_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Copy_Password_ButtonActionPerformed(evt);
+            }
+        });
         Main_ToolBar.add(Copy_Password_Button);
 
         Copy_URL_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/globe.png"))); // NOI18N
@@ -283,6 +308,11 @@ public class Main extends javax.swing.JFrame {
         Copy_URL_Button.setFocusable(false);
         Copy_URL_Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         Copy_URL_Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        Copy_URL_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Copy_URL_ButtonActionPerformed(evt);
+            }
+        });
         Main_ToolBar.add(Copy_URL_Button);
 
         Password_Generator_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/electronics.png"))); // NOI18N
@@ -818,14 +848,29 @@ public class Main extends javax.swing.JFrame {
 
         Copy_Username_MenuItem.setText("Copy Username");
         Copy_Username_MenuItem.setEnabled(false);
+        Copy_Username_MenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Copy_Username_MenuItemActionPerformed(evt);
+            }
+        });
         Edit_Menu.add(Copy_Username_MenuItem);
 
         Copy_Password_MenuItem.setText("Copy Password");
         Copy_Password_MenuItem.setEnabled(false);
+        Copy_Password_MenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Copy_Password_MenuItemActionPerformed(evt);
+            }
+        });
         Edit_Menu.add(Copy_Password_MenuItem);
 
         Copy_URL_MenuItem.setText("Copy URL");
         Copy_URL_MenuItem.setEnabled(false);
+        Copy_URL_MenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Copy_URL_MenuItemActionPerformed(evt);
+            }
+        });
         Edit_Menu.add(Copy_URL_MenuItem);
 
         Menu_Bar.add(Edit_Menu);
@@ -1093,6 +1138,42 @@ public class Main extends javax.swing.JFrame {
         Delete_Entry_ActionPerformed();
     }//GEN-LAST:event_Table_PopupMenu_Delete_EntryActionPerformed
 
+    private void Copy_Username_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Copy_Username_ButtonActionPerformed
+        Copy_Username_ActionPerformed();
+    }//GEN-LAST:event_Copy_Username_ButtonActionPerformed
+
+    private void Copy_Username_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Copy_Username_MenuItemActionPerformed
+        Copy_Username_ActionPerformed();
+    }//GEN-LAST:event_Copy_Username_MenuItemActionPerformed
+
+    private void Table_PopupMenu_Copy_UsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Table_PopupMenu_Copy_UsernameActionPerformed
+        Copy_Username_ActionPerformed();
+    }//GEN-LAST:event_Table_PopupMenu_Copy_UsernameActionPerformed
+
+    private void Copy_Password_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Copy_Password_ButtonActionPerformed
+        Copy_Password_ActionPerformed();
+    }//GEN-LAST:event_Copy_Password_ButtonActionPerformed
+
+    private void Copy_Password_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Copy_Password_MenuItemActionPerformed
+        Copy_Password_ActionPerformed();
+    }//GEN-LAST:event_Copy_Password_MenuItemActionPerformed
+
+    private void Table_PopupMenu_Copy_PasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Table_PopupMenu_Copy_PasswordActionPerformed
+        Copy_Password_ActionPerformed();
+    }//GEN-LAST:event_Table_PopupMenu_Copy_PasswordActionPerformed
+
+    private void Copy_URL_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Copy_URL_ButtonActionPerformed
+        Copy_URL_ActionPerformed();
+    }//GEN-LAST:event_Copy_URL_ButtonActionPerformed
+
+    private void Copy_URL_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Copy_URL_MenuItemActionPerformed
+        Copy_URL_ActionPerformed();
+    }//GEN-LAST:event_Copy_URL_MenuItemActionPerformed
+
+    private void Table_PopupMenu_Copy_URLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Table_PopupMenu_Copy_URLActionPerformed
+        Copy_URL_ActionPerformed();
+    }//GEN-LAST:event_Table_PopupMenu_Copy_URLActionPerformed
+
     private void New_Entry_ActionPerformed() {
         UID = "SVLT-" + new java.text.SimpleDateFormat("yyMMdd-HHmmss").format(new java.util.Date())+ "-" + com.xahertz.internal.Functions.randomID(8);
         EntryPage_Label.setText(Vault_Table_Name + " \u2022 New Entry");
@@ -1181,6 +1262,36 @@ public class Main extends javax.swing.JFrame {
                 Passwords_Table.setModel(com.xahertz.internal.Functions.vltTableModel("Root"));
                 Vault_Table_Name = "Root";
             }
+        }
+    }
+    
+    private void Copy_Username_ActionPerformed() {
+        int row = Passwords_Table.getSelectedRow();
+        if (row == -1)
+            JOptionPane.showMessageDialog(null, "Please Select an Entry to copy it's Username.", "Entry Not Selected", JOptionPane.ERROR_MESSAGE);
+        else {
+            java.awt.datatransfer.Clipboard clipboard = java.awt.Toolkit.getDefaultToolkit().getSystemClipboard();
+            clipboard.setContents(new java.awt.datatransfer.StringSelection(Passwords_Table.getValueAt(row, 2).toString()), null);
+        }
+    }
+    
+    private void Copy_Password_ActionPerformed() {
+        int row = Passwords_Table.getSelectedRow();
+        if (row == -1)
+            JOptionPane.showMessageDialog(null, "Please Select an Entry to copy it's Password.", "Entry Not Selected", JOptionPane.ERROR_MESSAGE);
+        else {
+            java.awt.datatransfer.Clipboard clipboard = java.awt.Toolkit.getDefaultToolkit().getSystemClipboard();
+            clipboard.setContents(new java.awt.datatransfer.StringSelection(Passwords_Table.getValueAt(row, 3).toString()), null);
+        }
+    }
+    
+    private void Copy_URL_ActionPerformed() {
+        int row = Passwords_Table.getSelectedRow();
+        if (row == -1)
+            JOptionPane.showMessageDialog(null, "Please Select an Entry to copy it's URL.", "Entry Not Selected", JOptionPane.ERROR_MESSAGE);
+        else {
+            java.awt.datatransfer.Clipboard clipboard = java.awt.Toolkit.getDefaultToolkit().getSystemClipboard();
+            clipboard.setContents(new java.awt.datatransfer.StringSelection(Passwords_Table.getValueAt(row, 4).toString()), null);
         }
     }
     
