@@ -678,13 +678,13 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace pref="100" max="32767" attributes="0"/>
+                      <EmptySpace pref="101" max="32767" attributes="0"/>
                       <Component id="NewVault_Label" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="NewVault_Container" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="NewVault_Finish_Button" pref="31" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="NewVault_Finish_Button" pref="30" max="32767" attributes="0"/>
                           <Component id="NewVault_Cancel_Button" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace pref="162" max="32767" attributes="0"/>
@@ -729,14 +729,23 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="Vault_Password_Field" max="32767" attributes="0"/>
-                              <Component id="Confirm_Password_Field" max="32767" attributes="0"/>
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="Vault_Location_Field" pref="520" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="Browse_Button" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Component id="Vault_Name_Field" alignment="0" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="Confirm_Password_Field" max="32767" attributes="0"/>
+                                      <Component id="Vault_Password_Field" max="32767" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="Vault_Password_ToggleButton" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="Confirm_Password_ToggleButton" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
@@ -753,7 +762,10 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Component id="Vault_Password_Field" min="-2" pref="28" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="Vault_Password_Field" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                                      <Component id="Vault_Password_ToggleButton" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                                  </Group>
                                   <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
                               </Group>
                               <Component id="Vault_Password_Label" min="-2" pref="28" max="-2" attributes="0"/>
@@ -762,6 +774,7 @@
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="Confirm_Password_Label" max="32767" attributes="0"/>
                               <Component id="Confirm_Password_Field" pref="28" max="32767" attributes="0"/>
+                              <Component id="Confirm_Password_ToggleButton" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -801,6 +814,16 @@
                 </Component>
                 <Component class="javax.swing.JPasswordField" name="Vault_Password_Field">
                 </Component>
+                <Component class="javax.swing.JToggleButton" name="Vault_Password_ToggleButton">
+                  <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/images/eye.png"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="Vault_Password_ToggleButtonItemStateChanged"/>
+                  </Events>
+                </Component>
                 <Component class="javax.swing.JLabel" name="Confirm_Password_Label">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
@@ -812,6 +835,16 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JPasswordField" name="Confirm_Password_Field">
+                </Component>
+                <Component class="javax.swing.JToggleButton" name="Confirm_Password_ToggleButton">
+                  <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/images/eye.png"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="Confirm_Password_ToggleButtonItemStateChanged"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="Vault_Location_Label">
                   <Properties>
@@ -1066,7 +1099,9 @@
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="Password_Field" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="Generate_Password_Button" max="-2" attributes="0"/>
+                                  <Component id="Password_Field_ToggleButton" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="Generate_Password_Button" min="-2" pref="34" max="-2" attributes="0"/>
                               </Group>
                               <Component id="Title_TextField" max="32767" attributes="0"/>
                               <Component id="URL_TextField" max="32767" attributes="0"/>
@@ -1092,7 +1127,10 @@
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="Generate_Password_Button" pref="28" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="Generate_Password_Button" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                                  <Component id="Password_Field_ToggleButton" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                              </Group>
                               <Component id="Password_Label" alignment="0" max="32767" attributes="0"/>
                               <Component id="Password_Field" alignment="0" max="32767" attributes="0"/>
                           </Group>
@@ -1103,8 +1141,8 @@
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="Notes_ScrollPane" pref="176" max="32767" attributes="0"/>
-                              <Component id="Notes_Label" max="32767" attributes="0"/>
+                              <Component id="Notes_Label" pref="176" max="32767" attributes="0"/>
+                              <Component id="Notes_ScrollPane" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -1151,9 +1189,21 @@
                 </Component>
                 <Component class="javax.swing.JPasswordField" name="Password_Field">
                 </Component>
+                <Component class="javax.swing.JToggleButton" name="Password_Field_ToggleButton">
+                  <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/images/eye.png"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="Password_Field_ToggleButtonItemStateChanged"/>
+                  </Events>
+                </Component>
                 <Component class="javax.swing.JButton" name="Generate_Password_Button">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Generate Password"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/images/dice-5.png"/>
+                    </Property>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="URL_Label">

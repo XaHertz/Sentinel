@@ -70,8 +70,10 @@ public class Main extends javax.swing.JFrame {
         Vault_Name_Field = new javax.swing.JTextField();
         Vault_Password_Label = new javax.swing.JLabel();
         Vault_Password_Field = new javax.swing.JPasswordField();
+        Vault_Password_ToggleButton = new javax.swing.JToggleButton();
         Confirm_Password_Label = new javax.swing.JLabel();
         Confirm_Password_Field = new javax.swing.JPasswordField();
+        Confirm_Password_ToggleButton = new javax.swing.JToggleButton();
         Vault_Location_Label = new javax.swing.JLabel();
         Vault_Location_Field = new javax.swing.JTextField();
         Browse_Button = new javax.swing.JButton();
@@ -92,6 +94,7 @@ public class Main extends javax.swing.JFrame {
         Username_TextField = new javax.swing.JTextField();
         Password_Label = new javax.swing.JLabel();
         Password_Field = new javax.swing.JPasswordField();
+        Password_Field_ToggleButton = new javax.swing.JToggleButton();
         Generate_Password_Button = new javax.swing.JButton();
         URL_Label = new javax.swing.JLabel();
         URL_TextField = new javax.swing.JTextField();
@@ -437,8 +440,22 @@ public class Main extends javax.swing.JFrame {
         Vault_Password_Label.setFont(Vault_Password_Label.getFont().deriveFont(Vault_Password_Label.getFont().getSize()+2f));
         Vault_Password_Label.setText("Vault Password");
 
+        Vault_Password_ToggleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/eye.png"))); // NOI18N
+        Vault_Password_ToggleButton.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                Vault_Password_ToggleButtonItemStateChanged(evt);
+            }
+        });
+
         Confirm_Password_Label.setFont(Confirm_Password_Label.getFont().deriveFont(Confirm_Password_Label.getFont().getSize()+2f));
         Confirm_Password_Label.setText("Confirm Password");
+
+        Confirm_Password_ToggleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/eye.png"))); // NOI18N
+        Confirm_Password_ToggleButton.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                Confirm_Password_ToggleButtonItemStateChanged(evt);
+            }
+        });
 
         Vault_Location_Label.setFont(Vault_Location_Label.getFont().deriveFont(Vault_Location_Label.getFont().getSize()+2f));
         Vault_Location_Label.setText("Vault Location");
@@ -463,13 +480,19 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(Vault_Name_Label, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(NewVault_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Vault_Password_Field)
-                    .addComponent(Confirm_Password_Field)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, NewVault_ContainerLayout.createSequentialGroup()
                         .addComponent(Vault_Location_Field, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Browse_Button))
-                    .addComponent(Vault_Name_Field))
+                    .addComponent(Vault_Name_Field)
+                    .addGroup(NewVault_ContainerLayout.createSequentialGroup()
+                        .addGroup(NewVault_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Confirm_Password_Field)
+                            .addComponent(Vault_Password_Field))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(NewVault_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Vault_Password_ToggleButton, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(Confirm_Password_ToggleButton, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         NewVault_ContainerLayout.setVerticalGroup(
@@ -482,13 +505,16 @@ public class Main extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(NewVault_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(NewVault_ContainerLayout.createSequentialGroup()
-                        .addComponent(Vault_Password_Field, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(NewVault_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Vault_Password_Field, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Vault_Password_ToggleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(1, 1, 1))
                     .addComponent(Vault_Password_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(NewVault_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(Confirm_Password_Label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Confirm_Password_Field, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE))
+                    .addComponent(Confirm_Password_Field, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                    .addComponent(Confirm_Password_ToggleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(NewVault_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(NewVault_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -532,13 +558,13 @@ public class Main extends javax.swing.JFrame {
         NewVaultPageLayout.setVerticalGroup(
             NewVaultPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(NewVaultPageLayout.createSequentialGroup()
-                .addContainerGap(100, Short.MAX_VALUE)
+                .addContainerGap(101, Short.MAX_VALUE)
                 .addComponent(NewVault_Label)
                 .addGap(18, 18, 18)
                 .addComponent(NewVault_Container, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(NewVaultPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(NewVault_Finish_Button, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                .addGroup(NewVaultPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(NewVault_Finish_Button, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
                     .addComponent(NewVault_Cancel_Button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(162, Short.MAX_VALUE))
         );
@@ -638,7 +664,14 @@ public class Main extends javax.swing.JFrame {
         Password_Label.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         Password_Label.setText("Password");
 
-        Generate_Password_Button.setText("Generate Password");
+        Password_Field_ToggleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/eye.png"))); // NOI18N
+        Password_Field_ToggleButton.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                Password_Field_ToggleButtonItemStateChanged(evt);
+            }
+        });
+
+        Generate_Password_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/dice-5.png"))); // NOI18N
 
         URL_Label.setFont(URL_Label.getFont().deriveFont(URL_Label.getFont().getSize()+2f));
         URL_Label.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -669,7 +702,9 @@ public class Main extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EntryPage_ContainerLayout.createSequentialGroup()
                         .addComponent(Password_Field)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Generate_Password_Button))
+                        .addComponent(Password_Field_ToggleButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Generate_Password_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(Title_TextField)
                     .addComponent(URL_TextField)
                     .addComponent(Username_TextField)
@@ -689,7 +724,9 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(Username_TextField, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(EntryPage_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Generate_Password_Button, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                    .addGroup(EntryPage_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(Generate_Password_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Password_Field_ToggleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(Password_Label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Password_Field))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -698,8 +735,8 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(URL_Label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(EntryPage_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Notes_ScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
-                    .addComponent(Notes_Label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(Notes_Label, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
+                    .addComponent(Notes_ScrollPane))
                 .addContainerGap())
         );
 
@@ -1174,6 +1211,27 @@ public class Main extends javax.swing.JFrame {
         Copy_URL_ActionPerformed();
     }//GEN-LAST:event_Table_PopupMenu_Copy_URLActionPerformed
 
+    private void Vault_Password_ToggleButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Vault_Password_ToggleButtonItemStateChanged
+        if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED)
+            Vault_Password_Field.setEchoChar((char) 0);
+        else
+            Vault_Password_Field.setEchoChar('\u2022');
+    }//GEN-LAST:event_Vault_Password_ToggleButtonItemStateChanged
+
+    private void Confirm_Password_ToggleButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Confirm_Password_ToggleButtonItemStateChanged
+        if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED)
+            Confirm_Password_Field.setEchoChar((char) 0);
+        else
+            Confirm_Password_Field.setEchoChar('\u2022');
+    }//GEN-LAST:event_Confirm_Password_ToggleButtonItemStateChanged
+
+    private void Password_Field_ToggleButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Password_Field_ToggleButtonItemStateChanged
+        if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED)
+            Password_Field.setEchoChar((char) 0);
+        else
+            Password_Field.setEchoChar('\u2022');
+    }//GEN-LAST:event_Password_Field_ToggleButtonItemStateChanged
+
     private void New_Entry_ActionPerformed() {
         UID = "SVLT-" + new java.text.SimpleDateFormat("yyMMdd-HHmmss").format(new java.util.Date())+ "-" + com.xahertz.internal.Functions.randomID(8);
         EntryPage_Label.setText(Vault_Table_Name + " \u2022 New Entry");
@@ -1404,6 +1462,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem Close_Vault_MenuItem;
     private javax.swing.JPasswordField Confirm_Password_Field;
     private javax.swing.JLabel Confirm_Password_Label;
+    private javax.swing.JToggleButton Confirm_Password_ToggleButton;
     private javax.swing.JPanel Container;
     private javax.swing.JButton Copy_Password_Button;
     private javax.swing.JMenuItem Copy_Password_MenuItem;
@@ -1449,6 +1508,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton Open_Vault_Button;
     private javax.swing.JMenuItem Open_Vault_MenuItem;
     private javax.swing.JPasswordField Password_Field;
+    private javax.swing.JToggleButton Password_Field_ToggleButton;
     private javax.swing.JButton Password_Generator_Button;
     private javax.swing.JMenuItem Password_Generator_MenuItem;
     private javax.swing.JLabel Password_Label;
@@ -1491,6 +1551,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel Vault_Name_Label;
     private javax.swing.JPasswordField Vault_Password_Field;
     private javax.swing.JLabel Vault_Password_Label;
+    private javax.swing.JToggleButton Vault_Password_ToggleButton;
     private javax.swing.JLabel Welcome_Label;
     // End of variables declaration//GEN-END:variables
     private final java.awt.CardLayout Container_Deck;
