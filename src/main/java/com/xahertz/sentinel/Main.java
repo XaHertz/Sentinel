@@ -12,7 +12,7 @@ public class Main extends javax.swing.JFrame {
      * Creates new form Main
      */
     public Main() {
-        Version = "0.4.0";
+        Version = "0.5.0";
         Vault_Table_Name = "Root";
         com.xahertz.internal.SQLite.initVaultList();
         initComponents();
@@ -156,9 +156,19 @@ public class Main extends javax.swing.JFrame {
         FolderTree_PopupMenu.add(Tree_PopupMenu_New_Group);
 
         Tree_PopupMenu_Edit_Group.setText("Edit Group");
+        Tree_PopupMenu_Edit_Group.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Tree_PopupMenu_Edit_GroupActionPerformed(evt);
+            }
+        });
         FolderTree_PopupMenu.add(Tree_PopupMenu_Edit_Group);
 
         Tree_PopupMenu_Delete_Group.setText("Delete Group");
+        Tree_PopupMenu_Delete_Group.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Tree_PopupMenu_Delete_GroupActionPerformed(evt);
+            }
+        });
         FolderTree_PopupMenu.add(Tree_PopupMenu_Delete_Group);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -763,10 +773,20 @@ public class Main extends javax.swing.JFrame {
 
         Edit_Group_MenuItem.setText("Edit Group");
         Edit_Group_MenuItem.setEnabled(false);
+        Edit_Group_MenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Edit_Group_MenuItemActionPerformed(evt);
+            }
+        });
         Edit_Menu.add(Edit_Group_MenuItem);
 
         Delete_Group_MenuItem.setText("Delete Group");
         Delete_Group_MenuItem.setEnabled(false);
+        Delete_Group_MenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Delete_Group_MenuItemActionPerformed(evt);
+            }
+        });
         Edit_Menu.add(Delete_Group_MenuItem);
         Edit_Menu.add(Edit_Menu_Separator_Two);
 
@@ -1008,6 +1028,22 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_FolderTreeValueChanged
 
+    private void Edit_Group_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Edit_Group_MenuItemActionPerformed
+        Edit_Group_ActionPerformed();
+    }//GEN-LAST:event_Edit_Group_MenuItemActionPerformed
+
+    private void Tree_PopupMenu_Edit_GroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Tree_PopupMenu_Edit_GroupActionPerformed
+        Edit_Group_ActionPerformed();
+    }//GEN-LAST:event_Tree_PopupMenu_Edit_GroupActionPerformed
+
+    private void Delete_Group_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Delete_Group_MenuItemActionPerformed
+        Delete_Group_ActionPerformed();
+    }//GEN-LAST:event_Delete_Group_MenuItemActionPerformed
+
+    private void Tree_PopupMenu_Delete_GroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Tree_PopupMenu_Delete_GroupActionPerformed
+        Delete_Group_ActionPerformed();
+    }//GEN-LAST:event_Tree_PopupMenu_Delete_GroupActionPerformed
+
     private void New_Group_ActionPerformed() {
         String vltTableName = JOptionPane.showInputDialog(null, "Enter a Name:", "New Group", JOptionPane.PLAIN_MESSAGE);
         if (vltTableName != null) {
@@ -1022,6 +1058,42 @@ public class Main extends javax.swing.JFrame {
                     Passwords_Table.setModel(com.xahertz.internal.Functions.vltTableModel(vltTableName));
                     Vault_Table_Name = vltTableName;
                 }
+            }
+        }
+    }
+    
+    private void Edit_Group_ActionPerformed() {
+        if (Vault_Table_Name.equals("Root"))
+            JOptionPane.showMessageDialog(null, "\"Root\" can't be Renamed or Deleted.", "Error", JOptionPane.ERROR_MESSAGE);
+        else {
+            String vltTableName = JOptionPane.showInputDialog(null, "Enter a new Name:", "Rename Group: " + Vault_Table_Name, JOptionPane.PLAIN_MESSAGE);
+            if (vltTableName != null) {
+                if (!vltTableName.equals("")) {
+                    if (vltTableName.equals(Vault_Table_Name))
+                        JOptionPane.showMessageDialog(null, "New Name is same as the Old one. Nothing to Rename.", "Error", JOptionPane.ERROR_MESSAGE);
+                    else if (com.xahertz.internal.SQLite.vltTableExists(vltTableName))
+                        JOptionPane.showMessageDialog(null, "A Group Nameed \"" + vltTableName + "\" Already Exists.", "Error", JOptionPane.ERROR_MESSAGE);
+                    else {
+                        com.xahertz.internal.SQLite.renTable(vltTableName, Vault_Table_Name);
+                        FolderTree.setModel(com.xahertz.internal.SQLite.allTablesList());
+                        Passwords_Table.setModel(com.xahertz.internal.Functions.vltTableModel(vltTableName));
+                        Vault_Table_Name = vltTableName;
+                    }
+                }
+            }
+        }
+    }
+    
+    private void Delete_Group_ActionPerformed() {
+        if (Vault_Table_Name.equals("Root"))
+            JOptionPane.showMessageDialog(null, "\"Root\" can't be Renamed or Deleted.", "Error", JOptionPane.ERROR_MESSAGE);
+        else {
+            int response = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this Group? Doing this will also delete all of it's Entries.", "Delete Group: " + Vault_Table_Name, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (response == JOptionPane.YES_OPTION) {
+                com.xahertz.internal.SQLite.remTable(Vault_Table_Name);
+                FolderTree.setModel(com.xahertz.internal.SQLite.allTablesList());
+                Passwords_Table.setModel(com.xahertz.internal.Functions.vltTableModel("Root"));
+                Vault_Table_Name = "Root";
             }
         }
     }

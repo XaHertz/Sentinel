@@ -60,11 +60,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Edit Group"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Tree_PopupMenu_Edit_GroupActionPerformed"/>
+          </Events>
         </MenuItem>
         <MenuItem class="javax.swing.JMenuItem" name="Tree_PopupMenu_Delete_Group">
           <Properties>
             <Property name="text" type="java.lang.String" value="Delete Group"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Tree_PopupMenu_Delete_GroupActionPerformed"/>
+          </Events>
         </MenuItem>
       </SubComponents>
     </Container>
@@ -151,12 +157,18 @@
                 <Property name="text" type="java.lang.String" value="Edit Group"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Edit_Group_MenuItemActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="Delete_Group_MenuItem">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Delete Group"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Delete_Group_MenuItemActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="Edit_Menu_Separator_Two">
             </MenuItem>

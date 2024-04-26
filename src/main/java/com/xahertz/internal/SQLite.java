@@ -162,6 +162,35 @@ public class SQLite {
         }
     }
     
+    public static void renTable(String vltTableNameNew, String vltTableNameOld){
+        String allTables = "UPDATE AllTables SET \"Table Name\" = ? WHERE \"Table Name\" = ?;";
+        String vltTable = String.format("ALTER TABLE \"%s\" RENAME TO \"%s\";", vltTableNameOld, vltTableNameNew);
+        try {
+            PreparedStatement vltDBquery = vltDB.prepareStatement(allTables);
+            vltDBquery.setString(1, vltTableNameNew);
+            vltDBquery.setString(2, vltTableNameOld);
+            vltDBquery.executeUpdate();
+            Statement vltDBquery2 = vltDB.createStatement();
+            vltDBquery2.execute(vltTable);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    public static void remTable(String vltTableName){
+        String allTables = "DELETE FROM AllTables WHERE \"Table Name\" = ?;";
+        String vltTable = String.format("DROP TABLE \"%s\";", vltTableName);
+        try {
+            PreparedStatement vltDBquery = vltDB.prepareStatement(allTables);
+            vltDBquery.setString(1, vltTableName);
+            vltDBquery.executeUpdate();
+            Statement vltDBquery2 = vltDB.createStatement();
+            vltDBquery2.execute(vltTable);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
     public static ResultSet vltTableData(String vltTableName) {
         ResultSet vltResult = null;
         String vltTable = "SELECT * FROM \"" + vltTableName + "\";";
