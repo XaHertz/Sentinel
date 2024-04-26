@@ -72,12 +72,17 @@ public class Main extends javax.swing.JFrame {
         Vault_Password_Label = new javax.swing.JLabel();
         Vault_Password_Field = new javax.swing.JPasswordField();
         Vault_Password_ToggleButton = new javax.swing.JToggleButton();
+        Generate_Vault_Password_Button = new javax.swing.JButton();
         Confirm_Password_Label = new javax.swing.JLabel();
         Confirm_Password_Field = new javax.swing.JPasswordField();
         Confirm_Password_ToggleButton = new javax.swing.JToggleButton();
         Vault_Location_Label = new javax.swing.JLabel();
         Vault_Location_Field = new javax.swing.JTextField();
         Browse_Button = new javax.swing.JButton();
+        Key_File_Label = new javax.swing.JLabel();
+        Key_File_CheckBox = new javax.swing.JCheckBox();
+        Key_File_Location_Field = new javax.swing.JTextField();
+        Key_File_Browse_Button = new javax.swing.JButton();
         NewVault_Cancel_Button = new javax.swing.JButton();
         NewVault_Finish_Button = new javax.swing.JButton();
         VaultPage = new javax.swing.JPanel();
@@ -461,6 +466,9 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        Generate_Vault_Password_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/dice-5.png"))); // NOI18N
+        Generate_Vault_Password_Button.setToolTipText("");
+
         Confirm_Password_Label.setFont(Confirm_Password_Label.getFont().deriveFont(Confirm_Password_Label.getFont().getSize()+2f));
         Confirm_Password_Label.setText("Confirm Password");
 
@@ -474,10 +482,30 @@ public class Main extends javax.swing.JFrame {
         Vault_Location_Label.setFont(Vault_Location_Label.getFont().deriveFont(Vault_Location_Label.getFont().getSize()+2f));
         Vault_Location_Label.setText("Vault Location");
 
-        Browse_Button.setText("Browse");
+        Browse_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/folder.png"))); // NOI18N
         Browse_Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Browse_ButtonActionPerformed(evt);
+            }
+        });
+
+        Key_File_Label.setFont(Key_File_Label.getFont().deriveFont(Key_File_Label.getFont().getSize()+2f));
+        Key_File_Label.setText("Key File");
+
+        Key_File_CheckBox.setFont(Key_File_CheckBox.getFont().deriveFont(Key_File_CheckBox.getFont().getSize()+2f));
+        Key_File_CheckBox.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                Key_File_CheckBoxItemStateChanged(evt);
+            }
+        });
+
+        Key_File_Location_Field.setEnabled(false);
+
+        Key_File_Browse_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/folder.png"))); // NOI18N
+        Key_File_Browse_Button.setEnabled(false);
+        Key_File_Browse_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Key_File_Browse_ButtonActionPerformed(evt);
             }
         });
 
@@ -487,27 +515,38 @@ public class Main extends javax.swing.JFrame {
             NewVault_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(NewVault_ContainerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(NewVault_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(NewVault_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(Vault_Location_Label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Confirm_Password_Label, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                    .addComponent(Confirm_Password_Label, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Vault_Password_Label, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Vault_Name_Label, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(Vault_Name_Label, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(NewVault_ContainerLayout.createSequentialGroup()
+                        .addComponent(Key_File_Label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Key_File_CheckBox)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(NewVault_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, NewVault_ContainerLayout.createSequentialGroup()
-                        .addComponent(Vault_Location_Field, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Browse_Button))
                     .addComponent(Vault_Name_Field)
                     .addGroup(NewVault_ContainerLayout.createSequentialGroup()
                         .addGroup(NewVault_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Confirm_Password_Field)
-                            .addComponent(Vault_Password_Field))
+                            .addComponent(Confirm_Password_Field, javax.swing.GroupLayout.DEFAULT_SIZE, 558, Short.MAX_VALUE)
+                            .addGroup(NewVault_ContainerLayout.createSequentialGroup()
+                                .addComponent(Vault_Password_Field)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Vault_Password_ToggleButton)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(NewVault_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Vault_Password_ToggleButton, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(Confirm_Password_ToggleButton, javax.swing.GroupLayout.Alignment.TRAILING))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(Confirm_Password_ToggleButton)
+                            .addComponent(Generate_Vault_Password_Button, javax.swing.GroupLayout.Alignment.TRAILING)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, NewVault_ContainerLayout.createSequentialGroup()
+                        .addGroup(NewVault_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(Vault_Location_Field, javax.swing.GroupLayout.DEFAULT_SIZE, 558, Short.MAX_VALUE)
+                            .addComponent(Key_File_Location_Field))
+                        .addGap(6, 6, 6)
+                        .addGroup(NewVault_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Browse_Button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Key_File_Browse_Button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap())
         );
         NewVault_ContainerLayout.setVerticalGroup(
             NewVault_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -519,9 +558,10 @@ public class Main extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(NewVault_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(NewVault_ContainerLayout.createSequentialGroup()
-                        .addGroup(NewVault_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Vault_Password_Field, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Vault_Password_ToggleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(NewVault_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Vault_Password_ToggleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Generate_Vault_Password_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Vault_Password_Field, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(1, 1, 1))
                     .addComponent(Vault_Password_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -530,11 +570,16 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(Confirm_Password_Field, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
                     .addComponent(Confirm_Password_ToggleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(NewVault_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(NewVault_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(Vault_Location_Label, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
-                        .addComponent(Vault_Location_Field, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(Browse_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(NewVault_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Vault_Location_Field)
+                    .addComponent(Browse_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Vault_Location_Label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(NewVault_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Key_File_CheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Key_File_Location_Field)
+                    .addComponent(Key_File_Browse_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Key_File_Label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -572,7 +617,7 @@ public class Main extends javax.swing.JFrame {
         NewVaultPageLayout.setVerticalGroup(
             NewVaultPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(NewVaultPageLayout.createSequentialGroup()
-                .addContainerGap(101, Short.MAX_VALUE)
+                .addContainerGap(81, Short.MAX_VALUE)
                 .addComponent(NewVault_Label)
                 .addGap(18, 18, 18)
                 .addComponent(NewVault_Container, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -580,7 +625,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(NewVaultPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(NewVault_Finish_Button, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
                     .addComponent(NewVault_Cancel_Button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(162, Short.MAX_VALUE))
+                .addContainerGap(143, Short.MAX_VALUE))
         );
 
         Container.add(NewVaultPage, "new");
@@ -1016,7 +1061,9 @@ public class Main extends javax.swing.JFrame {
         String vltPass = new String(Vault_Password_Field.getPassword());
         String cnfPass = new String(Confirm_Password_Field.getPassword());
         String vltPath = Vault_Location_Field.getText();
-        if (vltName.equals("") || vltPass.equals("") || cnfPass.equals("") || vltPath.equals(""))
+        String valtKey = Key_File_Location_Field.getText();
+        boolean vltKey = Key_File_CheckBox.isSelected();
+        if (vltName.equals("") || vltPass.equals("") || cnfPass.equals("") || vltPath.equals("") || (vltKey && valtKey.equals("")))
             JOptionPane.showMessageDialog(null, "All Fields are Required to be Filled. Please Try Again!", "Empty Feilds", JOptionPane.ERROR_MESSAGE);
         else if (vltPass.length() < 8)
             JOptionPane.showMessageDialog(null, "Your Password Must Contain at Least 8 Characters. Please Try Again!", "Password Too Short", JOptionPane.ERROR_MESSAGE);
@@ -1029,6 +1076,8 @@ public class Main extends javax.swing.JFrame {
             Vault_Password_Field.setText("");
             Confirm_Password_Field.setText("");
             Vault_Location_Field.setText("");
+            Key_File_Location_Field.setText("");
+            Key_File_CheckBox.setSelected(false);
             OpenVaultPage();
         }
     }//GEN-LAST:event_NewVault_Finish_ButtonActionPerformed
@@ -1055,8 +1104,8 @@ public class Main extends javax.swing.JFrame {
         javax.swing.JFileChooser fileChooser = new javax.swing.JFileChooser();
         fileChooser.setDialogTitle("Save Vault as");
         fileChooser.setDialogType(javax.swing.JFileChooser.SAVE_DIALOG);
-        fileChooser.setSelectedFile(new java.io.File("Passwords.vault"));
-        fileChooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Sentinel Vault File", "vault"));
+        fileChooser.setSelectedFile(new java.io.File("Passwords.svlt"));
+        fileChooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Sentinel Vault File", "svlt"));
         if (fileChooser.showSaveDialog(null) == javax.swing.JFileChooser.APPROVE_OPTION) {
             if (fileChooser.getSelectedFile().exists()) {
                 int response = JOptionPane.showConfirmDialog(null, "The file already exists. Do you want to overwrite the file?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
@@ -1250,6 +1299,33 @@ public class Main extends javax.swing.JFrame {
         com.xahertz.internal.SQLite.remVaultList();
         Recent_Vaults_List.setModel(com.xahertz.internal.SQLite.getVaultList());
     }//GEN-LAST:event_Clear_List_ButtonActionPerformed
+
+    private void Key_File_CheckBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Key_File_CheckBoxItemStateChanged
+        if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
+            Key_File_Location_Field.setEnabled(true);
+            Key_File_Browse_Button.setEnabled(true);
+        } else {
+            Key_File_Location_Field.setEnabled(false);
+            Key_File_Browse_Button.setEnabled(false);
+        }
+    }//GEN-LAST:event_Key_File_CheckBoxItemStateChanged
+
+    private void Key_File_Browse_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Key_File_Browse_ButtonActionPerformed
+        javax.swing.JFileChooser fileChooser = new javax.swing.JFileChooser();
+        fileChooser.setDialogTitle("Save Key File as");
+        fileChooser.setDialogType(javax.swing.JFileChooser.SAVE_DIALOG);
+        fileChooser.setSelectedFile(new java.io.File("Passwords.svlk"));
+        fileChooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Sentinel Vault Key File", "svlk"));
+        if (fileChooser.showSaveDialog(null) == javax.swing.JFileChooser.APPROVE_OPTION) {
+            if (fileChooser.getSelectedFile().exists()) {
+                int response = JOptionPane.showConfirmDialog(null, "The file already exists. Do you want to overwrite the file?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                if (response == JOptionPane.YES_OPTION) {
+                    Key_File_Location_Field.setText(fileChooser.getSelectedFile().getAbsolutePath());
+                }
+            } else
+                Key_File_Location_Field.setText(fileChooser.getSelectedFile().getAbsolutePath());
+        }
+    }//GEN-LAST:event_Key_File_Browse_ButtonActionPerformed
 
     private void New_Entry_ActionPerformed() {
         UID = "SVLT-" + new java.text.SimpleDateFormat("yyMMdd-HHmmss").format(new java.util.Date())+ "-" + com.xahertz.internal.Functions.randomID(8);
@@ -1514,7 +1590,12 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPopupMenu FolderTree_PopupMenu;
     private javax.swing.JScrollPane FolderTree_ScrollPane;
     private javax.swing.JButton Generate_Password_Button;
+    private javax.swing.JButton Generate_Vault_Password_Button;
     private javax.swing.JMenu Help_Menu;
+    private javax.swing.JButton Key_File_Browse_Button;
+    private javax.swing.JCheckBox Key_File_CheckBox;
+    private javax.swing.JLabel Key_File_Label;
+    private javax.swing.JTextField Key_File_Location_Field;
     private javax.swing.JToolBar Main_ToolBar;
     private javax.swing.JMenuBar Menu_Bar;
     private javax.swing.JPanel NewVaultPage;

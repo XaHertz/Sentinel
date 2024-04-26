@@ -693,7 +693,7 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace pref="101" max="32767" attributes="0"/>
+                      <EmptySpace pref="81" max="32767" attributes="0"/>
                       <Component id="NewVault_Label" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="NewVault_Container" min="-2" max="-2" attributes="0"/>
@@ -702,7 +702,7 @@
                           <Component id="NewVault_Finish_Button" pref="30" max="32767" attributes="0"/>
                           <Component id="NewVault_Cancel_Button" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="162" max="32767" attributes="0"/>
+                      <EmptySpace pref="143" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -734,35 +734,50 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
                               <Component id="Vault_Location_Label" max="32767" attributes="0"/>
-                              <Component id="Confirm_Password_Label" alignment="0" pref="120" max="32767" attributes="0"/>
+                              <Component id="Confirm_Password_Label" alignment="0" max="32767" attributes="0"/>
                               <Component id="Vault_Password_Label" alignment="0" max="32767" attributes="0"/>
                               <Component id="Vault_Name_Label" alignment="0" max="32767" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="Key_File_Label" max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="Key_File_CheckBox" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="Vault_Location_Field" pref="520" max="32767" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="Browse_Button" min="-2" max="-2" attributes="0"/>
-                              </Group>
                               <Component id="Vault_Name_Field" alignment="0" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="Confirm_Password_Field" max="32767" attributes="0"/>
-                                      <Component id="Vault_Password_Field" max="32767" attributes="0"/>
+                                      <Component id="Confirm_Password_Field" pref="558" max="32767" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <Component id="Vault_Password_Field" max="32767" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="Vault_Password_ToggleButton" min="-2" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="Vault_Password_ToggleButton" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      <Component id="Confirm_Password_ToggleButton" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="Confirm_Password_ToggleButton" min="-2" max="-2" attributes="0"/>
+                                      <Component id="Generate_Vault_Password_Button" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="Vault_Location_Field" pref="558" max="32767" attributes="0"/>
+                                      <Component id="Key_File_Location_Field" max="32767" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="Browse_Button" max="32767" attributes="0"/>
+                                      <Component id="Key_File_Browse_Button" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -777,9 +792,10 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="Vault_Password_Field" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
-                                      <Component id="Vault_Password_ToggleButton" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="Vault_Password_ToggleButton" alignment="0" min="-2" pref="28" max="-2" attributes="0"/>
+                                      <Component id="Generate_Vault_Password_Button" alignment="0" min="-2" pref="28" max="-2" attributes="0"/>
+                                      <Component id="Vault_Password_Field" min="-2" pref="28" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
                               </Group>
@@ -792,12 +808,17 @@
                               <Component id="Confirm_Password_ToggleButton" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="Vault_Location_Label" pref="29" max="32767" attributes="0"/>
-                                  <Component id="Vault_Location_Field" min="-2" pref="28" max="-2" attributes="0"/>
-                              </Group>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="Vault_Location_Field" max="32767" attributes="0"/>
                               <Component id="Browse_Button" alignment="0" min="-2" pref="28" max="-2" attributes="0"/>
+                              <Component id="Vault_Location_Label" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="Key_File_CheckBox" max="32767" attributes="0"/>
+                              <Component id="Key_File_Location_Field" max="32767" attributes="0"/>
+                              <Component id="Key_File_Browse_Button" min="-2" pref="28" max="-2" attributes="0"/>
+                              <Component id="Key_File_Label" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
@@ -839,6 +860,14 @@
                     <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="Vault_Password_ToggleButtonItemStateChanged"/>
                   </Events>
                 </Component>
+                <Component class="javax.swing.JButton" name="Generate_Vault_Password_Button">
+                  <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/images/dice-5.png"/>
+                    </Property>
+                    <Property name="toolTipText" type="java.lang.String" value=""/>
+                  </Properties>
+                </Component>
                 <Component class="javax.swing.JLabel" name="Confirm_Password_Label">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
@@ -875,10 +904,50 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="Browse_Button">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Browse"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/images/folder.png"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Browse_ButtonActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JLabel" name="Key_File_Label">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
+                      <FontInfo relative="true">
+                        <Font component="Key_File_Label" property="font" relativeSize="true" size="2"/>
+                      </FontInfo>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Key File"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JCheckBox" name="Key_File_CheckBox">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
+                      <FontInfo relative="true">
+                        <Font component="Key_File_CheckBox" property="font" relativeSize="true" size="2"/>
+                      </FontInfo>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="Key_File_CheckBoxItemStateChanged"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JTextField" name="Key_File_Location_Field">
+                  <Properties>
+                    <Property name="enabled" type="boolean" value="false"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="Key_File_Browse_Button">
+                  <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/images/folder.png"/>
+                    </Property>
+                    <Property name="enabled" type="boolean" value="false"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Key_File_Browse_ButtonActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
