@@ -4,9 +4,7 @@ import java.security.SecureRandom;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -23,23 +21,6 @@ public class Functions {
         for (int i=0; i<length; i++)
             builder.append(Seed.charAt(random.nextInt(Seed.length())));
         return builder.toString();
-    }
-    
-    public static boolean openVault() {
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogTitle("Open Existing Vault");
-        fileChooser.setFileFilter(new FileNameExtensionFilter("Sentinel Vault File", "svlt"));
-        if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-            String vltPass = JOptionPane.showInputDialog(null, "Vault File: " + fileChooser.getSelectedFile().getAbsolutePath(), "Enter Password", JOptionPane.PLAIN_MESSAGE);
-            if (vltPass != null) {
-                if (!vltPass.equals("")) {
-                    SQLite.openVault(fileChooser.getSelectedFile().getAbsolutePath(), vltPass);
-                    SQLite.setVaultList(fileChooser.getSelectedFile().getAbsolutePath());
-                    return true;
-                }
-            }
-        }
-        return false;
     }
     
     public static TableModel vltTableModel(String vltTableName) {

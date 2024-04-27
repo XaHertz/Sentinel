@@ -87,7 +87,7 @@ public class SQLite {
         }
     }
 
-    public static void createNewVault(String vltName, String vltPass, String vltPath) {
+    public static boolean createNewVault(String vltName, String vltPass, String vltPath) {
         String rootTable = "CREATE TABLE IF NOT EXISTS Root (\"UID\" TEXT NOT NULL UNIQUE, \"Title\" TEXT, \"Username\" TEXT, \"Password\" TEXT, \"URL\" TEXT, \"Notes\" TEXT, PRIMARY KEY(\"UID\"));";
         String allTables = "CREATE TABLE IF NOT EXISTS AllTables (\"Table Name\" TEXT NOT NULL UNIQUE, PRIMARY KEY(\"Table Name\"));";
         String confTable = "CREATE TABLE IF NOT EXISTS Configuration (Parameter TEXT NOT NULL UNIQUE, Value TEXT, PRIMARY KEY(Parameter));";
@@ -104,16 +104,21 @@ public class SQLite {
             PreparedStatement vltDBquery2 = vltDB.prepareStatement(confValue);
             vltDBquery2.setString(1, vltName);
             vltDBquery2.executeUpdate();
+            return true;
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Details: " + ex, "Error Creating Vault File", JOptionPane.ERROR_MESSAGE);
+            return false;
         }
     }
     
-    public static void openVault(String vltPath, String vltPass) {
+    public static boolean openVault(String vltPath, String vltPass) {
         try {
             vltDB = DriverManager.getConnection("jdbc:sqlite:" + new File(vltPath), org.sqlite.mc.SQLiteMCChacha20Config.getDefault().withKey(vltPass).build().toProperties());
+            return true;
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, String.format("An error occurred while trying to read the Vault File. Invalid credentials were provided, please try again."
+                + "\n\nDetails: %s\n\nIf this reoccurs, then your Vault File may be corrupt.", ex), "Error Reading Vault File", JOptionPane.ERROR_MESSAGE);
+            return false;
         }
     }
     

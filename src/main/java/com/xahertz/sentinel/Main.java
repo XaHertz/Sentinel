@@ -64,6 +64,21 @@ public class Main extends javax.swing.JFrame {
         Recent_Vaults_ScrollPane = new javax.swing.JScrollPane();
         Recent_Vaults_List = new javax.swing.JList<>();
         Clear_List_Button = new javax.swing.JButton();
+        OpenVaultPage = new javax.swing.JPanel();
+        OpenVault_Label = new javax.swing.JLabel();
+        OpenVault_Container = new javax.swing.JPanel();
+        Vault_Path_Label = new javax.swing.JLabel();
+        Vault_Path_Field = new javax.swing.JTextField();
+        OpenVault_Password_Label = new javax.swing.JLabel();
+        OpenVault_Password_Field = new javax.swing.JPasswordField();
+        OpenVault_Password_ToggleButton = new javax.swing.JToggleButton();
+        OpenVault_Key_File_Label = new javax.swing.JLabel();
+        OpenVault_Key_File_CheckBox = new javax.swing.JCheckBox();
+        OpenVault_Key_File_Location_Field = new javax.swing.JPasswordField();
+        OpenVault_Key_File_ToggleButton = new javax.swing.JToggleButton();
+        OpenVault_Key_File_Browse_Button = new javax.swing.JButton();
+        Close_Button = new javax.swing.JButton();
+        Unlock_Button = new javax.swing.JButton();
         NewVaultPage = new javax.swing.JPanel();
         NewVault_Label = new javax.swing.JLabel();
         NewVault_Container = new javax.swing.JPanel();
@@ -445,6 +460,159 @@ public class Main extends javax.swing.JFrame {
         );
 
         Container.add(StartPage, "start");
+
+        OpenVault_Label.setFont(OpenVault_Label.getFont().deriveFont(OpenVault_Label.getFont().getSize()+12f));
+        OpenVault_Label.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        OpenVault_Label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/vault.png"))); // NOI18N
+        OpenVault_Label.setText(" Unlock Vault");
+
+        OpenVault_Container.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        Vault_Path_Label.setFont(Vault_Path_Label.getFont().deriveFont(Vault_Path_Label.getFont().getSize()+2f));
+        Vault_Path_Label.setText("Vault Path");
+
+        Vault_Path_Field.setEditable(false);
+
+        OpenVault_Password_Label.setFont(OpenVault_Password_Label.getFont().deriveFont(OpenVault_Password_Label.getFont().getSize()+2f));
+        OpenVault_Password_Label.setText("Vault Password");
+
+        OpenVault_Password_ToggleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/eye.png"))); // NOI18N
+        OpenVault_Password_ToggleButton.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                OpenVault_Password_ToggleButtonItemStateChanged(evt);
+            }
+        });
+
+        OpenVault_Key_File_Label.setFont(OpenVault_Key_File_Label.getFont().deriveFont(OpenVault_Key_File_Label.getFont().getSize()+2f));
+        OpenVault_Key_File_Label.setText("Key File");
+
+        OpenVault_Key_File_CheckBox.setFont(OpenVault_Key_File_CheckBox.getFont().deriveFont(OpenVault_Key_File_CheckBox.getFont().getSize()+2f));
+        OpenVault_Key_File_CheckBox.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                OpenVault_Key_File_CheckBoxItemStateChanged(evt);
+            }
+        });
+
+        OpenVault_Key_File_Location_Field.setEnabled(false);
+
+        OpenVault_Key_File_ToggleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/eye.png"))); // NOI18N
+        OpenVault_Key_File_ToggleButton.setEnabled(false);
+        OpenVault_Key_File_ToggleButton.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                OpenVault_Key_File_ToggleButtonItemStateChanged(evt);
+            }
+        });
+
+        OpenVault_Key_File_Browse_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/folder.png"))); // NOI18N
+        OpenVault_Key_File_Browse_Button.setEnabled(false);
+        OpenVault_Key_File_Browse_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OpenVault_Key_File_Browse_ButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout OpenVault_ContainerLayout = new javax.swing.GroupLayout(OpenVault_Container);
+        OpenVault_Container.setLayout(OpenVault_ContainerLayout);
+        OpenVault_ContainerLayout.setHorizontalGroup(
+            OpenVault_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(OpenVault_ContainerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(OpenVault_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(OpenVault_Password_Label, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Vault_Path_Label, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(OpenVault_ContainerLayout.createSequentialGroup()
+                        .addComponent(OpenVault_Key_File_Label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(OpenVault_Key_File_CheckBox)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(OpenVault_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Vault_Path_Field)
+                    .addGroup(OpenVault_ContainerLayout.createSequentialGroup()
+                        .addComponent(OpenVault_Password_Field)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(OpenVault_Password_ToggleButton))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, OpenVault_ContainerLayout.createSequentialGroup()
+                        .addComponent(OpenVault_Key_File_Location_Field, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(OpenVault_Key_File_ToggleButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(OpenVault_Key_File_Browse_Button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        OpenVault_ContainerLayout.setVerticalGroup(
+            OpenVault_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(OpenVault_ContainerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(OpenVault_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Vault_Path_Field, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                    .addComponent(Vault_Path_Label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(OpenVault_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(OpenVault_ContainerLayout.createSequentialGroup()
+                        .addGroup(OpenVault_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(OpenVault_Password_Field, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                            .addComponent(OpenVault_Password_ToggleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addGap(1, 1, 1))
+                    .addComponent(OpenVault_Password_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(OpenVault_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(OpenVault_ContainerLayout.createSequentialGroup()
+                        .addGroup(OpenVault_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(OpenVault_Key_File_CheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(OpenVault_Key_File_Browse_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(OpenVault_Key_File_Label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(OpenVault_Key_File_Location_Field, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(OpenVault_Key_File_ToggleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        Close_Button.setFont(Close_Button.getFont().deriveFont(Close_Button.getFont().getSize()+2f));
+        Close_Button.setText("Close");
+        Close_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Close_ButtonActionPerformed(evt);
+            }
+        });
+
+        Unlock_Button.setFont(Unlock_Button.getFont().deriveFont(Unlock_Button.getFont().getSize()+2f));
+        Unlock_Button.setText("Unlock");
+        Unlock_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Unlock_ButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout OpenVaultPageLayout = new javax.swing.GroupLayout(OpenVaultPage);
+        OpenVaultPage.setLayout(OpenVaultPageLayout);
+        OpenVaultPageLayout.setHorizontalGroup(
+            OpenVaultPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(OpenVaultPageLayout.createSequentialGroup()
+                .addContainerGap(130, Short.MAX_VALUE)
+                .addGroup(OpenVaultPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(OpenVaultPageLayout.createSequentialGroup()
+                        .addComponent(Close_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(560, 560, 560)
+                        .addComponent(Unlock_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(OpenVault_Container, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(OpenVault_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 740, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(130, Short.MAX_VALUE))
+        );
+        OpenVaultPageLayout.setVerticalGroup(
+            OpenVaultPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(OpenVaultPageLayout.createSequentialGroup()
+                .addContainerGap(140, Short.MAX_VALUE)
+                .addComponent(OpenVault_Label)
+                .addGap(18, 18, 18)
+                .addComponent(OpenVault_Container, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(OpenVaultPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Unlock_Button, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(Close_Button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(164, Short.MAX_VALUE))
+        );
+
+        Container.add(OpenVaultPage, "open");
 
         NewVault_Label.setFont(NewVault_Label.getFont().deriveFont(NewVault_Label.getFont().getSize()+12f));
         NewVault_Label.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -1043,8 +1211,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_Close_Vault_MenuItemActionPerformed
 
     private void Open_Vault_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Open_Vault_MenuItemActionPerformed
-        if (com.xahertz.internal.Functions.openVault())
-            OpenVaultPage();
+        Open_Vault_ActionPerformed();
     }//GEN-LAST:event_Open_Vault_MenuItemActionPerformed
 
     private void Passwords_TableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Passwords_TableMousePressed
@@ -1070,15 +1237,16 @@ public class Main extends javax.swing.JFrame {
         else if (!vltPass.equals(cnfPass))
             JOptionPane.showMessageDialog(null, "The Passwords in Password Fields do not Match. Please Try Again!", "Password Mismatch", JOptionPane.ERROR_MESSAGE);
         else {
-            com.xahertz.internal.SQLite.createNewVault(vltName, vltPass, vltPath);
-            com.xahertz.internal.SQLite.setVaultList(vltPath);
-            Vault_Name_Field.setText("");
-            Vault_Password_Field.setText("");
-            Confirm_Password_Field.setText("");
-            Vault_Location_Field.setText("");
-            Key_File_Location_Field.setText("");
-            Key_File_CheckBox.setSelected(false);
-            OpenVaultPage();
+            if (com.xahertz.internal.SQLite.createNewVault(vltName, vltPass, vltPath)) {
+                com.xahertz.internal.SQLite.setVaultList(vltPath);
+                Vault_Name_Field.setText("");
+                Vault_Password_Field.setText("");
+                Confirm_Password_Field.setText("");
+                Vault_Location_Field.setText("");
+                Key_File_Location_Field.setText("");
+                Key_File_CheckBox.setSelected(false);
+                OpenVaultPage();
+            }
         }
     }//GEN-LAST:event_NewVault_Finish_ButtonActionPerformed
 
@@ -1087,13 +1255,11 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_NewVault_Cancel_ButtonActionPerformed
 
     private void StartPage_Open_Vault_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StartPage_Open_Vault_ButtonActionPerformed
-        if (com.xahertz.internal.Functions.openVault())
-            OpenVaultPage();
+        Open_Vault_ActionPerformed();
     }//GEN-LAST:event_StartPage_Open_Vault_ButtonActionPerformed
 
     private void Open_Vault_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Open_Vault_ButtonActionPerformed
-        if (com.xahertz.internal.Functions.openVault())
-            OpenVaultPage();
+        Open_Vault_ActionPerformed();
     }//GEN-LAST:event_Open_Vault_ButtonActionPerformed
 
     private void New_Vault_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_New_Vault_MenuItemActionPerformed
@@ -1128,13 +1294,8 @@ public class Main extends javax.swing.JFrame {
     private void Recent_Vaults_ListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Recent_Vaults_ListMouseClicked
         javax.swing.JList list = (javax.swing.JList)evt.getSource();
         if (evt.getClickCount() == 2) {
-            String vltPass = JOptionPane.showInputDialog(null, "Vault File: " + list.getSelectedValue(), "Enter Password", JOptionPane.PLAIN_MESSAGE);
-            if (vltPass != null) {
-                if (!vltPass.equals("")) {
-                    com.xahertz.internal.SQLite.openVault(list.getSelectedValue().toString(), vltPass);
-                    OpenVaultPage();
-                }
-            }
+            Vault_Path_Field.setText(list.getSelectedValue().toString());
+            Container_Deck.show(Container, "open");
         }
     }//GEN-LAST:event_Recent_Vaults_ListMouseClicked
 
@@ -1327,6 +1488,76 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_Key_File_Browse_ButtonActionPerformed
 
+    private void OpenVault_Password_ToggleButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_OpenVault_Password_ToggleButtonItemStateChanged
+        if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED)
+            OpenVault_Password_Field.setEchoChar((char) 0);
+        else
+            OpenVault_Password_Field.setEchoChar('\u2022');
+    }//GEN-LAST:event_OpenVault_Password_ToggleButtonItemStateChanged
+
+    private void OpenVault_Key_File_CheckBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_OpenVault_Key_File_CheckBoxItemStateChanged
+        if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
+            OpenVault_Key_File_Location_Field.setEnabled(true);
+            OpenVault_Key_File_ToggleButton.setEnabled(true);
+            OpenVault_Key_File_Browse_Button.setEnabled(true);
+        } else {
+            OpenVault_Key_File_Location_Field.setEnabled(false);
+            OpenVault_Key_File_ToggleButton.setEnabled(false);
+            OpenVault_Key_File_Browse_Button.setEnabled(false);
+        }
+    }//GEN-LAST:event_OpenVault_Key_File_CheckBoxItemStateChanged
+
+    private void OpenVault_Key_File_Browse_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpenVault_Key_File_Browse_ButtonActionPerformed
+        javax.swing.JFileChooser fileChooser = new javax.swing.JFileChooser();
+        fileChooser.setDialogTitle("Select Key File");
+        fileChooser.setDialogType(javax.swing.JFileChooser.OPEN_DIALOG);
+        fileChooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Sentinel Vault Key File", "svlk"));
+        if (fileChooser.showOpenDialog(null) == javax.swing.JFileChooser.APPROVE_OPTION) {
+            OpenVault_Key_File_Location_Field.setText(fileChooser.getSelectedFile().getAbsolutePath());
+        }
+    }//GEN-LAST:event_OpenVault_Key_File_Browse_ButtonActionPerformed
+
+    private void Close_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Close_ButtonActionPerformed
+        Container_Deck.show(Container, "start");
+    }//GEN-LAST:event_Close_ButtonActionPerformed
+
+    private void Unlock_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Unlock_ButtonActionPerformed
+        String vltPath = Vault_Path_Field.getText();
+        String vltPass = new String(OpenVault_Password_Field.getPassword());
+        String valtKey = new String(OpenVault_Key_File_Location_Field.getPassword());
+        boolean vltKey = OpenVault_Key_File_CheckBox.isSelected();
+        if (vltPath.equals("") || vltPass.equals("") || (vltKey && valtKey.equals("")))
+            JOptionPane.showMessageDialog(null, "All Fields are Required to be Filled. Please Try Again!", "Empty Feilds", JOptionPane.ERROR_MESSAGE);
+        else {
+            if (com.xahertz.internal.SQLite.openVault(vltPath, vltPass)) {
+                com.xahertz.internal.SQLite.setVaultList(vltPath);
+                Vault_Path_Field.setText("");
+                OpenVault_Password_Field.setText("");
+                OpenVault_Key_File_Location_Field.setText("");
+                OpenVault_Key_File_CheckBox.setSelected(false);
+                OpenVaultPage();
+            }
+        }
+    }//GEN-LAST:event_Unlock_ButtonActionPerformed
+
+    private void OpenVault_Key_File_ToggleButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_OpenVault_Key_File_ToggleButtonItemStateChanged
+        if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED)
+            OpenVault_Key_File_Location_Field.setEchoChar((char) 0);
+        else
+            OpenVault_Key_File_Location_Field.setEchoChar('\u2022');
+    }//GEN-LAST:event_OpenVault_Key_File_ToggleButtonItemStateChanged
+
+    private void Open_Vault_ActionPerformed() {
+        javax.swing.JFileChooser fileChooser = new javax.swing.JFileChooser();
+        fileChooser.setDialogTitle("Open Existing Vault");
+        fileChooser.setDialogType(javax.swing.JFileChooser.OPEN_DIALOG);
+        fileChooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Sentinel Vault File", "svlt"));
+        if (fileChooser.showOpenDialog(null) == javax.swing.JFileChooser.APPROVE_OPTION) {
+            Vault_Path_Field.setText(fileChooser.getSelectedFile().getAbsolutePath());
+            Container_Deck.show(Container, "open");
+        }
+    }
+    
     private void New_Entry_ActionPerformed() {
         UID = "SVLT-" + new java.text.SimpleDateFormat("yyMMdd-HHmmss").format(new java.util.Date())+ "-" + com.xahertz.internal.Functions.randomID(8);
         EntryPage_Label.setText(Vault_Table_Name + " \u2022 New Entry");
@@ -1533,6 +1764,7 @@ public class Main extends javax.swing.JFrame {
         }
         javax.swing.UIManager.put("ScrollBar.thumbArc", 999);
         javax.swing.UIManager.put("ScrollBar.thumbInsets", new java.awt.Insets(2, 2, 2, 2));
+        javax.swing.UIManager.put("TextField.inactiveBackground", new javax.swing.plaf.ColorUIResource(java.awt.Color.WHITE));
         //</editor-fold>
 
         /* Create and display the form */
@@ -1558,6 +1790,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem AutoType_Usename_MenuItem;
     private javax.swing.JButton Browse_Button;
     private javax.swing.JButton Clear_List_Button;
+    private javax.swing.JButton Close_Button;
     private javax.swing.JButton Close_Vault_Button;
     private javax.swing.JMenuItem Close_Vault_MenuItem;
     private javax.swing.JPasswordField Confirm_Password_Field;
@@ -1610,6 +1843,17 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel Notes_Label;
     private javax.swing.JScrollPane Notes_ScrollPane;
     private javax.swing.JTextArea Notes_TextArea;
+    private javax.swing.JPanel OpenVaultPage;
+    private javax.swing.JPanel OpenVault_Container;
+    private javax.swing.JButton OpenVault_Key_File_Browse_Button;
+    private javax.swing.JCheckBox OpenVault_Key_File_CheckBox;
+    private javax.swing.JLabel OpenVault_Key_File_Label;
+    private javax.swing.JPasswordField OpenVault_Key_File_Location_Field;
+    private javax.swing.JToggleButton OpenVault_Key_File_ToggleButton;
+    private javax.swing.JLabel OpenVault_Label;
+    private javax.swing.JPasswordField OpenVault_Password_Field;
+    private javax.swing.JLabel OpenVault_Password_Label;
+    private javax.swing.JToggleButton OpenVault_Password_ToggleButton;
     private javax.swing.JButton Open_Vault_Button;
     private javax.swing.JMenuItem Open_Vault_MenuItem;
     private javax.swing.JPasswordField Password_Field;
@@ -1644,6 +1888,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem Tree_PopupMenu_New_Group;
     private javax.swing.JLabel URL_Label;
     private javax.swing.JTextField URL_TextField;
+    private javax.swing.JButton Unlock_Button;
     private javax.swing.JLabel Username_Label;
     private javax.swing.JTextField Username_TextField;
     private javax.swing.JPanel VaultPage;
@@ -1657,6 +1902,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPasswordField Vault_Password_Field;
     private javax.swing.JLabel Vault_Password_Label;
     private javax.swing.JToggleButton Vault_Password_ToggleButton;
+    private javax.swing.JTextField Vault_Path_Field;
+    private javax.swing.JLabel Vault_Path_Label;
     private javax.swing.JLabel Welcome_Label;
     // End of variables declaration//GEN-END:variables
     private final java.awt.CardLayout Container_Deck;
