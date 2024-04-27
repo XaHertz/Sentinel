@@ -31,7 +31,7 @@ public class SQLite {
         dataFolder.mkdir();
         try {
             listDB = DriverManager.getConnection("jdbc:sqlite:" + dataFolder + File.separator + "vaults.lst");
-            String vltsTable = "CREATE TABLE IF NOT EXISTS Vaults (Path TEXT NOT NULL UNIQUE, PRIMARY KEY(Path));";
+            String vltsTable = "CREATE TABLE IF NOT EXISTS Vaults (Path TEXT NOT NULL UNIQUE, Name TEXT, PRIMARY KEY(Path));";
             Statement listDBquery = listDB.createStatement();
             listDBquery.execute(vltsTable);
         } catch (SQLException ex) {
@@ -54,11 +54,26 @@ public class SQLite {
         return listModel;
     }
     
-    public static void setVaultList(String vltPath) {
-        String vltsTable = "REPLACE INTO Vaults (Path) VALUES(?);";
+    public static String getVaultName(String vltPath) {
+        String vltsTable = "SELECT Name FROM Vaults WHERE Path = ?;";
+        String vltName = null;
         try {
             PreparedStatement listDBquery = listDB.prepareStatement(vltsTable);
             listDBquery.setString(1, vltPath);
+            ResultSet vltResult = listDBquery.executeQuery();
+            vltName = vltResult.getString("Name");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        return vltName;
+    }
+    
+    public static void setVaultList(String vltPath, String vltName) {
+        String vltsTable = "REPLACE INTO Vaults (Path, Name) VALUES(?, ?);";
+        try {
+            PreparedStatement listDBquery = listDB.prepareStatement(vltsTable);
+            listDBquery.setString(1, vltPath);
+            listDBquery.setString(2, vltName);
             listDBquery.executeUpdate();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.ERROR_MESSAGE);

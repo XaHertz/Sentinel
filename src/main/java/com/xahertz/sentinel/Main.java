@@ -1238,7 +1238,7 @@ public class Main extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "The Passwords in Password Fields do not Match. Please Try Again!", "Password Mismatch", JOptionPane.ERROR_MESSAGE);
         else {
             if (com.xahertz.internal.SQLite.createNewVault(vltName, vltPass, vltPath)) {
-                com.xahertz.internal.SQLite.setVaultList(vltPath);
+                com.xahertz.internal.SQLite.setVaultList(vltPath, vltName);
                 Vault_Name_Field.setText("");
                 Vault_Password_Field.setText("");
                 Confirm_Password_Field.setText("");
@@ -1294,8 +1294,14 @@ public class Main extends javax.swing.JFrame {
     private void Recent_Vaults_ListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Recent_Vaults_ListMouseClicked
         javax.swing.JList list = (javax.swing.JList)evt.getSource();
         if (evt.getClickCount() == 2) {
-            Vault_Path_Field.setText(list.getSelectedValue().toString());
-            Container_Deck.show(Container, "open");
+            String vltPath = list.getSelectedValue().toString();
+            if (!new java.io.File(vltPath).exists())
+                JOptionPane.showMessageDialog(null, "The selected Vault File is not present at the specified path. It may have been moved or renamed.", "Missing Vault File", JOptionPane.ERROR_MESSAGE);
+            else {
+                OpenVault_Label.setText(" Unlock Vault : " + com.xahertz.internal.SQLite.getVaultName(vltPath));
+                Vault_Path_Field.setText(vltPath);
+                Container_Deck.show(Container, "open");
+            }
         }
     }//GEN-LAST:event_Recent_Vaults_ListMouseClicked
 
@@ -1528,9 +1534,14 @@ public class Main extends javax.swing.JFrame {
         boolean vltKey = OpenVault_Key_File_CheckBox.isSelected();
         if (vltPath.equals("") || vltPass.equals("") || (vltKey && valtKey.equals("")))
             JOptionPane.showMessageDialog(null, "All Fields are Required to be Filled. Please Try Again!", "Empty Feilds", JOptionPane.ERROR_MESSAGE);
+        else if (!new java.io.File(vltPath).exists())
+            JOptionPane.showMessageDialog(null, "The Vault File is not present at the specified path. Please Try Again!", "Missing Vault File", JOptionPane.ERROR_MESSAGE);
+        else if (vltKey && !new java.io.File(valtKey).exists())
+            JOptionPane.showMessageDialog(null, "The Key File is not present at the specified path. Please Try Again!", "Missing Key File", JOptionPane.ERROR_MESSAGE);
         else {
             if (com.xahertz.internal.SQLite.openVault(vltPath, vltPass)) {
-                com.xahertz.internal.SQLite.setVaultList(vltPath);
+                String vltName = com.xahertz.internal.SQLite.vltName();
+                com.xahertz.internal.SQLite.setVaultList(vltPath, vltName);
                 Vault_Path_Field.setText("");
                 OpenVault_Password_Field.setText("");
                 OpenVault_Key_File_Location_Field.setText("");
@@ -1907,7 +1918,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel Welcome_Label;
     // End of variables declaration//GEN-END:variables
     private final java.awt.CardLayout Container_Deck;
-    public static String Vault_Table_Name;
-    public static String Version;
-    public static String UID;
+    private String Vault_Table_Name;
+    private final String Version;
+    private String UID;
 }
