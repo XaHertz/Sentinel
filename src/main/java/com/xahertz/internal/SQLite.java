@@ -132,8 +132,7 @@ public class SQLite {
     public static String vltName() {
         String allTables = "SELECT Value FROM Configuration WHERE Parameter = 'Vault Name';";
         String vltName = null;
-        try {
-            Statement vltDBquery = vltDB.createStatement();
+        try (Statement vltDBquery = vltDB.createStatement()) {
             ResultSet vltResult = vltDBquery.executeQuery(allTables);
             vltName = vltResult.getString("Value");
         } catch (SQLException ex) {
@@ -179,7 +178,7 @@ public class SQLite {
     
     public static void newTable(String vltTableName){
         String allTables = "REPLACE INTO AllTables (\"Table Name\") VALUES(?);";
-        String vltTable = "CREATE TABLE IF NOT EXISTS \"" + vltTableName + "\" (\"UID\" TEXT NOT NULL UNIQUE, \"Title\" TEXT, \"Username\" TEXT, \"Password\" TEXT, \"URL\" TEXT, \"Notes\" TEXT, PRIMARY KEY(\"UID\"));";
+        String vltTable = String.format("CREATE TABLE IF NOT EXISTS \"%s\" (\"UID\" TEXT NOT NULL UNIQUE, \"Title\" TEXT, \"Username\" TEXT, \"Password\" TEXT, \"URL\" TEXT, \"Notes\" TEXT, PRIMARY KEY(\"UID\"));", vltTableName);
         try {
             PreparedStatement vltDBquery = vltDB.prepareStatement(allTables);
             vltDBquery.setString(1, vltTableName);
@@ -233,7 +232,7 @@ public class SQLite {
     }
     
     public static void newTableEntry(String vltTableName, String UID, String Title, String Username, String Password, String URL, String Notes) {
-        String vltTable = "REPLACE INTO \"" + vltTableName + "\" (\"UID\", \"Title\", \"Username\", \"Password\", \"URL\", \"Notes\") VALUES(?, ?, ?, ?, ?, ?);";
+        String vltTable = String.format("REPLACE INTO \"%s\" (\"UID\", \"Title\", \"Username\", \"Password\", \"URL\", \"Notes\") VALUES(?, ?, ?, ?, ?, ?);", vltTableName);
         try {
             PreparedStatement vltDBquery = vltDB.prepareStatement(vltTable);
             vltDBquery.setString(1, UID);
