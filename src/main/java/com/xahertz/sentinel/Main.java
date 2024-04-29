@@ -1326,7 +1326,7 @@ public class Main extends javax.swing.JFrame {
         String URL = URL_TextField.getText();
         String Notes = Notes_TextArea.getText();
         com.xahertz.internal.SQLite.newTableEntry(Vault_Table_Name, UID, Title, Username, Password, URL, Notes);
-        Passwords_Table.setModel(com.xahertz.internal.Functions.vltTableModel(Vault_Table_Name));
+        Passwords_Table_Model(Vault_Table_Name);
         Container_Deck.show(Container, "vault");
         EnableVaultDataManipulationFunctions();
         Title_TextField.setText("");
@@ -1356,7 +1356,7 @@ public class Main extends javax.swing.JFrame {
     private void FolderTreeValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_FolderTreeValueChanged
         if (evt.getNewLeadSelectionPath() != null){
             String vltTableName = evt.getNewLeadSelectionPath().getLastPathComponent().toString();
-            Passwords_Table.setModel(com.xahertz.internal.Functions.vltTableModel(vltTableName));
+            Passwords_Table_Model(vltTableName);
             Vault_Table_Name = vltTableName;
         }
     }//GEN-LAST:event_FolderTreeValueChanged
@@ -1601,7 +1601,7 @@ public class Main extends javax.swing.JFrame {
             int response = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this Entry?.", "Delete Entry: " + Passwords_Table.getValueAt(row, 1).toString(), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (response == JOptionPane.YES_OPTION) {
                 com.xahertz.internal.SQLite.remTableEntry(Vault_Table_Name, Passwords_Table.getValueAt(row, 0).toString());
-                Passwords_Table.setModel(com.xahertz.internal.Functions.vltTableModel(Vault_Table_Name));
+                Passwords_Table_Model(Vault_Table_Name);
             }
         }
     }
@@ -1619,7 +1619,7 @@ public class Main extends javax.swing.JFrame {
                 else {
                     com.xahertz.internal.SQLite.newTable(vltTableName);
                     FolderTree.setModel(com.xahertz.internal.SQLite.allTablesList());
-                    Passwords_Table.setModel(com.xahertz.internal.Functions.vltTableModel(vltTableName));
+                    Passwords_Table_Model(vltTableName);
                     Vault_Table_Name = vltTableName;
                 }
             }
@@ -1640,7 +1640,7 @@ public class Main extends javax.swing.JFrame {
                     else {
                         com.xahertz.internal.SQLite.renTable(vltTableName, Vault_Table_Name);
                         FolderTree.setModel(com.xahertz.internal.SQLite.allTablesList());
-                        Passwords_Table.setModel(com.xahertz.internal.Functions.vltTableModel(vltTableName));
+                        Passwords_Table_Model(vltTableName);
                         Vault_Table_Name = vltTableName;
                     }
                 }
@@ -1656,7 +1656,7 @@ public class Main extends javax.swing.JFrame {
             if (response == JOptionPane.YES_OPTION) {
                 com.xahertz.internal.SQLite.remTable(Vault_Table_Name);
                 FolderTree.setModel(com.xahertz.internal.SQLite.allTablesList());
-                Passwords_Table.setModel(com.xahertz.internal.Functions.vltTableModel("Root"));
+                Passwords_Table_Model("Root");
                 Vault_Table_Name = "Root";
             }
         }
@@ -1692,11 +1692,21 @@ public class Main extends javax.swing.JFrame {
         }
     }
     
+    private void Passwords_Table_Model(String TableName) {
+        Passwords_Table.setModel(com.xahertz.internal.Functions.vltTableModel(TableName));
+        Passwords_Table.getColumnModel().getColumn(0).setMinWidth(0);
+        Passwords_Table.getColumnModel().getColumn(0).setMaxWidth(0);
+        Passwords_Table.getColumnModel().getColumn(0).setWidth(0);
+        Passwords_Table.getColumnModel().getColumn(3).setMinWidth(0);
+        Passwords_Table.getColumnModel().getColumn(3).setMaxWidth(0);
+        Passwords_Table.getColumnModel().getColumn(3).setWidth(0);
+    }
+    
     private void OpenVaultPage() {
         setTitle("Vault : " + com.xahertz.internal.SQLite.vltName() + "  \u2013  Sentinel");
         Recent_Vaults_List.setModel(com.xahertz.internal.SQLite.getVaultList());
         FolderTree.setModel(com.xahertz.internal.SQLite.allTablesList());
-        Passwords_Table.setModel(com.xahertz.internal.Functions.vltTableModel("Root"));
+        Passwords_Table_Model("Root");
         Container_Deck.show(Container, "vault");
         EnableVaultDataManipulationFunctions();
         Open_Vault_Button.setEnabled(false);
