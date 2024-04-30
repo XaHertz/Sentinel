@@ -1337,6 +1337,12 @@ public class Main extends javax.swing.JFrame {
         else if (!vltPass.equals(cnfPass))
             JOptionPane.showMessageDialog(null, "The Passwords in Password Fields do not Match. Please Try Again!", "Password Mismatch", JOptionPane.ERROR_MESSAGE);
         else {
+            if (vltKey) {
+                String Salt = com.xahertz.internal.Functions.getSalt();
+                com.password4j.Hash hash = com.password4j.Password.hash(vltPass).addSalt(Salt).withPBKDF2();
+                com.xahertz.internal.Functions.writeKeyFile(Salt, valtKey);
+                vltPass = hash.getResult();
+            }
             if (com.xahertz.internal.SQLite.createNewVault(vltName, vltPass, vltPath)) {
                 com.xahertz.internal.SQLite.setVaultList(vltPath, vltName);
                 Vault_Name_Field.setText("");
@@ -1639,6 +1645,11 @@ public class Main extends javax.swing.JFrame {
         else if (vltKey && !new java.io.File(valtKey).exists())
             JOptionPane.showMessageDialog(null, "The Key File is not present at the specified path. Please Try Again!", "Missing Key File", JOptionPane.ERROR_MESSAGE);
         else {
+            if (vltKey) {
+                String Salt = com.xahertz.internal.Functions.readKeyFile(valtKey);
+                com.password4j.Hash hash = com.password4j.Password.hash(vltPass).addSalt(Salt).withPBKDF2();
+                vltPass = hash.getResult();
+            }
             if (com.xahertz.internal.SQLite.openVault(vltPath, vltPass)) {
                 String vltName = com.xahertz.internal.SQLite.vltName();
                 com.xahertz.internal.SQLite.setVaultList(vltPath, vltName);

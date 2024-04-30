@@ -70,6 +70,43 @@ public class Functions {
         return new String(charArray);
     }
     
+    public static String getSalt() {
+        byte[] salt = new byte[64];
+        random.nextBytes(salt);
+        return toHex(salt);
+    }
+
+    private static String toHex(byte[] array) {
+        java.math.BigInteger bi = new java.math.BigInteger(1, array);
+        String hex = bi.toString(16);
+        int paddingLength = (array.length * 2) - hex.length();
+        if (paddingLength > 0)
+            return String.format("%0" + paddingLength + "d", 0) + hex;
+        else
+            return hex;
+    }
+    
+    public static void writeKeyFile(String keyData, String keyFile) {
+        java.io.File vltKey = new java.io.File(keyFile);
+        if (vltKey.exists())
+            vltKey.delete();
+        try (java.io.FileWriter keyWriter = new java.io.FileWriter(vltKey)) {
+            keyWriter.write(keyData);
+        } catch (java.io.IOException ex) {
+            JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    public static String readKeyFile(String keyFile) {
+        String keyData = null;
+        try (java.io.BufferedReader keyReader = new java.io.BufferedReader(new java.io.FileReader(keyFile))) {
+            keyData = keyReader.readLine();
+        } catch (java.io.IOException ex) {
+            JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        return keyData;
+    }
+    
     public static TableModel vltTableModel(String vltTableName) {
         ResultSet vltResult = SQLite.vltTableData(vltTableName);
         DefaultTableModel vltTableModel = new DefaultTableModel() {
