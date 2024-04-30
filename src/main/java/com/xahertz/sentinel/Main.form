@@ -469,6 +469,18 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="About_ButtonActionPerformed"/>
           </Events>
         </Component>
+        <Component class="javax.swing.Box$Filler" name="ToolBar_Filler">
+          <Properties>
+            <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[32767, 0]"/>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="classDetails" type="java.lang.String" value="Box.Filler.HorizontalGlue"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JLabel" name="Acknowledgment_Label">
+        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="Container">

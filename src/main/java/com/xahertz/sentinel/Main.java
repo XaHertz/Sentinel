@@ -54,6 +54,8 @@ public class Main extends javax.swing.JFrame {
         Password_Generator_Button = new javax.swing.JButton();
         ToolBar_Separator_Three = new javax.swing.JToolBar.Separator();
         About_Button = new javax.swing.JButton();
+        ToolBar_Filler = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
+        Acknowledgment_Label = new javax.swing.JLabel();
         Container = new javax.swing.JPanel();
         StartPage = new javax.swing.JPanel();
         Welcome_Label = new javax.swing.JLabel();
@@ -367,6 +369,8 @@ public class Main extends javax.swing.JFrame {
             }
         });
         Main_ToolBar.add(About_Button);
+        Main_ToolBar.add(ToolBar_Filler);
+        Main_ToolBar.add(Acknowledgment_Label);
 
         Container.setLayout(new java.awt.CardLayout());
 
@@ -1819,6 +1823,12 @@ public class Main extends javax.swing.JFrame {
         else {
             java.awt.datatransfer.Clipboard clipboard = java.awt.Toolkit.getDefaultToolkit().getSystemClipboard();
             clipboard.setContents(new java.awt.datatransfer.StringSelection(Passwords_Table.getValueAt(row, 2).toString()), null);
+            Acknowledgment_Label.setText("Username Copied Successfully!     ");
+            javax.swing.Timer timer = new javax.swing.Timer(2000, (java.awt.event.ActionEvent evt) -> {
+                Acknowledgment_Label.setText("");
+            });
+            timer.setRepeats(false);
+            timer.start();
         }
     }
     
@@ -1829,6 +1839,12 @@ public class Main extends javax.swing.JFrame {
         else {
             java.awt.datatransfer.Clipboard clipboard = java.awt.Toolkit.getDefaultToolkit().getSystemClipboard();
             clipboard.setContents(new java.awt.datatransfer.StringSelection(Passwords_Table.getValueAt(row, 3).toString()), null);
+            Acknowledgment_Label.setText("Password Copied Successfully!     ");
+            javax.swing.Timer timer = new javax.swing.Timer(2000, (java.awt.event.ActionEvent evt) -> {
+                Acknowledgment_Label.setText("");
+            });
+            timer.setRepeats(false);
+            timer.start();
         }
     }
     
@@ -1839,6 +1855,12 @@ public class Main extends javax.swing.JFrame {
         else {
             java.awt.datatransfer.Clipboard clipboard = java.awt.Toolkit.getDefaultToolkit().getSystemClipboard();
             clipboard.setContents(new java.awt.datatransfer.StringSelection(Passwords_Table.getValueAt(row, 4).toString()), null);
+            Acknowledgment_Label.setText("URL Copied Successfully!     ");
+            javax.swing.Timer timer = new javax.swing.Timer(2000, (java.awt.event.ActionEvent evt) -> {
+                Acknowledgment_Label.setText("");
+            });
+            timer.setRepeats(false);
+            timer.start();
         }
     }
     
@@ -1959,6 +1981,7 @@ public class Main extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton About_Button;
     private javax.swing.JMenuItem About_MenuItem;
+    private javax.swing.JLabel Acknowledgment_Label;
     private javax.swing.JButton Browse_Button;
     private javax.swing.JButton Clear_List_Button;
     private javax.swing.JButton Close_Button;
@@ -2059,6 +2082,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator Table_PopupMenu_Separator;
     private javax.swing.JLabel Title_Label;
     private javax.swing.JTextField Title_TextField;
+    private javax.swing.Box.Filler ToolBar_Filler;
     private javax.swing.JToolBar.Separator ToolBar_Separator_One;
     private javax.swing.JToolBar.Separator ToolBar_Separator_Three;
     private javax.swing.JToolBar.Separator ToolBar_Separator_Two;
