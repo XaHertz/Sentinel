@@ -12,7 +12,7 @@ public class Main extends javax.swing.JFrame {
      * Creates new form Main
      */
     public Main() {
-        Version = "0.7.0";
+        Version = "0.8.0";
         Vault_Table_Name = "Root";
         com.xahertz.internal.SQLite.initVaultList();
         initComponents();
@@ -106,6 +106,15 @@ public class Main extends javax.swing.JFrame {
         Passwords_Table_ScrollPane = new javax.swing.JScrollPane();
         Passwords_Table = new javax.swing.JTable();
         Details_Panel = new javax.swing.JPanel();
+        Details_Username_Panel = new javax.swing.JPanel();
+        Details_Username_Field = new javax.swing.JTextField();
+        Details_Password_Panel = new javax.swing.JPanel();
+        Details_Password_Field = new javax.swing.JPasswordField();
+        Details_Password_ToggleButton = new javax.swing.JToggleButton();
+        Details_URL_Panel = new javax.swing.JPanel();
+        Details_URL_Field = new javax.swing.JTextField();
+        Details_Notes_ScrollPane = new javax.swing.JScrollPane();
+        Details_Notes_TextArea = new javax.swing.JTextArea();
         EntryPage = new javax.swing.JPanel();
         EntryPage_Label = new javax.swing.JLabel();
         EntryPage_Container = new javax.swing.JPanel();
@@ -835,19 +844,108 @@ public class Main extends javax.swing.JFrame {
                 Passwords_TableMousePressed(evt);
             }
         });
+        Passwords_Table.getSelectionModel().addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                Passwords_Table_RowSelected(evt);
+            }
+        });
         Passwords_Table_ScrollPane.setViewportView(Passwords_Table);
 
         Details_Panel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+
+        Details_Username_Panel.setBorder(javax.swing.BorderFactory.createTitledBorder("Username"));
+
+        Details_Username_Field.setEditable(false);
+
+        javax.swing.GroupLayout Details_Username_PanelLayout = new javax.swing.GroupLayout(Details_Username_Panel);
+        Details_Username_Panel.setLayout(Details_Username_PanelLayout);
+        Details_Username_PanelLayout.setHorizontalGroup(
+            Details_Username_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(Details_Username_Field)
+        );
+        Details_Username_PanelLayout.setVerticalGroup(
+            Details_Username_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(Details_Username_Field, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+        );
+
+        Details_Password_Panel.setBorder(javax.swing.BorderFactory.createTitledBorder("Password"));
+
+        Details_Password_Field.setEditable(false);
+        Details_Password_Field.putClientProperty("JPasswordField.cutCopyAllowed", true);
+
+        Details_Password_ToggleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/eye.png"))); // NOI18N
+        Details_Password_ToggleButton.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                Details_Password_ToggleButtonItemStateChanged(evt);
+            }
+        });
+
+        javax.swing.GroupLayout Details_Password_PanelLayout = new javax.swing.GroupLayout(Details_Password_Panel);
+        Details_Password_Panel.setLayout(Details_Password_PanelLayout);
+        Details_Password_PanelLayout.setHorizontalGroup(
+            Details_Password_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Details_Password_PanelLayout.createSequentialGroup()
+                .addComponent(Details_Password_Field, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Details_Password_ToggleButton))
+        );
+        Details_Password_PanelLayout.setVerticalGroup(
+            Details_Password_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Details_Password_PanelLayout.createSequentialGroup()
+                .addGroup(Details_Password_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(Details_Password_Field)
+                    .addComponent(Details_Password_ToggleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        Details_URL_Panel.setBorder(javax.swing.BorderFactory.createTitledBorder("URL"));
+
+        Details_URL_Field.setEditable(false);
+
+        javax.swing.GroupLayout Details_URL_PanelLayout = new javax.swing.GroupLayout(Details_URL_Panel);
+        Details_URL_Panel.setLayout(Details_URL_PanelLayout);
+        Details_URL_PanelLayout.setHorizontalGroup(
+            Details_URL_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(Details_URL_Field)
+        );
+        Details_URL_PanelLayout.setVerticalGroup(
+            Details_URL_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(Details_URL_Field, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+        );
+
+        Details_Notes_TextArea.setEditable(false);
+        Details_Notes_TextArea.setColumns(20);
+        Details_Notes_TextArea.setRows(5);
+        Details_Notes_TextArea.setBorder(javax.swing.BorderFactory.createTitledBorder("Notes"));
+        Details_Notes_ScrollPane.setViewportView(Details_Notes_TextArea);
 
         javax.swing.GroupLayout Details_PanelLayout = new javax.swing.GroupLayout(Details_Panel);
         Details_Panel.setLayout(Details_PanelLayout);
         Details_PanelLayout.setHorizontalGroup(
             Details_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Details_PanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(Details_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Details_Username_Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Details_Password_Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Details_URL_Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Details_Notes_ScrollPane)
+                .addContainerGap())
         );
         Details_PanelLayout.setVerticalGroup(
             Details_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 198, Short.MAX_VALUE)
+            .addGroup(Details_PanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(Details_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Details_Notes_ScrollPane)
+                    .addGroup(Details_PanelLayout.createSequentialGroup()
+                        .addComponent(Details_Username_Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Details_Password_Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Details_URL_Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout VaultPageLayout = new javax.swing.GroupLayout(VaultPage);
@@ -1580,6 +1678,23 @@ public class Main extends javax.swing.JFrame {
         PG.setVisible(true);
     }//GEN-LAST:event_Generate_Password_ButtonActionPerformed
 
+    private void Details_Password_ToggleButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Details_Password_ToggleButtonItemStateChanged
+        if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED)
+            Details_Password_Field.setEchoChar((char) 0);
+        else
+            Details_Password_Field.setEchoChar('\u2022');
+    }//GEN-LAST:event_Details_Password_ToggleButtonItemStateChanged
+
+    private void Passwords_Table_RowSelected(javax.swing.event.ListSelectionEvent evt) {
+        int row = Passwords_Table.getSelectedRow();
+        if (row != -1) {
+            Details_Username_Field.setText(Passwords_Table.getValueAt(row, 2).toString());
+            Details_Password_Field.setText(Passwords_Table.getValueAt(row, 3).toString());
+            Details_URL_Field.setText(Passwords_Table.getValueAt(row, 4).toString());
+            Details_Notes_TextArea.setText(Passwords_Table.getValueAt(row, 5).toString());
+        }
+    }
+    
     private void Open_Vault_ActionPerformed() {
         javax.swing.JFileChooser fileChooser = new javax.swing.JFileChooser();
         fileChooser.setDialogTitle("Open Existing Vault");
@@ -1722,6 +1837,10 @@ public class Main extends javax.swing.JFrame {
         Passwords_Table.getColumnModel().getColumn(3).setMinWidth(0);
         Passwords_Table.getColumnModel().getColumn(3).setMaxWidth(0);
         Passwords_Table.getColumnModel().getColumn(3).setWidth(0);
+        Details_Username_Field.setText("");
+        Details_Password_Field.setText("");
+        Details_URL_Field.setText("");
+        Details_Notes_TextArea.setText("");
     }
     
     private void OpenVaultPage() {
@@ -1805,7 +1924,9 @@ public class Main extends javax.swing.JFrame {
         }
         javax.swing.UIManager.put("ScrollBar.thumbArc", 999);
         javax.swing.UIManager.put("ScrollBar.thumbInsets", new java.awt.Insets(2, 2, 2, 2));
+        javax.swing.UIManager.put("TextArea.inactiveBackground", new javax.swing.plaf.ColorUIResource(java.awt.Color.WHITE));
         javax.swing.UIManager.put("TextField.inactiveBackground", new javax.swing.plaf.ColorUIResource(java.awt.Color.WHITE));
+        javax.swing.UIManager.put("PasswordField.inactiveBackground", new javax.swing.plaf.ColorUIResource(java.awt.Color.WHITE));
         //</editor-fold>
 
         /* Create and display the form */
@@ -1843,7 +1964,16 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton Delete_Entry_Button;
     private javax.swing.JMenuItem Delete_Entry_MenuItem;
     private javax.swing.JMenuItem Delete_Group_MenuItem;
+    private javax.swing.JScrollPane Details_Notes_ScrollPane;
+    private javax.swing.JTextArea Details_Notes_TextArea;
     private javax.swing.JPanel Details_Panel;
+    private javax.swing.JPasswordField Details_Password_Field;
+    private javax.swing.JPanel Details_Password_Panel;
+    private javax.swing.JToggleButton Details_Password_ToggleButton;
+    private javax.swing.JTextField Details_URL_Field;
+    private javax.swing.JPanel Details_URL_Panel;
+    private javax.swing.JTextField Details_Username_Field;
+    private javax.swing.JPanel Details_Username_Panel;
     private javax.swing.JButton Edit_Entry_Button;
     private javax.swing.JMenuItem Edit_Entry_MenuItem;
     private javax.swing.JMenuItem Edit_Group_MenuItem;
