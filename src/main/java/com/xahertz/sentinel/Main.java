@@ -12,7 +12,7 @@ public class Main extends javax.swing.JFrame {
      * Creates new form Main
      */
     public Main() {
-        Version = "0.6.0";
+        Version = "0.7.0";
         Vault_Table_Name = "Root";
         com.xahertz.internal.SQLite.initVaultList();
         initComponents();
@@ -145,10 +145,6 @@ public class Main extends javax.swing.JFrame {
         Copy_URL_MenuItem = new javax.swing.JMenuItem();
         Tools_Menu = new javax.swing.JMenu();
         Password_Generator_MenuItem = new javax.swing.JMenuItem();
-        AutoType_Menu = new javax.swing.JMenu();
-        AutoType_All_MenuItem = new javax.swing.JMenuItem();
-        AutoType_Usename_MenuItem = new javax.swing.JMenuItem();
-        AutoType_Password_MenuItem = new javax.swing.JMenuItem();
         Help_Menu = new javax.swing.JMenu();
         About_MenuItem = new javax.swing.JMenuItem();
 
@@ -1144,20 +1140,6 @@ public class Main extends javax.swing.JFrame {
         Password_Generator_MenuItem.setText("Password Generator");
         Tools_Menu.add(Password_Generator_MenuItem);
 
-        AutoType_Menu.setText("Perform Auto-Type");
-        AutoType_Menu.setEnabled(false);
-
-        AutoType_All_MenuItem.setText("Username and Password");
-        AutoType_Menu.add(AutoType_All_MenuItem);
-
-        AutoType_Usename_MenuItem.setText("Username");
-        AutoType_Menu.add(AutoType_Usename_MenuItem);
-
-        AutoType_Password_MenuItem.setText("Password");
-        AutoType_Menu.add(AutoType_Password_MenuItem);
-
-        Tools_Menu.add(AutoType_Menu);
-
         Menu_Bar.add(Tools_Menu);
 
         Help_Menu.setText("Help");
@@ -1720,7 +1702,6 @@ public class Main extends javax.swing.JFrame {
         Copy_Username_MenuItem.setEnabled(true);
         Copy_Password_MenuItem.setEnabled(true);
         Copy_URL_MenuItem.setEnabled(true);
-        AutoType_Menu.setEnabled(true);
     }
     
     private void CloseVaultPage() {
@@ -1738,7 +1719,6 @@ public class Main extends javax.swing.JFrame {
         Copy_Username_MenuItem.setEnabled(false);
         Copy_Password_MenuItem.setEnabled(false);
         Copy_URL_MenuItem.setEnabled(false);
-        AutoType_Menu.setEnabled(false);
     }
     
     private void EnableVaultDataManipulationFunctions() {
@@ -1805,10 +1785,6 @@ public class Main extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton About_Button;
     private javax.swing.JMenuItem About_MenuItem;
-    private javax.swing.JMenuItem AutoType_All_MenuItem;
-    private javax.swing.JMenu AutoType_Menu;
-    private javax.swing.JMenuItem AutoType_Password_MenuItem;
-    private javax.swing.JMenuItem AutoType_Usename_MenuItem;
     private javax.swing.JButton Browse_Button;
     private javax.swing.JButton Clear_List_Button;
     private javax.swing.JButton Close_Button;

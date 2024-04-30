@@ -238,29 +238,6 @@
                 <Property name="text" type="java.lang.String" value="Password Generator"/>
               </Properties>
             </MenuItem>
-            <Menu class="javax.swing.JMenu" name="AutoType_Menu">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Perform Auto-Type"/>
-                <Property name="enabled" type="boolean" value="false"/>
-              </Properties>
-              <SubComponents>
-                <MenuItem class="javax.swing.JMenuItem" name="AutoType_All_MenuItem">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Username and Password"/>
-                  </Properties>
-                </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="AutoType_Usename_MenuItem">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Username"/>
-                  </Properties>
-                </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="AutoType_Password_MenuItem">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Password"/>
-                  </Properties>
-                </MenuItem>
-              </SubComponents>
-            </Menu>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="Help_Menu">
