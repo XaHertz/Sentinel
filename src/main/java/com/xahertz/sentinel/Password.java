@@ -11,11 +11,11 @@ public class Password extends javax.swing.JFrame {
      */
     public Password() {
         initComponents();
-        SpecialCharA_Toggled = SpecialCharA_ToggleButton.isSelected();
-        SpecialCharB_Toggled = SpecialCharB_ToggleButton.isSelected();
+        Digits_Toggled = Digits_ToggleButton.isSelected();
         UpperCase_Toggled = UpperCase_ToggleButton.isSelected();
         LowerCase_Toggled = LowerCase_ToggleButton.isSelected();
-        Digits_Toggled = Digits_ToggleButton.isSelected();
+        SpecialCharA_Toggled = SpecialCharA_ToggleButton.isSelected();
+        SpecialCharB_Toggled = SpecialCharB_ToggleButton.isSelected();
         Password_Field.setText(com.xahertz.internal.Functions.generatePassword((int) Password_Length_Spinner.getValue(),
                 UpperCase_Toggled, LowerCase_Toggled, Digits_Toggled, SpecialCharA_Toggled, SpecialCharB_Toggled));
     }
@@ -208,32 +208,35 @@ public class Password extends javax.swing.JFrame {
 
     private void UpperCase_ToggleButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_UpperCase_ToggleButtonItemStateChanged
         UpperCase_Toggled = evt.getStateChange() == java.awt.event.ItemEvent.SELECTED;
-        Generate_Password_Button_State();
+        Generate_Password_State();
     }//GEN-LAST:event_UpperCase_ToggleButtonItemStateChanged
 
     private void LowerCase_ToggleButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_LowerCase_ToggleButtonItemStateChanged
         LowerCase_Toggled = evt.getStateChange() == java.awt.event.ItemEvent.SELECTED;
-        Generate_Password_Button_State();
+        Generate_Password_State();
     }//GEN-LAST:event_LowerCase_ToggleButtonItemStateChanged
 
     private void Digits_ToggleButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Digits_ToggleButtonItemStateChanged
         Digits_Toggled = evt.getStateChange() == java.awt.event.ItemEvent.SELECTED;
-        Generate_Password_Button_State();
+        Generate_Password_State();
     }//GEN-LAST:event_Digits_ToggleButtonItemStateChanged
 
     private void SpecialCharA_ToggleButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_SpecialCharA_ToggleButtonItemStateChanged
         SpecialCharA_Toggled = evt.getStateChange() == java.awt.event.ItemEvent.SELECTED;
-        Generate_Password_Button_State();
+        Generate_Password_State();
     }//GEN-LAST:event_SpecialCharA_ToggleButtonItemStateChanged
 
     private void SpecialCharB_ToggleButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_SpecialCharB_ToggleButtonItemStateChanged
         SpecialCharB_Toggled = evt.getStateChange() == java.awt.event.ItemEvent.SELECTED;
-        Generate_Password_Button_State();
+        Generate_Password_State();
     }//GEN-LAST:event_SpecialCharB_ToggleButtonItemStateChanged
 
-    private void Generate_Password_Button_State() {
-        if (SpecialCharA_Toggled || SpecialCharB_Toggled || UpperCase_Toggled || LowerCase_Toggled || Digits_Toggled)
+    private void Generate_Password_State() {
+        if (UpperCase_Toggled || LowerCase_Toggled || Digits_Toggled || SpecialCharA_Toggled || SpecialCharB_Toggled) {
             Generate_Password_Button.setEnabled(true);
+            Password_Field.setText(com.xahertz.internal.Functions.generatePassword((int) Password_Length_Spinner.getValue(),
+                UpperCase_Toggled, LowerCase_Toggled, Digits_Toggled, SpecialCharA_Toggled, SpecialCharB_Toggled));
+        }
         else
             Generate_Password_Button.setEnabled(false);
     }
