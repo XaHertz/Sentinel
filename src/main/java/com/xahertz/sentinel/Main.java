@@ -340,6 +340,11 @@ public class Main extends javax.swing.JFrame {
         Password_Generator_Button.setFocusable(false);
         Password_Generator_Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         Password_Generator_Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        Password_Generator_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Password_Generator_ButtonActionPerformed(evt);
+            }
+        });
         Main_ToolBar.add(Password_Generator_Button);
         Main_ToolBar.add(ToolBar_Separator_Three);
 
@@ -632,6 +637,11 @@ public class Main extends javax.swing.JFrame {
 
         Generate_Vault_Password_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/dice-5.png"))); // NOI18N
         Generate_Vault_Password_Button.setToolTipText("");
+        Generate_Vault_Password_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Generate_Vault_Password_ButtonActionPerformed(evt);
+            }
+        });
 
         Confirm_Password_Label.setFont(Confirm_Password_Label.getFont().deriveFont(Confirm_Password_Label.getFont().getSize()+2f));
         Confirm_Password_Label.setText("Confirm Password");
@@ -895,6 +905,11 @@ public class Main extends javax.swing.JFrame {
         });
 
         Generate_Password_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/dice-5.png"))); // NOI18N
+        Generate_Password_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Generate_Password_ButtonActionPerformed(evt);
+            }
+        });
 
         URL_Label.setFont(URL_Label.getFont().deriveFont(URL_Label.getFont().getSize()+2f));
         URL_Label.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -1138,6 +1153,11 @@ public class Main extends javax.swing.JFrame {
         Tools_Menu.setText("Tools");
 
         Password_Generator_MenuItem.setText("Password Generator");
+        Password_Generator_MenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Password_Generator_MenuItemActionPerformed(evt);
+            }
+        });
         Tools_Menu.add(Password_Generator_MenuItem);
 
         Menu_Bar.add(Tools_Menu);
@@ -1539,6 +1559,26 @@ public class Main extends javax.swing.JFrame {
         else
             OpenVault_Key_File_Location_Field.setEchoChar('\u2022');
     }//GEN-LAST:event_OpenVault_Key_File_ToggleButtonItemStateChanged
+
+    private void Password_Generator_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Password_Generator_ButtonActionPerformed
+        Password PG = new Password();
+        PG.setVisible(true);
+    }//GEN-LAST:event_Password_Generator_ButtonActionPerformed
+
+    private void Password_Generator_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Password_Generator_MenuItemActionPerformed
+        Password PG = new Password();
+        PG.setVisible(true);
+    }//GEN-LAST:event_Password_Generator_MenuItemActionPerformed
+
+    private void Generate_Vault_Password_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Generate_Vault_Password_ButtonActionPerformed
+        Password PG = new Password();
+        PG.setVisible(true);
+    }//GEN-LAST:event_Generate_Vault_Password_ButtonActionPerformed
+
+    private void Generate_Password_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Generate_Password_ButtonActionPerformed
+        Password PG = new Password();
+        PG.setVisible(true);
+    }//GEN-LAST:event_Generate_Password_ButtonActionPerformed
 
     private void Open_Vault_ActionPerformed() {
         javax.swing.JFileChooser fileChooser = new javax.swing.JFileChooser();

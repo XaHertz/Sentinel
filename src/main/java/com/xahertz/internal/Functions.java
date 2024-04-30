@@ -13,14 +13,61 @@ import javax.swing.table.TableModel;
  * @author XaHertz
  */
 public class Functions {
-    static String Seed = "0123456789";
-    static SecureRandom random = new SecureRandom();
+    private static String ALL_CHARS;
+    private static final String DIGITS = "0123456789";
+    private static final String SPECIAL_CHARS_A = "*$!@#&";
+    private static final String SPECIAL_CHARS_B = "%?+^/-";
+    private static final String UPPER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private static final String LOWER = "abcdefghijklmnopqrstuvwxyz";
+    private static final SecureRandom random = new SecureRandom();
     
     public static String randomID(int length) {
         StringBuilder builder = new StringBuilder(length);
         for (int i=0; i<length; i++)
-            builder.append(Seed.charAt(random.nextInt(Seed.length())));
+            builder.append(DIGITS.charAt(random.nextInt(DIGITS.length())));
         return builder.toString();
+    }
+    
+    public static String generatePassword(int length, boolean upper, boolean lower, boolean digits, boolean specialA, boolean specialB) {
+        StringBuilder password = new StringBuilder(length);
+        ALL_CHARS = null;
+        int active = 0;
+        if (upper) {
+            password.append(UPPER.charAt(random.nextInt(UPPER.length())));
+            ALL_CHARS += UPPER;
+            active += 1;
+        }
+        if (lower) {
+            password.append(LOWER.charAt(random.nextInt(LOWER.length())));
+            ALL_CHARS += LOWER;
+            active += 1;
+        }
+        if (digits) {
+            password.append(DIGITS.charAt(random.nextInt(DIGITS.length())));
+            ALL_CHARS += DIGITS;
+            active += 1;
+        }
+        if (specialA) {
+            password.append(SPECIAL_CHARS_A.charAt(random.nextInt(SPECIAL_CHARS_A.length())));
+            ALL_CHARS += SPECIAL_CHARS_A;
+            active += 1;
+        }
+        if (specialB) {
+            password.append(SPECIAL_CHARS_B.charAt(random.nextInt(SPECIAL_CHARS_B.length())));
+            ALL_CHARS += SPECIAL_CHARS_B;
+            active += 1;
+        }
+        for (int i=active; i<length; i++) {
+            password.append(ALL_CHARS.charAt(random.nextInt(ALL_CHARS.length())));
+        }
+        char[] charArray = password.toString().toCharArray();
+        for (int i = 0; i < charArray.length; i++) {
+            int randomIndex = random.nextInt(charArray.length);
+            char temp = charArray[i];
+            charArray[i] = charArray[randomIndex];
+            charArray[randomIndex] = temp;
+        }
+        return new String(charArray);
     }
     
     public static TableModel vltTableModel(String vltTableName) {
