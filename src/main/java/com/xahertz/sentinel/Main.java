@@ -1344,7 +1344,7 @@ public class Main extends javax.swing.JFrame {
                 vltPass = hash.getResult();
             }
             if (com.xahertz.internal.SQLite.createNewVault(vltName, vltPass, vltPath)) {
-                com.xahertz.internal.SQLite.setVaultList(vltPath, vltName);
+                com.xahertz.internal.SQLite.setVaultList(vltPath, vltName, vltKey, valtKey);
                 Vault_Name_Field.setText("");
                 Vault_Password_Field.setText("");
                 Confirm_Password_Field.setText("");
@@ -1406,6 +1406,8 @@ public class Main extends javax.swing.JFrame {
             else {
                 OpenVault_Label.setText(" Unlock Vault : " + com.xahertz.internal.SQLite.getVaultName(vltPath));
                 Vault_Path_Field.setText(vltPath);
+                OpenVault_Key_File_CheckBox.setSelected(com.xahertz.internal.SQLite.getVaultHasKey(vltPath));
+                OpenVault_Key_File_Location_Field.setText(com.xahertz.internal.SQLite.getVaultKeyPath(vltPath));
                 Container_Deck.show(Container, "open");
             }
         }
@@ -1652,7 +1654,7 @@ public class Main extends javax.swing.JFrame {
             }
             if (com.xahertz.internal.SQLite.openVault(vltPath, vltPass)) {
                 String vltName = com.xahertz.internal.SQLite.vltName();
-                com.xahertz.internal.SQLite.setVaultList(vltPath, vltName);
+                com.xahertz.internal.SQLite.setVaultList(vltPath, vltName, vltKey, valtKey);
                 Vault_Path_Field.setText("");
                 OpenVault_Password_Field.setText("");
                 OpenVault_Key_File_Location_Field.setText("");

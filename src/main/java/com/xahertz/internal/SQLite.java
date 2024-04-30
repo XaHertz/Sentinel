@@ -31,7 +31,7 @@ public class SQLite {
         dataFolder.mkdir();
         try {
             listDB = DriverManager.getConnection("jdbc:sqlite:" + dataFolder + File.separator + "vaults.lst");
-            String vltsTable = "CREATE TABLE IF NOT EXISTS Vaults (Path TEXT NOT NULL UNIQUE, Name TEXT, PRIMARY KEY(Path));";
+            String vltsTable = "CREATE TABLE IF NOT EXISTS Vaults (Path TEXT NOT NULL UNIQUE, Name TEXT, HasKey BOOLEAN, KeyPath TEXT, PRIMARY KEY(Path));";
             Statement listDBquery = listDB.createStatement();
             listDBquery.execute(vltsTable);
         } catch (SQLException ex) {
@@ -68,12 +68,42 @@ public class SQLite {
         return vltName;
     }
     
-    public static void setVaultList(String vltPath, String vltName) {
-        String vltsTable = "REPLACE INTO Vaults (Path, Name) VALUES(?, ?);";
+    public static boolean getVaultHasKey(String vltPath) {
+        String vltsTable = "SELECT HasKey FROM Vaults WHERE Path = ?;";
+        boolean vltHasKey = false;
+        try {
+            PreparedStatement listDBquery = listDB.prepareStatement(vltsTable);
+            listDBquery.setString(1, vltPath);
+            ResultSet vltResult = listDBquery.executeQuery();
+            vltHasKey = vltResult.getBoolean("HasKey");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        return vltHasKey;
+    }
+    
+    public static String getVaultKeyPath(String vltPath) {
+        String vltsTable = "SELECT KeyPath FROM Vaults WHERE Path = ?;";
+        String vltKeyPath = null;
+        try {
+            PreparedStatement listDBquery = listDB.prepareStatement(vltsTable);
+            listDBquery.setString(1, vltPath);
+            ResultSet vltResult = listDBquery.executeQuery();
+            vltKeyPath = vltResult.getString("KeyPath");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        return vltKeyPath;
+    }
+    
+    public static void setVaultList(String vltPath, String vltName, boolean vltKey, String valtKey) {
+        String vltsTable = "REPLACE INTO Vaults (Path, Name, HasKey, KeyPath) VALUES(?, ?, ?, ?);";
         try {
             PreparedStatement listDBquery = listDB.prepareStatement(vltsTable);
             listDBquery.setString(1, vltPath);
             listDBquery.setString(2, vltName);
+            listDBquery.setBoolean(3, vltKey);
+            listDBquery.setString(4, valtKey);
             listDBquery.executeUpdate();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.ERROR_MESSAGE);
