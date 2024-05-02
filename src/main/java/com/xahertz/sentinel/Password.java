@@ -44,7 +44,6 @@ public class Password extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Generate Password");
-        setLocationByPlatform(true);
         setResizable(false);
 
         Password_Field.setEchoChar((char) 0);
@@ -187,6 +186,7 @@ public class Password extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void Password_Field_ToggleButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Password_Field_ToggleButtonItemStateChanged

@@ -235,7 +235,7 @@ public class Main extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sentinel");
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/images/app-icon.png")).getImage());
-        setLocationByPlatform(true);
+        setMinimumSize(new java.awt.Dimension(1000, 600));
 
         Main_ToolBar.setRollover(true);
 
@@ -1294,6 +1294,7 @@ public class Main extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void Exit_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Exit_MenuItemActionPerformed
