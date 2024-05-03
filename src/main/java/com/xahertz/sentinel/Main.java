@@ -360,6 +360,7 @@ public class Main extends javax.swing.JFrame {
         Main_ToolBar.add(ToolBar_Separator_Three);
 
         About_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/info.png"))); // NOI18N
+        About_Button.setToolTipText("About Sentinel");
         About_Button.setFocusable(false);
         About_Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         About_Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -1129,6 +1130,7 @@ public class Main extends javax.swing.JFrame {
 
         Vault_Menu.setText("Vault");
 
+        New_Vault_MenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         New_Vault_MenuItem.setText("New Vault");
         New_Vault_MenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1137,6 +1139,7 @@ public class Main extends javax.swing.JFrame {
         });
         Vault_Menu.add(New_Vault_MenuItem);
 
+        Open_Vault_MenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         Open_Vault_MenuItem.setText("Open Vault");
         Open_Vault_MenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1145,6 +1148,7 @@ public class Main extends javax.swing.JFrame {
         });
         Vault_Menu.add(Open_Vault_MenuItem);
 
+        Close_Vault_MenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         Close_Vault_MenuItem.setText("Close Vault");
         Close_Vault_MenuItem.setEnabled(false);
         Close_Vault_MenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -1155,6 +1159,7 @@ public class Main extends javax.swing.JFrame {
         Vault_Menu.add(Close_Vault_MenuItem);
         Vault_Menu.add(Vault_Menu_Separator_One);
 
+        Exit_MenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         Exit_MenuItem.setText("Exit");
         Exit_MenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1167,6 +1172,7 @@ public class Main extends javax.swing.JFrame {
 
         Edit_Menu.setText("Edit");
 
+        New_Entry_MenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         New_Entry_MenuItem.setText("New Entry");
         New_Entry_MenuItem.setEnabled(false);
         New_Entry_MenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -1176,6 +1182,7 @@ public class Main extends javax.swing.JFrame {
         });
         Edit_Menu.add(New_Entry_MenuItem);
 
+        Edit_Entry_MenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         Edit_Entry_MenuItem.setText("Edit Entry");
         Edit_Entry_MenuItem.setEnabled(false);
         Edit_Entry_MenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -1185,6 +1192,7 @@ public class Main extends javax.swing.JFrame {
         });
         Edit_Menu.add(Edit_Entry_MenuItem);
 
+        Delete_Entry_MenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_DELETE, 0));
         Delete_Entry_MenuItem.setText("Delete Entry");
         Delete_Entry_MenuItem.setEnabled(false);
         Delete_Entry_MenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -1195,6 +1203,7 @@ public class Main extends javax.swing.JFrame {
         Edit_Menu.add(Delete_Entry_MenuItem);
         Edit_Menu.add(Edit_Menu_Separator_One);
 
+        New_Group_MenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.ALT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         New_Group_MenuItem.setText("New Group");
         New_Group_MenuItem.setEnabled(false);
         New_Group_MenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -1204,6 +1213,7 @@ public class Main extends javax.swing.JFrame {
         });
         Edit_Menu.add(New_Group_MenuItem);
 
+        Edit_Group_MenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.ALT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         Edit_Group_MenuItem.setText("Edit Group");
         Edit_Group_MenuItem.setEnabled(false);
         Edit_Group_MenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -1213,6 +1223,7 @@ public class Main extends javax.swing.JFrame {
         });
         Edit_Menu.add(Edit_Group_MenuItem);
 
+        Delete_Group_MenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_DELETE, java.awt.event.InputEvent.ALT_DOWN_MASK));
         Delete_Group_MenuItem.setText("Delete Group");
         Delete_Group_MenuItem.setEnabled(false);
         Delete_Group_MenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -1223,6 +1234,7 @@ public class Main extends javax.swing.JFrame {
         Edit_Menu.add(Delete_Group_MenuItem);
         Edit_Menu.add(Edit_Menu_Separator_Two);
 
+        Copy_Username_MenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         Copy_Username_MenuItem.setText("Copy Username");
         Copy_Username_MenuItem.setEnabled(false);
         Copy_Username_MenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -1232,6 +1244,7 @@ public class Main extends javax.swing.JFrame {
         });
         Edit_Menu.add(Copy_Username_MenuItem);
 
+        Copy_Password_MenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         Copy_Password_MenuItem.setText("Copy Password");
         Copy_Password_MenuItem.setEnabled(false);
         Copy_Password_MenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -1241,6 +1254,7 @@ public class Main extends javax.swing.JFrame {
         });
         Edit_Menu.add(Copy_Password_MenuItem);
 
+        Copy_URL_MenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         Copy_URL_MenuItem.setText("Copy URL");
         Copy_URL_MenuItem.setEnabled(false);
         Copy_URL_MenuItem.addActionListener(new java.awt.event.ActionListener() {
