@@ -31,7 +31,7 @@ public class SQLite {
         dataFolder.mkdir();
         try {
             listDB = DriverManager.getConnection("jdbc:sqlite:" + dataFolder + File.separator + "vaults.lst");
-            String vltsTable = "CREATE TABLE IF NOT EXISTS Vaults (Path TEXT NOT NULL UNIQUE, Name TEXT, HasKey BOOLEAN, KeyPath TEXT, PRIMARY KEY(Path));";
+            String vltsTable = "CREATE TABLE IF NOT EXISTS Vaults (Path TEXT NOT NULL UNIQUE, Name TEXT, HasKey BOOLEAN, KeyPath TEXT, LastOpened TEXT, PRIMARY KEY(Path));";
             Statement listDBquery = listDB.createStatement();
             listDBquery.execute(vltsTable);
         } catch (SQLException ex) {
@@ -41,7 +41,7 @@ public class SQLite {
     
     public static DefaultListModel<String> getVaultList() {
         DefaultListModel<String> listModel = new DefaultListModel<>();
-        String vltsTable = "SELECT Path FROM Vaults;";
+        String vltsTable = "SELECT Path FROM Vaults ORDER BY LastOpened DESC;";
         try {
             Statement listDBquery = listDB.createStatement();
             ResultSet listResult = listDBquery.executeQuery(vltsTable);
@@ -97,7 +97,7 @@ public class SQLite {
     }
     
     public static void setVaultList(String vltPath, String vltName, boolean vltKey, String valtKey) {
-        String vltsTable = "REPLACE INTO Vaults (Path, Name, HasKey, KeyPath) VALUES(?, ?, ?, ?);";
+        String vltsTable = "REPLACE INTO Vaults (Path, Name, HasKey, KeyPath, LastOpened) VALUES(?, ?, ?, ?, datetime('now'));";
         try {
             PreparedStatement listDBquery = listDB.prepareStatement(vltsTable);
             listDBquery.setString(1, vltPath);

@@ -17,6 +17,8 @@ public class Main extends javax.swing.JFrame {
         com.xahertz.internal.SQLite.initVaultList();
         initComponents();
         Container_Deck = (java.awt.CardLayout)Container.getLayout();
+        if (!com.xahertz.internal.SQLite.getVaultList().isEmpty())
+            Open_Vault_ActionPerformed(com.xahertz.internal.SQLite.getVaultList().firstElement());
     }
 
     /**
@@ -1423,11 +1425,7 @@ public class Main extends javax.swing.JFrame {
             if (!new java.io.File(vltPath).exists())
                 JOptionPane.showMessageDialog(null, "The selected Vault File is not present at the specified path. It may have been moved or renamed.", "Missing Vault File", JOptionPane.ERROR_MESSAGE);
             else {
-                OpenVault_Label.setText(" Unlock Vault : " + com.xahertz.internal.SQLite.getVaultName(vltPath));
-                Vault_Path_Field.setText(vltPath);
-                OpenVault_Key_File_CheckBox.setSelected(com.xahertz.internal.SQLite.getVaultHasKey(vltPath));
-                OpenVault_Key_File_Location_Field.setText(com.xahertz.internal.SQLite.getVaultKeyPath(vltPath));
-                Container_Deck.show(Container, "open");
+                Open_Vault_ActionPerformed(vltPath);
             }
         }
     }//GEN-LAST:event_Recent_Vaults_ListMouseClicked
@@ -1736,6 +1734,19 @@ public class Main extends javax.swing.JFrame {
             Vault_Path_Field.setText(fileChooser.getSelectedFile().getAbsolutePath());
             Container_Deck.show(Container, "open");
         }
+    }
+    
+    private void Open_Vault_ActionPerformed(String vltPath) {
+        OpenVault_Label.setText(" Unlock Vault : " + com.xahertz.internal.SQLite.getVaultName(vltPath));
+        Vault_Path_Field.setText(vltPath);
+        if (com.xahertz.internal.SQLite.getVaultHasKey(vltPath)) {
+            OpenVault_Key_File_CheckBox.setSelected(true);
+            OpenVault_Key_File_Location_Field.setText(com.xahertz.internal.SQLite.getVaultKeyPath(vltPath));
+        } else {
+            OpenVault_Key_File_CheckBox.setSelected(false);
+            OpenVault_Key_File_Location_Field.setText("");
+        }
+        Container_Deck.show(Container, "open");
     }
     
     private void New_Entry_ActionPerformed() {
