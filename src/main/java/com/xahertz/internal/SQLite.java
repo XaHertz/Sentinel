@@ -167,6 +167,16 @@ public class SQLite {
         }
     }
     
+    public static void vltPassword(String vltPass) {
+        String vltNewPass = String.format("PRAGMA rekey='%s'", vltPass);
+        try {
+            Statement vltDBquery = vltDB.createStatement();
+            vltDBquery.execute(vltNewPass);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
     public static void closeVault() {
         if (vltDB != null) {
             try {
@@ -179,7 +189,7 @@ public class SQLite {
         }
     }
     
-    public static String vltName() {
+    public static String getVaultName() {
         String allTables = "SELECT Value FROM Configuration WHERE Parameter = 'Vault Name';";
         String vltName = null;
         try (Statement vltDBquery = vltDB.createStatement()) {
@@ -189,6 +199,17 @@ public class SQLite {
             JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.ERROR_MESSAGE);
         }
         return vltName;
+    }
+    
+    public static void setVaultName(String vltName) {
+        String confValue = "REPLACE INTO Configuration (Parameter, Value) VALUES('Vault Name', ?);";
+        try {
+            PreparedStatement vltDBquery = vltDB.prepareStatement(confValue);
+            vltDBquery.setString(1, vltName);
+            vltDBquery.executeUpdate();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
     
     public static DefaultTreeModel allTablesList() {

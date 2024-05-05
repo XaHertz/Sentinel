@@ -12,7 +12,7 @@ public class Main extends javax.swing.JFrame {
      * Creates new form Main
      */
     public Main() {
-        Version = "0.8.0";
+        Version = "0.9.0";
         Vault_Table_Name = "Root";
         com.xahertz.internal.SQLite.initVaultList();
         initComponents();
@@ -42,6 +42,7 @@ public class Main extends javax.swing.JFrame {
         Tree_PopupMenu_New_Group = new javax.swing.JMenuItem();
         Tree_PopupMenu_Edit_Group = new javax.swing.JMenuItem();
         Tree_PopupMenu_Delete_Group = new javax.swing.JMenuItem();
+        Key_File_ButtonGroup = new javax.swing.ButtonGroup();
         Main_ToolBar = new javax.swing.JToolBar();
         Open_Vault_Button = new javax.swing.JButton();
         Close_Vault_Button = new javax.swing.JButton();
@@ -55,6 +56,7 @@ public class Main extends javax.swing.JFrame {
         Copy_URL_Button = new javax.swing.JButton();
         Password_Generator_Button = new javax.swing.JButton();
         ToolBar_Separator_Three = new javax.swing.JToolBar.Separator();
+        Settings_ToggleButton = new javax.swing.JToggleButton();
         About_Button = new javax.swing.JButton();
         ToolBar_Filler = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
         Acknowledgment_Label = new javax.swing.JLabel();
@@ -137,6 +139,33 @@ public class Main extends javax.swing.JFrame {
         Notes_TextArea = new javax.swing.JTextArea();
         EntryPage_Cancel_Button = new javax.swing.JButton();
         EntryPage_Finish_Button = new javax.swing.JButton();
+        SettingsPage = new javax.swing.JPanel();
+        Settings_Vault_Name_Panel = new javax.swing.JPanel();
+        Settings_Vault_Name_Label = new javax.swing.JLabel();
+        Settings_Vault_Name_Field = new javax.swing.JTextField();
+        Change_Vault_Name_Button = new javax.swing.JButton();
+        Settings_Password_Panel = new javax.swing.JPanel();
+        Settings_New_Password_Label = new javax.swing.JLabel();
+        Settings_New_Password_Field = new javax.swing.JPasswordField();
+        Settings_New_Password_ToggleButton = new javax.swing.JToggleButton();
+        Generate_New_Password_Button = new javax.swing.JButton();
+        Settings_Confirm_Password_Label = new javax.swing.JLabel();
+        Settings_Confirm_Password_Field = new javax.swing.JPasswordField();
+        Settings_Confirm_Password_ToggleButton = new javax.swing.JToggleButton();
+        Change_Password_Button = new javax.swing.JButton();
+        Settings_Key_File_Panel = new javax.swing.JPanel();
+        Current_Key_File_Label = new javax.swing.JLabel();
+        Current_Key_File_Location_Field = new javax.swing.JTextField();
+        Current_Password_Label = new javax.swing.JLabel();
+        Current_Password_Field = new javax.swing.JPasswordField();
+        Current_Password_ToggleButton = new javax.swing.JToggleButton();
+        New_Key_File_Label = new javax.swing.JLabel();
+        New_Key_File_Location_Field = new javax.swing.JTextField();
+        New_Key_File_Browse_Button = new javax.swing.JButton();
+        New_Key_RadioButton = new javax.swing.JRadioButton();
+        Existing_Key_RadioButton = new javax.swing.JRadioButton();
+        Remove_Key_RadioButton = new javax.swing.JRadioButton();
+        Change_Key_Button = new javax.swing.JButton();
         Menu_Bar = new javax.swing.JMenuBar();
         Vault_Menu = new javax.swing.JMenu();
         New_Vault_MenuItem = new javax.swing.JMenuItem();
@@ -158,6 +187,7 @@ public class Main extends javax.swing.JFrame {
         Copy_URL_MenuItem = new javax.swing.JMenuItem();
         Tools_Menu = new javax.swing.JMenu();
         Password_Generator_MenuItem = new javax.swing.JMenuItem();
+        Settings_CheckBox_MenuItem = new javax.swing.JCheckBoxMenuItem();
         Help_Menu = new javax.swing.JMenu();
         About_MenuItem = new javax.swing.JMenuItem();
 
@@ -360,6 +390,17 @@ public class Main extends javax.swing.JFrame {
         });
         Main_ToolBar.add(Password_Generator_Button);
         Main_ToolBar.add(ToolBar_Separator_Three);
+
+        Settings_ToggleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/settings.png"))); // NOI18N
+        Settings_ToggleButton.setEnabled(false);
+        Settings_ToggleButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        Settings_ToggleButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        Settings_ToggleButton.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                Settings_ToggleButtonItemStateChanged(evt);
+            }
+        });
+        Main_ToolBar.add(Settings_ToggleButton);
 
         About_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/info.png"))); // NOI18N
         About_Button.setToolTipText("About Sentinel");
@@ -1130,6 +1171,268 @@ public class Main extends javax.swing.JFrame {
 
         Container.add(EntryPage, "entry");
 
+        Settings_Vault_Name_Panel.setBorder(javax.swing.BorderFactory.createTitledBorder("Vault Name"));
+
+        Settings_Vault_Name_Label.setFont(Settings_Vault_Name_Label.getFont().deriveFont(Settings_Vault_Name_Label.getFont().getSize()+2f));
+        Settings_Vault_Name_Label.setText("Vault Name");
+
+        Change_Vault_Name_Button.setText("Change Vault Name");
+        Change_Vault_Name_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Change_Vault_Name_ButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout Settings_Vault_Name_PanelLayout = new javax.swing.GroupLayout(Settings_Vault_Name_Panel);
+        Settings_Vault_Name_Panel.setLayout(Settings_Vault_Name_PanelLayout);
+        Settings_Vault_Name_PanelLayout.setHorizontalGroup(
+            Settings_Vault_Name_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Settings_Vault_Name_PanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(Settings_Vault_Name_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(Settings_Vault_Name_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Settings_Vault_Name_Field)
+                    .addGroup(Settings_Vault_Name_PanelLayout.createSequentialGroup()
+                        .addComponent(Change_Vault_Name_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        Settings_Vault_Name_PanelLayout.setVerticalGroup(
+            Settings_Vault_Name_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Settings_Vault_Name_PanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(Settings_Vault_Name_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Settings_Vault_Name_Field)
+                    .addComponent(Settings_Vault_Name_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Change_Vault_Name_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(12, Short.MAX_VALUE))
+        );
+
+        Settings_Password_Panel.setBorder(javax.swing.BorderFactory.createTitledBorder("Vault Password"));
+
+        Settings_New_Password_Label.setFont(Settings_New_Password_Label.getFont().deriveFont(Settings_New_Password_Label.getFont().getSize()+2f));
+        Settings_New_Password_Label.setText("New Password");
+
+        Settings_New_Password_ToggleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/eye.png"))); // NOI18N
+        Settings_New_Password_ToggleButton.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                Settings_New_Password_ToggleButtonItemStateChanged(evt);
+            }
+        });
+
+        Generate_New_Password_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/dice-5.png"))); // NOI18N
+        Generate_New_Password_Button.setToolTipText("");
+        Generate_New_Password_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Generate_New_Password_ButtonActionPerformed(evt);
+            }
+        });
+
+        Settings_Confirm_Password_Label.setFont(Settings_Confirm_Password_Label.getFont().deriveFont(Settings_Confirm_Password_Label.getFont().getSize()+2f));
+        Settings_Confirm_Password_Label.setText("Confirm Password");
+
+        Settings_Confirm_Password_ToggleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/eye.png"))); // NOI18N
+        Settings_Confirm_Password_ToggleButton.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                Settings_Confirm_Password_ToggleButtonItemStateChanged(evt);
+            }
+        });
+
+        Change_Password_Button.setText("Change Password");
+        Change_Password_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Change_Password_ButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout Settings_Password_PanelLayout = new javax.swing.GroupLayout(Settings_Password_Panel);
+        Settings_Password_Panel.setLayout(Settings_Password_PanelLayout);
+        Settings_Password_PanelLayout.setHorizontalGroup(
+            Settings_Password_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Settings_Password_PanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(Settings_Password_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(Settings_Password_PanelLayout.createSequentialGroup()
+                        .addComponent(Settings_Confirm_Password_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(Settings_Password_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Change_Password_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Settings_Confirm_Password_Field)))
+                    .addGroup(Settings_Password_PanelLayout.createSequentialGroup()
+                        .addComponent(Settings_New_Password_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Settings_New_Password_Field)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Settings_New_Password_ToggleButton)))
+                .addGap(6, 6, 6)
+                .addGroup(Settings_Password_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Generate_New_Password_Button, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Settings_Confirm_Password_ToggleButton, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
+        );
+        Settings_Password_PanelLayout.setVerticalGroup(
+            Settings_Password_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Settings_Password_PanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(Settings_Password_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(Settings_Password_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(Settings_New_Password_Label, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                        .addComponent(Settings_New_Password_Field))
+                    .addComponent(Generate_New_Password_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Settings_New_Password_ToggleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(Settings_Password_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(Settings_Password_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(Settings_Confirm_Password_Label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Settings_Confirm_Password_Field, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Settings_Confirm_Password_ToggleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Change_Password_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12))
+        );
+
+        Settings_Key_File_Panel.setBorder(javax.swing.BorderFactory.createTitledBorder("Key File"));
+
+        Current_Key_File_Label.setFont(Current_Key_File_Label.getFont().deriveFont(Current_Key_File_Label.getFont().getSize()+2f));
+        Current_Key_File_Label.setText("Current Key File");
+
+        Current_Key_File_Location_Field.setEditable(false);
+
+        Current_Password_Label.setFont(Current_Password_Label.getFont().deriveFont(Current_Password_Label.getFont().getSize()+2f));
+        Current_Password_Label.setText("Current Password");
+
+        Current_Password_ToggleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/eye.png"))); // NOI18N
+        Current_Password_ToggleButton.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                Current_Password_ToggleButtonItemStateChanged(evt);
+            }
+        });
+
+        New_Key_File_Label.setFont(New_Key_File_Label.getFont().deriveFont(New_Key_File_Label.getFont().getSize()+2f));
+        New_Key_File_Label.setText("New Key File");
+
+        New_Key_File_Browse_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/folder.png"))); // NOI18N
+        New_Key_File_Browse_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                New_Key_File_Browse_ButtonActionPerformed(evt);
+            }
+        });
+
+        Key_File_ButtonGroup.add(New_Key_RadioButton);
+        New_Key_RadioButton.setText("Generate New Key");
+
+        Key_File_ButtonGroup.add(Existing_Key_RadioButton);
+        Existing_Key_RadioButton.setText("Use Existing Key");
+
+        Key_File_ButtonGroup.add(Remove_Key_RadioButton);
+        Remove_Key_RadioButton.setText("Remove Key File");
+        Remove_Key_RadioButton.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                Remove_Key_RadioButtonItemStateChanged(evt);
+            }
+        });
+
+        Change_Key_Button.setText("Change Key File");
+        Change_Key_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Change_Key_ButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout Settings_Key_File_PanelLayout = new javax.swing.GroupLayout(Settings_Key_File_Panel);
+        Settings_Key_File_Panel.setLayout(Settings_Key_File_PanelLayout);
+        Settings_Key_File_PanelLayout.setHorizontalGroup(
+            Settings_Key_File_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Settings_Key_File_PanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(Settings_Key_File_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(Settings_Key_File_PanelLayout.createSequentialGroup()
+                        .addComponent(Current_Key_File_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Current_Key_File_Location_Field))
+                    .addGroup(Settings_Key_File_PanelLayout.createSequentialGroup()
+                        .addComponent(New_Key_File_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(Settings_Key_File_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(Settings_Key_File_PanelLayout.createSequentialGroup()
+                                .addComponent(New_Key_File_Location_Field)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(New_Key_File_Browse_Button))
+                            .addGroup(Settings_Key_File_PanelLayout.createSequentialGroup()
+                                .addGroup(Settings_Key_File_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(Settings_Key_File_PanelLayout.createSequentialGroup()
+                                        .addComponent(New_Key_RadioButton)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(Existing_Key_RadioButton)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(Remove_Key_RadioButton))
+                                    .addComponent(Change_Key_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 480, Short.MAX_VALUE))))
+                    .addGroup(Settings_Key_File_PanelLayout.createSequentialGroup()
+                        .addComponent(Current_Password_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Current_Password_Field)
+                        .addGap(6, 6, 6)
+                        .addComponent(Current_Password_ToggleButton)))
+                .addContainerGap())
+        );
+        Settings_Key_File_PanelLayout.setVerticalGroup(
+            Settings_Key_File_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Settings_Key_File_PanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(Settings_Key_File_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Current_Key_File_Location_Field)
+                    .addComponent(Current_Key_File_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(Settings_Key_File_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(Settings_Key_File_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(Current_Password_Label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Current_Password_Field, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Current_Password_ToggleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(Settings_Key_File_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(Settings_Key_File_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(New_Key_File_Location_Field)
+                        .addComponent(New_Key_File_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(New_Key_File_Browse_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(Settings_Key_File_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(New_Key_RadioButton)
+                    .addComponent(Existing_Key_RadioButton)
+                    .addComponent(Remove_Key_RadioButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Change_Key_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(17, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout SettingsPageLayout = new javax.swing.GroupLayout(SettingsPage);
+        SettingsPage.setLayout(SettingsPageLayout);
+        SettingsPageLayout.setHorizontalGroup(
+            SettingsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SettingsPageLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(SettingsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Settings_Vault_Name_Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Settings_Password_Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Settings_Key_File_Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        SettingsPageLayout.setVerticalGroup(
+            SettingsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SettingsPageLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(Settings_Vault_Name_Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Settings_Password_Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Settings_Key_File_Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        Container.add(SettingsPage, "settings");
+
         Vault_Menu.setText("Vault");
 
         New_Vault_MenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
@@ -1278,6 +1581,15 @@ public class Main extends javax.swing.JFrame {
         });
         Tools_Menu.add(Password_Generator_MenuItem);
 
+        Settings_CheckBox_MenuItem.setText("Settings");
+        Settings_CheckBox_MenuItem.setEnabled(false);
+        Settings_CheckBox_MenuItem.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                Settings_CheckBox_MenuItemItemStateChanged(evt);
+            }
+        });
+        Tools_Menu.add(Settings_CheckBox_MenuItem);
+
         Menu_Bar.add(Tools_Menu);
 
         Help_Menu.setText("Help");
@@ -1366,6 +1678,10 @@ public class Main extends javax.swing.JFrame {
             }
             if (com.xahertz.internal.SQLite.createNewVault(vltName, vltPass, vltPath)) {
                 com.xahertz.internal.SQLite.setVaultList(vltPath, vltName, vltKey, valtKey);
+                Current_Vault_Location = vltPath;
+                Current_Vault_Name = vltName;
+                Current_Vault_Has_Key = vltKey;
+                Current_Vault_Key_Location = valtKey;
                 Vault_Name_Field.setText("");
                 Vault_Password_Field.setText("");
                 Confirm_Password_Field.setText("");
@@ -1670,8 +1986,12 @@ public class Main extends javax.swing.JFrame {
                 vltPass = hash.getResult();
             }
             if (com.xahertz.internal.SQLite.openVault(vltPath, vltPass)) {
-                String vltName = com.xahertz.internal.SQLite.vltName();
+                String vltName = com.xahertz.internal.SQLite.getVaultName();
                 com.xahertz.internal.SQLite.setVaultList(vltPath, vltName, vltKey, valtKey);
+                Current_Vault_Location = vltPath;
+                Current_Vault_Name = vltName;
+                Current_Vault_Has_Key = vltKey;
+                Current_Vault_Key_Location = valtKey;
                 Vault_Path_Field.setText("");
                 OpenVault_Password_Field.setText("");
                 OpenVault_Key_File_Location_Field.setText("");
@@ -1714,6 +2034,216 @@ public class Main extends javax.swing.JFrame {
         else
             Details_Password_Field.setEchoChar('\u2022');
     }//GEN-LAST:event_Details_Password_ToggleButtonItemStateChanged
+
+    private void Settings_ToggleButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Settings_ToggleButtonItemStateChanged
+        if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
+            Settings_CheckBox_MenuItem.setSelected(true);
+            Settings_Vault_Name_Field.setText(Current_Vault_Name);
+            New_Key_RadioButton.setSelected(true);
+            if (Current_Vault_Has_Key) {
+                Current_Key_File_Location_Field.setText(Current_Vault_Key_Location);
+                Current_Key_File_Location_Field.setEnabled(true);
+                Change_Key_Button.setText("Change Key File");
+                Remove_Key_RadioButton.setEnabled(true);
+            } else {
+                Current_Key_File_Location_Field.setText("This Vault does not have a Key File.");
+                Current_Key_File_Location_Field.setEnabled(false);
+                Change_Key_Button.setText("Add Key File");
+                Remove_Key_RadioButton.setEnabled(false);
+            }
+            Container_Deck.show(Container, "settings");
+            DisableVaultDataManipulationFunctions();
+            Close_Vault_Button.setEnabled(false);
+            Copy_Username_Button.setEnabled(false);
+            Copy_Password_Button.setEnabled(false);
+            Copy_URL_Button.setEnabled(false);
+            Close_Vault_MenuItem.setEnabled(false);
+            Copy_Username_MenuItem.setEnabled(false);
+            Copy_Password_MenuItem.setEnabled(false);
+            Copy_URL_MenuItem.setEnabled(false);
+        } else {
+            Settings_CheckBox_MenuItem.setSelected(false);
+            Container_Deck.show(Container, "vault");
+            EnableVaultDataManipulationFunctions();
+            Close_Vault_Button.setEnabled(true);
+            Copy_Username_Button.setEnabled(true);
+            Copy_Password_Button.setEnabled(true);
+            Copy_URL_Button.setEnabled(true);
+            Close_Vault_MenuItem.setEnabled(true);
+            Copy_Username_MenuItem.setEnabled(true);
+            Copy_Password_MenuItem.setEnabled(true);
+            Copy_URL_MenuItem.setEnabled(true);
+            Settings_New_Password_Field.setText("");
+            Settings_Confirm_Password_Field.setText("");
+            Current_Password_Field.setText("");
+            New_Key_File_Location_Field.setText("");
+        }
+    }//GEN-LAST:event_Settings_ToggleButtonItemStateChanged
+
+    private void New_Key_File_Browse_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_New_Key_File_Browse_ButtonActionPerformed
+        javax.swing.JFileChooser fileChooser = new javax.swing.JFileChooser();
+        if (New_Key_RadioButton.isSelected()) {
+            fileChooser.setDialogTitle("Save Key File as");
+            fileChooser.setDialogType(javax.swing.JFileChooser.SAVE_DIALOG);
+            fileChooser.setSelectedFile(new java.io.File("Passwords.svlk"));
+            fileChooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Sentinel Vault Key File", "svlk"));
+            if (fileChooser.showSaveDialog(null) == javax.swing.JFileChooser.APPROVE_OPTION) {
+                if (fileChooser.getSelectedFile().exists()) {
+                    int response = JOptionPane.showConfirmDialog(null, "The file already exists. Do you want to overwrite the file?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                    if (response == JOptionPane.YES_OPTION) {
+                        New_Key_File_Location_Field.setText(fileChooser.getSelectedFile().getAbsolutePath());
+                    }
+                } else
+                    New_Key_File_Location_Field.setText(fileChooser.getSelectedFile().getAbsolutePath());
+            }
+        } else if (Existing_Key_RadioButton.isSelected()) {
+            fileChooser.setDialogTitle("Select Key File");
+            fileChooser.setDialogType(javax.swing.JFileChooser.OPEN_DIALOG);
+            fileChooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Sentinel Vault Key File", "svlk"));
+            if (fileChooser.showOpenDialog(null) == javax.swing.JFileChooser.APPROVE_OPTION) {
+                New_Key_File_Location_Field.setText(fileChooser.getSelectedFile().getAbsolutePath());
+            }
+        }
+    }//GEN-LAST:event_New_Key_File_Browse_ButtonActionPerformed
+
+    private void Settings_New_Password_ToggleButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Settings_New_Password_ToggleButtonItemStateChanged
+        if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED)
+            Settings_New_Password_Field.setEchoChar((char) 0);
+        else
+            Settings_New_Password_Field.setEchoChar('\u2022');
+    }//GEN-LAST:event_Settings_New_Password_ToggleButtonItemStateChanged
+
+    private void Settings_Confirm_Password_ToggleButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Settings_Confirm_Password_ToggleButtonItemStateChanged
+        if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED)
+            Settings_Confirm_Password_Field.setEchoChar((char) 0);
+        else
+            Settings_Confirm_Password_Field.setEchoChar('\u2022');
+    }//GEN-LAST:event_Settings_Confirm_Password_ToggleButtonItemStateChanged
+
+    private void Generate_New_Password_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Generate_New_Password_ButtonActionPerformed
+        Password PG = new Password();
+        PG.setVisible(true);
+    }//GEN-LAST:event_Generate_New_Password_ButtonActionPerformed
+
+    private void Change_Password_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Change_Password_ButtonActionPerformed
+        String vltPass = new String(Settings_New_Password_Field.getPassword());
+        String cnfPass = new String(Settings_Confirm_Password_Field.getPassword());
+        if (vltPass.equals("") || cnfPass.equals(""))
+            JOptionPane.showMessageDialog(null, "All Fields are Required to be Filled. Please Try Again!", "Empty Feilds", JOptionPane.ERROR_MESSAGE);
+        else if (vltPass.length() < 8)
+            JOptionPane.showMessageDialog(null, "Your Password Must Contain at Least 8 Characters. Please Try Again!", "Password Too Short", JOptionPane.ERROR_MESSAGE);
+        else if (!vltPass.equals(cnfPass))
+            JOptionPane.showMessageDialog(null, "The Passwords in Password Fields do not Match. Please Try Again!", "Password Mismatch", JOptionPane.ERROR_MESSAGE);
+        else {
+            if (Current_Vault_Has_Key) {
+                String Salt = com.xahertz.internal.Functions.readKeyFile(Current_Vault_Key_Location);
+                com.password4j.Hash hash = com.password4j.Password.hash(vltPass).addSalt(Salt).withPBKDF2();
+                vltPass = hash.getResult();
+            }
+            com.xahertz.internal.SQLite.vltPassword(vltPass);
+            JOptionPane.showMessageDialog(null, "Password Changed Successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            Settings_New_Password_Field.setText("");
+            Settings_Confirm_Password_Field.setText("");
+        }
+    }//GEN-LAST:event_Change_Password_ButtonActionPerformed
+
+    private void Change_Vault_Name_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Change_Vault_Name_ButtonActionPerformed
+        String vltName = Settings_Vault_Name_Field.getText();
+        if (vltName.equals(""))
+            JOptionPane.showMessageDialog(null, "Vault Name Field is Required to be Filled. Please Try Again!", "Empty Feilds", JOptionPane.ERROR_MESSAGE);
+        else if (vltName.equals(Current_Vault_Name))
+            JOptionPane.showMessageDialog(null, "New Name is same as the Old one. Nothing to Rename.", "Error", JOptionPane.ERROR_MESSAGE);
+        else {
+            com.xahertz.internal.SQLite.setVaultName(vltName);
+            com.xahertz.internal.SQLite.setVaultList(Current_Vault_Location, vltName, Current_Vault_Has_Key, Current_Vault_Key_Location);
+            Current_Vault_Name = com.xahertz.internal.SQLite.getVaultName();
+            JOptionPane.showMessageDialog(null, "Vault Name Changed Successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            Settings_Vault_Name_Field.setText(Current_Vault_Name);
+            setTitle("Vault : " + Current_Vault_Name + "  \u2013  Sentinel");
+        }
+    }//GEN-LAST:event_Change_Vault_Name_ButtonActionPerformed
+
+    private void Settings_CheckBox_MenuItemItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Settings_CheckBox_MenuItemItemStateChanged
+        if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED)
+            Settings_ToggleButton.setSelected(true);
+        else
+            Settings_ToggleButton.setSelected(false);
+    }//GEN-LAST:event_Settings_CheckBox_MenuItemItemStateChanged
+
+    private void Remove_Key_RadioButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Remove_Key_RadioButtonItemStateChanged
+        if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
+            New_Key_File_Location_Field.setEnabled(false);
+            New_Key_File_Browse_Button.setEnabled(false);
+            Change_Key_Button.setText("Remove Key File");
+        } else {
+            New_Key_File_Location_Field.setEnabled(true);
+            New_Key_File_Browse_Button.setEnabled(true);
+            if (Current_Vault_Has_Key)
+                Change_Key_Button.setText("Change Key File");
+            else 
+                Change_Key_Button.setText("Add Key File");
+        }
+    }//GEN-LAST:event_Remove_Key_RadioButtonItemStateChanged
+
+    private void Change_Key_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Change_Key_ButtonActionPerformed
+        String vltPass = new String(Current_Password_Field.getPassword());
+        String valtKey = New_Key_File_Location_Field.getText();
+        if (vltPass.equals("") || (!Remove_Key_RadioButton.isSelected() && valtKey.equals("")))
+            JOptionPane.showMessageDialog(null, "All Fields are Required to be Filled. Please Try Again!", "Empty Feilds", JOptionPane.ERROR_MESSAGE);
+        else if (Existing_Key_RadioButton.isSelected() && !new java.io.File(valtKey).exists())
+            JOptionPane.showMessageDialog(null, "The Key File is not present at the specified path. Please Try Again!", "Missing Key File", JOptionPane.ERROR_MESSAGE);
+        else {
+            if (New_Key_RadioButton.isSelected()) {
+                String Salt = com.xahertz.internal.Functions.getSalt();
+                com.password4j.Hash hash = com.password4j.Password.hash(vltPass).addSalt(Salt).withPBKDF2();
+                com.xahertz.internal.Functions.writeKeyFile(Salt, valtKey);
+                com.xahertz.internal.SQLite.vltPassword(hash.getResult());
+                String Success = Current_Vault_Has_Key ? "Key File Changed Successfully!" : "Key File Added Successfully!";
+                Current_Vault_Has_Key = true;
+                Current_Vault_Key_Location = valtKey;
+                com.xahertz.internal.SQLite.setVaultList(Current_Vault_Location, Current_Vault_Name, Current_Vault_Has_Key, Current_Vault_Key_Location);
+                JOptionPane.showMessageDialog(null, Success, "Success", JOptionPane.INFORMATION_MESSAGE);
+            }
+            if (Existing_Key_RadioButton.isSelected()) {
+                String Salt = com.xahertz.internal.Functions.readKeyFile(valtKey);
+                com.password4j.Hash hash = com.password4j.Password.hash(vltPass).addSalt(Salt).withPBKDF2();
+                com.xahertz.internal.SQLite.vltPassword(hash.getResult());
+                String Success = Current_Vault_Has_Key ? "Key File Changed Successfully!" : "Key File Added Successfully!";
+                Current_Vault_Has_Key = true;
+                Current_Vault_Key_Location = valtKey;
+                com.xahertz.internal.SQLite.setVaultList(Current_Vault_Location, Current_Vault_Name, Current_Vault_Has_Key, Current_Vault_Key_Location);
+                JOptionPane.showMessageDialog(null, Success, "Success", JOptionPane.INFORMATION_MESSAGE);
+            }
+            if (Remove_Key_RadioButton.isSelected()) {
+                com.xahertz.internal.SQLite.vltPassword(vltPass);
+                Current_Vault_Has_Key = false;
+                Current_Vault_Key_Location = "";
+                com.xahertz.internal.SQLite.setVaultList(Current_Vault_Location, Current_Vault_Name, Current_Vault_Has_Key, Current_Vault_Key_Location);
+                JOptionPane.showMessageDialog(null, "Key File Removed Successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            }
+            Current_Password_Field.setText("");
+            New_Key_File_Location_Field.setText("");
+            New_Key_RadioButton.setSelected(true);
+            if (Current_Vault_Has_Key) {
+                Current_Key_File_Location_Field.setText(Current_Vault_Key_Location);
+                Current_Key_File_Location_Field.setEnabled(true);
+                Change_Key_Button.setText("Change Key File");
+                Remove_Key_RadioButton.setEnabled(true);
+            } else {
+                Current_Key_File_Location_Field.setText("This Vault does not have a Key File.");
+                Current_Key_File_Location_Field.setEnabled(false);
+                Change_Key_Button.setText("Add Key File");
+                Remove_Key_RadioButton.setEnabled(false);
+            }
+        }
+    }//GEN-LAST:event_Change_Key_ButtonActionPerformed
+
+    private void Current_Password_ToggleButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Current_Password_ToggleButtonItemStateChanged
+        if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED)
+            Current_Password_Field.setEchoChar((char) 0);
+        else
+            Current_Password_Field.setEchoChar('\u2022');
+    }//GEN-LAST:event_Current_Password_ToggleButtonItemStateChanged
 
     private void Passwords_Table_RowSelected(javax.swing.event.ListSelectionEvent evt) {
         int row = Passwords_Table.getSelectedRow();
@@ -1905,7 +2435,7 @@ public class Main extends javax.swing.JFrame {
     }
     
     private void OpenVaultPage() {
-        setTitle("Vault : " + com.xahertz.internal.SQLite.vltName() + "  \u2013  Sentinel");
+        setTitle("Vault : " + Current_Vault_Name + "  \u2013  Sentinel");
         Recent_Vaults_List.setModel(com.xahertz.internal.SQLite.getVaultList());
         FolderTree.setModel(com.xahertz.internal.SQLite.allTablesList());
         Passwords_Table_Model("Root");
@@ -1918,10 +2448,12 @@ public class Main extends javax.swing.JFrame {
         Copy_Username_Button.setEnabled(true);
         Copy_Password_Button.setEnabled(true);
         Copy_URL_Button.setEnabled(true);
+        Settings_ToggleButton.setEnabled(true);
         Close_Vault_MenuItem.setEnabled(true);
         Copy_Username_MenuItem.setEnabled(true);
         Copy_Password_MenuItem.setEnabled(true);
         Copy_URL_MenuItem.setEnabled(true);
+        Settings_CheckBox_MenuItem.setEnabled(true);
     }
     
     private void CloseVaultPage() {
@@ -1935,10 +2467,12 @@ public class Main extends javax.swing.JFrame {
         Copy_Username_Button.setEnabled(false);
         Copy_Password_Button.setEnabled(false);
         Copy_URL_Button.setEnabled(false);
+        Settings_ToggleButton.setEnabled(false);
         Close_Vault_MenuItem.setEnabled(false);
         Copy_Username_MenuItem.setEnabled(false);
         Copy_Password_MenuItem.setEnabled(false);
         Copy_URL_MenuItem.setEnabled(false);
+        Settings_CheckBox_MenuItem.setEnabled(false);
     }
     
     private void EnableVaultDataManipulationFunctions() {
@@ -2009,6 +2543,9 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem About_MenuItem;
     private javax.swing.JLabel Acknowledgment_Label;
     private javax.swing.JButton Browse_Button;
+    private javax.swing.JButton Change_Key_Button;
+    private javax.swing.JButton Change_Password_Button;
+    private javax.swing.JButton Change_Vault_Name_Button;
     private javax.swing.JButton Clear_List_Button;
     private javax.swing.JButton Close_Button;
     private javax.swing.JButton Close_Vault_Button;
@@ -2023,6 +2560,11 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem Copy_URL_MenuItem;
     private javax.swing.JButton Copy_Username_Button;
     private javax.swing.JMenuItem Copy_Username_MenuItem;
+    private javax.swing.JLabel Current_Key_File_Label;
+    private javax.swing.JTextField Current_Key_File_Location_Field;
+    private javax.swing.JPasswordField Current_Password_Field;
+    private javax.swing.JLabel Current_Password_Label;
+    private javax.swing.JToggleButton Current_Password_ToggleButton;
     private javax.swing.JButton Delete_Entry_Button;
     private javax.swing.JMenuItem Delete_Entry_MenuItem;
     private javax.swing.JMenuItem Delete_Group_MenuItem;
@@ -2047,14 +2589,17 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel EntryPage_Container;
     private javax.swing.JButton EntryPage_Finish_Button;
     private javax.swing.JLabel EntryPage_Label;
+    private javax.swing.JRadioButton Existing_Key_RadioButton;
     private javax.swing.JMenuItem Exit_MenuItem;
     private javax.swing.JTree FolderTree;
     private javax.swing.JPopupMenu FolderTree_PopupMenu;
     private javax.swing.JScrollPane FolderTree_ScrollPane;
+    private javax.swing.JButton Generate_New_Password_Button;
     private javax.swing.JButton Generate_Password_Button;
     private javax.swing.JButton Generate_Vault_Password_Button;
     private javax.swing.JMenu Help_Menu;
     private javax.swing.JButton Key_File_Browse_Button;
+    private javax.swing.ButtonGroup Key_File_ButtonGroup;
     private javax.swing.JCheckBox Key_File_CheckBox;
     private javax.swing.JLabel Key_File_Label;
     private javax.swing.JTextField Key_File_Location_Field;
@@ -2068,6 +2613,10 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton New_Entry_Button;
     private javax.swing.JMenuItem New_Entry_MenuItem;
     private javax.swing.JMenuItem New_Group_MenuItem;
+    private javax.swing.JButton New_Key_File_Browse_Button;
+    private javax.swing.JLabel New_Key_File_Label;
+    private javax.swing.JTextField New_Key_File_Location_Field;
+    private javax.swing.JRadioButton New_Key_RadioButton;
     private javax.swing.JMenuItem New_Vault_MenuItem;
     private javax.swing.JLabel Notes_Label;
     private javax.swing.JScrollPane Notes_ScrollPane;
@@ -2096,6 +2645,21 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel Recent_Vaults_Label;
     private javax.swing.JList<String> Recent_Vaults_List;
     private javax.swing.JScrollPane Recent_Vaults_ScrollPane;
+    private javax.swing.JRadioButton Remove_Key_RadioButton;
+    private javax.swing.JPanel SettingsPage;
+    private javax.swing.JCheckBoxMenuItem Settings_CheckBox_MenuItem;
+    private javax.swing.JPasswordField Settings_Confirm_Password_Field;
+    private javax.swing.JLabel Settings_Confirm_Password_Label;
+    private javax.swing.JToggleButton Settings_Confirm_Password_ToggleButton;
+    private javax.swing.JPanel Settings_Key_File_Panel;
+    private javax.swing.JPasswordField Settings_New_Password_Field;
+    private javax.swing.JLabel Settings_New_Password_Label;
+    private javax.swing.JToggleButton Settings_New_Password_ToggleButton;
+    private javax.swing.JPanel Settings_Password_Panel;
+    private javax.swing.JToggleButton Settings_ToggleButton;
+    private javax.swing.JTextField Settings_Vault_Name_Field;
+    private javax.swing.JLabel Settings_Vault_Name_Label;
+    private javax.swing.JPanel Settings_Vault_Name_Panel;
     private javax.swing.JPanel StartPage;
     private javax.swing.JButton StartPage_Create_Vault_Button;
     private javax.swing.JButton StartPage_Open_Vault_Button;
@@ -2137,6 +2701,10 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel Welcome_Label;
     // End of variables declaration//GEN-END:variables
     private final java.awt.CardLayout Container_Deck;
+    private String Current_Vault_Key_Location;
+    private boolean Current_Vault_Has_Key;
+    private String Current_Vault_Location;
+    private String Current_Vault_Name;
     private String Vault_Table_Name;
     private final String Version;
     private String UID;
