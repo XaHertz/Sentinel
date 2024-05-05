@@ -7,8 +7,12 @@ LICENSE           text eol=lf
 *.java            text eol=lf diff=java
 *.form            text eol=lf
 *.xml             text eol=lf
+*.wxf             text eol=lf
 *.md              text eol=lf
 *.txt             text eol=lf
 *.svg             text eol=lf
+*.rtf             binary
 *.png             binary
 *.jpg             binary
+*.bmp             binary
+*.ico             binary
