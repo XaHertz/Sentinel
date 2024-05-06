@@ -1625,114 +1625,169 @@ public class Main extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void Exit_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Exit_MenuItemActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_Exit_MenuItemActionPerformed
-
-    private void StartPage_Create_Vault_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StartPage_Create_Vault_ButtonActionPerformed
+    private void New_Vault_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_New_Vault_MenuItemActionPerformed
         Container_Deck.show(Container, "new");
-    }//GEN-LAST:event_StartPage_Create_Vault_ButtonActionPerformed
+    }//GEN-LAST:event_New_Vault_MenuItemActionPerformed
 
-    private void Close_Vault_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Close_Vault_ButtonActionPerformed
-        com.xahertz.internal.SQLite.closeVault();
-        CloseVaultPage();
-    }//GEN-LAST:event_Close_Vault_ButtonActionPerformed
+    private void Open_Vault_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Open_Vault_MenuItemActionPerformed
+        Open_Vault_ActionPerformed();
+    }//GEN-LAST:event_Open_Vault_MenuItemActionPerformed
 
     private void Close_Vault_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Close_Vault_MenuItemActionPerformed
         com.xahertz.internal.SQLite.closeVault();
         CloseVaultPage();
     }//GEN-LAST:event_Close_Vault_MenuItemActionPerformed
 
-    private void Open_Vault_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Open_Vault_MenuItemActionPerformed
-        Open_Vault_ActionPerformed();
-    }//GEN-LAST:event_Open_Vault_MenuItemActionPerformed
+    private void Exit_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Exit_MenuItemActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_Exit_MenuItemActionPerformed
 
-    private void Passwords_TableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Passwords_TableMousePressed
-        if (evt.getButton() == java.awt.event.MouseEvent.BUTTON3) {
-            int row = Passwords_Table.rowAtPoint(evt.getPoint());
-            int column = Passwords_Table.columnAtPoint(evt.getPoint());
-            if (!Passwords_Table.isRowSelected(row))
-                Passwords_Table.changeSelection(row, column, false, false);
-        }
-    }//GEN-LAST:event_Passwords_TableMousePressed
+    private void New_Entry_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_New_Entry_MenuItemActionPerformed
+        New_Entry_ActionPerformed();
+    }//GEN-LAST:event_New_Entry_MenuItemActionPerformed
 
-    private void NewVault_Finish_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewVault_Finish_ButtonActionPerformed
-        String vltName = Vault_Name_Field.getText();
-        String vltPass = new String(Vault_Password_Field.getPassword());
-        String cnfPass = new String(Confirm_Password_Field.getPassword());
-        String vltPath = Vault_Location_Field.getText();
-        String valtKey = Key_File_Location_Field.getText();
-        boolean vltKey = Key_File_CheckBox.isSelected();
-        if (vltName.equals("") || vltPass.equals("") || cnfPass.equals("") || vltPath.equals("") || (vltKey && valtKey.equals("")))
-            JOptionPane.showMessageDialog(null, "All Fields are Required to be Filled. Please Try Again!", "Empty Feilds", JOptionPane.ERROR_MESSAGE);
-        else if (vltPass.length() < 8)
-            JOptionPane.showMessageDialog(null, "Your Password Must Contain at Least 8 Characters. Please Try Again!", "Password Too Short", JOptionPane.ERROR_MESSAGE);
-        else if (!vltPass.equals(cnfPass))
-            JOptionPane.showMessageDialog(null, "The Passwords in Password Fields do not Match. Please Try Again!", "Password Mismatch", JOptionPane.ERROR_MESSAGE);
-        else {
-            if (vltKey) {
-                String Salt = com.xahertz.internal.Functions.getSalt();
-                com.password4j.Hash hash = com.password4j.Password.hash(vltPass).addSalt(Salt).withPBKDF2();
-                com.xahertz.internal.Functions.writeKeyFile(Salt, valtKey);
-                vltPass = hash.getResult();
-            }
-            if (com.xahertz.internal.SQLite.createNewVault(vltName, vltPass, vltPath)) {
-                com.xahertz.internal.SQLite.setVaultList(vltPath, vltName, vltKey, valtKey);
-                Current_Vault_Location = vltPath;
-                Current_Vault_Name = vltName;
-                Current_Vault_Has_Key = vltKey;
-                Current_Vault_Key_Location = valtKey;
-                Vault_Name_Field.setText("");
-                Vault_Password_Field.setText("");
-                Confirm_Password_Field.setText("");
-                Vault_Location_Field.setText("");
-                Key_File_Location_Field.setText("");
-                Key_File_CheckBox.setSelected(false);
-                OpenVaultPage();
-            }
-        }
-    }//GEN-LAST:event_NewVault_Finish_ButtonActionPerformed
+    private void Edit_Entry_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Edit_Entry_MenuItemActionPerformed
+        Edit_Entry_ActionPerformed();
+    }//GEN-LAST:event_Edit_Entry_MenuItemActionPerformed
 
-    private void NewVault_Cancel_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewVault_Cancel_ButtonActionPerformed
-        Container_Deck.show(Container, "start");
-    }//GEN-LAST:event_NewVault_Cancel_ButtonActionPerformed
+    private void Delete_Entry_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Delete_Entry_MenuItemActionPerformed
+        Delete_Entry_ActionPerformed();
+    }//GEN-LAST:event_Delete_Entry_MenuItemActionPerformed
 
-    private void StartPage_Open_Vault_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StartPage_Open_Vault_ButtonActionPerformed
-        Open_Vault_ActionPerformed();
-    }//GEN-LAST:event_StartPage_Open_Vault_ButtonActionPerformed
+    private void New_Group_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_New_Group_MenuItemActionPerformed
+        New_Group_ActionPerformed();
+    }//GEN-LAST:event_New_Group_MenuItemActionPerformed
+
+    private void Edit_Group_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Edit_Group_MenuItemActionPerformed
+        Edit_Group_ActionPerformed();
+    }//GEN-LAST:event_Edit_Group_MenuItemActionPerformed
+
+    private void Delete_Group_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Delete_Group_MenuItemActionPerformed
+        Delete_Group_ActionPerformed();
+    }//GEN-LAST:event_Delete_Group_MenuItemActionPerformed
+
+    private void Copy_Username_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Copy_Username_MenuItemActionPerformed
+        Copy_Username_ActionPerformed();
+    }//GEN-LAST:event_Copy_Username_MenuItemActionPerformed
+
+    private void Copy_Password_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Copy_Password_MenuItemActionPerformed
+        Copy_Password_ActionPerformed();
+    }//GEN-LAST:event_Copy_Password_MenuItemActionPerformed
+
+    private void Copy_URL_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Copy_URL_MenuItemActionPerformed
+        Copy_URL_ActionPerformed();
+    }//GEN-LAST:event_Copy_URL_MenuItemActionPerformed
+
+    private void Password_Generator_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Password_Generator_MenuItemActionPerformed
+        Password PG = new Password();
+        PG.setVisible(true);
+    }//GEN-LAST:event_Password_Generator_MenuItemActionPerformed
+
+    private void Settings_CheckBox_MenuItemItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Settings_CheckBox_MenuItemItemStateChanged
+        if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED)
+            Settings_ToggleButton.setSelected(true);
+        else
+            Settings_ToggleButton.setSelected(false);
+    }//GEN-LAST:event_Settings_CheckBox_MenuItemItemStateChanged
+
+    private void About_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_About_MenuItemActionPerformed
+        JOptionPane.showMessageDialog(null, "<html><h1>Sentinel Password Manager</h1></html>\nVersion " + Version + "\nCopyright \u00A9 2024 XaHertz", "About", JOptionPane.PLAIN_MESSAGE);
+    }//GEN-LAST:event_About_MenuItemActionPerformed
 
     private void Open_Vault_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Open_Vault_ButtonActionPerformed
         Open_Vault_ActionPerformed();
     }//GEN-LAST:event_Open_Vault_ButtonActionPerformed
 
-    private void New_Vault_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_New_Vault_MenuItemActionPerformed
-        Container_Deck.show(Container, "new");
-    }//GEN-LAST:event_New_Vault_MenuItemActionPerformed
+    private void Close_Vault_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Close_Vault_ButtonActionPerformed
+        com.xahertz.internal.SQLite.closeVault();
+        CloseVaultPage();
+    }//GEN-LAST:event_Close_Vault_ButtonActionPerformed
 
-    private void Browse_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Browse_ButtonActionPerformed
-        javax.swing.JFileChooser fileChooser = new javax.swing.JFileChooser();
-        fileChooser.setDialogTitle("Save Vault as");
-        fileChooser.setDialogType(javax.swing.JFileChooser.SAVE_DIALOG);
-        fileChooser.setSelectedFile(new java.io.File("Passwords.svlt"));
-        fileChooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Sentinel Vault File", "svlt"));
-        if (fileChooser.showSaveDialog(null) == javax.swing.JFileChooser.APPROVE_OPTION) {
-            if (fileChooser.getSelectedFile().exists()) {
-                int response = JOptionPane.showConfirmDialog(null, "The file already exists. Do you want to overwrite the file?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-                if (response == JOptionPane.YES_OPTION) {
-                    Vault_Location_Field.setText(fileChooser.getSelectedFile().getAbsolutePath());
-                }
-            } else
-                Vault_Location_Field.setText(fileChooser.getSelectedFile().getAbsolutePath());
+    private void New_Entry_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_New_Entry_ButtonActionPerformed
+        New_Entry_ActionPerformed();
+    }//GEN-LAST:event_New_Entry_ButtonActionPerformed
+
+    private void Edit_Entry_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Edit_Entry_ButtonActionPerformed
+        Edit_Entry_ActionPerformed();
+    }//GEN-LAST:event_Edit_Entry_ButtonActionPerformed
+
+    private void Delete_Entry_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Delete_Entry_ButtonActionPerformed
+        Delete_Entry_ActionPerformed();
+    }//GEN-LAST:event_Delete_Entry_ButtonActionPerformed
+
+    private void Copy_Username_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Copy_Username_ButtonActionPerformed
+        Copy_Username_ActionPerformed();
+    }//GEN-LAST:event_Copy_Username_ButtonActionPerformed
+
+    private void Copy_Password_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Copy_Password_ButtonActionPerformed
+        Copy_Password_ActionPerformed();
+    }//GEN-LAST:event_Copy_Password_ButtonActionPerformed
+
+    private void Copy_URL_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Copy_URL_ButtonActionPerformed
+        Copy_URL_ActionPerformed();
+    }//GEN-LAST:event_Copy_URL_ButtonActionPerformed
+
+    private void Password_Generator_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Password_Generator_ButtonActionPerformed
+        Password PG = new Password();
+        PG.setVisible(true);
+    }//GEN-LAST:event_Password_Generator_ButtonActionPerformed
+
+    private void Settings_ToggleButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Settings_ToggleButtonItemStateChanged
+        if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
+            Settings_CheckBox_MenuItem.setSelected(true);
+            Settings_Vault_Name_Field.setText(Current_Vault_Name);
+            New_Key_RadioButton.setSelected(true);
+            if (Current_Vault_Has_Key) {
+                Current_Key_File_Location_Field.setText(Current_Vault_Key_Location);
+                Current_Key_File_Location_Field.setEnabled(true);
+                Change_Key_Button.setText("Change Key File");
+                Remove_Key_RadioButton.setEnabled(true);
+            } else {
+                Current_Key_File_Location_Field.setText("This Vault does not have a Key File.");
+                Current_Key_File_Location_Field.setEnabled(false);
+                Change_Key_Button.setText("Add Key File");
+                Remove_Key_RadioButton.setEnabled(false);
+            }
+            Container_Deck.show(Container, "settings");
+            DisableVaultDataManipulationFunctions();
+            Close_Vault_Button.setEnabled(false);
+            Copy_Username_Button.setEnabled(false);
+            Copy_Password_Button.setEnabled(false);
+            Copy_URL_Button.setEnabled(false);
+            Close_Vault_MenuItem.setEnabled(false);
+            Copy_Username_MenuItem.setEnabled(false);
+            Copy_Password_MenuItem.setEnabled(false);
+            Copy_URL_MenuItem.setEnabled(false);
+        } else {
+            Settings_CheckBox_MenuItem.setSelected(false);
+            Container_Deck.show(Container, "vault");
+            EnableVaultDataManipulationFunctions();
+            Close_Vault_Button.setEnabled(true);
+            Copy_Username_Button.setEnabled(true);
+            Copy_Password_Button.setEnabled(true);
+            Copy_URL_Button.setEnabled(true);
+            Close_Vault_MenuItem.setEnabled(true);
+            Copy_Username_MenuItem.setEnabled(true);
+            Copy_Password_MenuItem.setEnabled(true);
+            Copy_URL_MenuItem.setEnabled(true);
+            Settings_New_Password_Field.setText("");
+            Settings_Confirm_Password_Field.setText("");
+            Current_Password_Field.setText("");
+            New_Key_File_Location_Field.setText("");
         }
-    }//GEN-LAST:event_Browse_ButtonActionPerformed
+    }//GEN-LAST:event_Settings_ToggleButtonItemStateChanged
 
     private void About_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_About_ButtonActionPerformed
         JOptionPane.showMessageDialog(null, "<html><h1>Sentinel Password Manager</h1></html>\nVersion " + Version + "\nCopyright \u00A9 2024 XaHertz", "About", JOptionPane.PLAIN_MESSAGE);
     }//GEN-LAST:event_About_ButtonActionPerformed
 
-    private void About_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_About_MenuItemActionPerformed
-        JOptionPane.showMessageDialog(null, "<html><h1>Sentinel Password Manager</h1></html>\nVersion " + Version + "\nCopyright \u00A9 2024 XaHertz", "About", JOptionPane.PLAIN_MESSAGE);
-    }//GEN-LAST:event_About_MenuItemActionPerformed
+    private void StartPage_Create_Vault_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StartPage_Create_Vault_ButtonActionPerformed
+        Container_Deck.show(Container, "new");
+    }//GEN-LAST:event_StartPage_Create_Vault_ButtonActionPerformed
+
+    private void StartPage_Open_Vault_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StartPage_Open_Vault_ButtonActionPerformed
+        Open_Vault_ActionPerformed();
+    }//GEN-LAST:event_StartPage_Open_Vault_ButtonActionPerformed
 
     private void Recent_Vaults_ListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Recent_Vaults_ListMouseClicked
         javax.swing.JList list = (javax.swing.JList)evt.getSource();
@@ -1746,194 +1801,10 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_Recent_Vaults_ListMouseClicked
 
-    private void New_Entry_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_New_Entry_ButtonActionPerformed
-        New_Entry_ActionPerformed();
-    }//GEN-LAST:event_New_Entry_ButtonActionPerformed
-
-    private void EntryPage_Cancel_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EntryPage_Cancel_ButtonActionPerformed
-        Container_Deck.show(Container, "vault");
-        EnableVaultDataManipulationFunctions();
-        Title_TextField.setText("");
-        Username_TextField.setText("");
-        Password_Field.setText("");
-        URL_TextField.setText("");
-        Notes_TextArea.setText("");
-    }//GEN-LAST:event_EntryPage_Cancel_ButtonActionPerformed
-
-    private void EntryPage_Finish_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EntryPage_Finish_ButtonActionPerformed
-        String Title = Title_TextField.getText();
-        String Username = Username_TextField.getText();
-        String Password = new String(Password_Field.getPassword());
-        String URL = URL_TextField.getText();
-        String Notes = Notes_TextArea.getText();
-        com.xahertz.internal.SQLite.newTableEntry(Vault_Table_Name, UID, Title, Username, Password, URL, Notes);
-        Passwords_Table_Model(Vault_Table_Name);
-        Container_Deck.show(Container, "vault");
-        EnableVaultDataManipulationFunctions();
-        Title_TextField.setText("");
-        Username_TextField.setText("");
-        Password_Field.setText("");
-        URL_TextField.setText("");
-        Notes_TextArea.setText("");
-    }//GEN-LAST:event_EntryPage_Finish_ButtonActionPerformed
-
-    private void Edit_Entry_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Edit_Entry_ButtonActionPerformed
-        Edit_Entry_ActionPerformed();
-    }//GEN-LAST:event_Edit_Entry_ButtonActionPerformed
-
-    private void FolderTreeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FolderTreeMousePressed
-        javax.swing.tree.TreePath selPath = FolderTree.getClosestPathForLocation(evt.getX(), evt.getY());
-        FolderTree.setSelectionPath(selPath);
-    }//GEN-LAST:event_FolderTreeMousePressed
-
-    private void New_Group_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_New_Group_MenuItemActionPerformed
-        New_Group_ActionPerformed();
-    }//GEN-LAST:event_New_Group_MenuItemActionPerformed
-
-    private void Tree_PopupMenu_New_GroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Tree_PopupMenu_New_GroupActionPerformed
-        New_Group_ActionPerformed();
-    }//GEN-LAST:event_Tree_PopupMenu_New_GroupActionPerformed
-
-    private void FolderTreeValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_FolderTreeValueChanged
-        if (evt.getNewLeadSelectionPath() != null){
-            String vltTableName = evt.getNewLeadSelectionPath().getLastPathComponent().toString();
-            Passwords_Table_Model(vltTableName);
-            Vault_Table_Name = vltTableName;
-        }
-    }//GEN-LAST:event_FolderTreeValueChanged
-
-    private void Edit_Group_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Edit_Group_MenuItemActionPerformed
-        Edit_Group_ActionPerformed();
-    }//GEN-LAST:event_Edit_Group_MenuItemActionPerformed
-
-    private void Tree_PopupMenu_Edit_GroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Tree_PopupMenu_Edit_GroupActionPerformed
-        Edit_Group_ActionPerformed();
-    }//GEN-LAST:event_Tree_PopupMenu_Edit_GroupActionPerformed
-
-    private void Delete_Group_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Delete_Group_MenuItemActionPerformed
-        Delete_Group_ActionPerformed();
-    }//GEN-LAST:event_Delete_Group_MenuItemActionPerformed
-
-    private void Tree_PopupMenu_Delete_GroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Tree_PopupMenu_Delete_GroupActionPerformed
-        Delete_Group_ActionPerformed();
-    }//GEN-LAST:event_Tree_PopupMenu_Delete_GroupActionPerformed
-
-    private void New_Entry_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_New_Entry_MenuItemActionPerformed
-        New_Entry_ActionPerformed();
-    }//GEN-LAST:event_New_Entry_MenuItemActionPerformed
-
-    private void Table_PopupMenu_New_EntryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Table_PopupMenu_New_EntryActionPerformed
-        New_Entry_ActionPerformed();
-    }//GEN-LAST:event_Table_PopupMenu_New_EntryActionPerformed
-
-    private void Edit_Entry_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Edit_Entry_MenuItemActionPerformed
-        Edit_Entry_ActionPerformed();
-    }//GEN-LAST:event_Edit_Entry_MenuItemActionPerformed
-
-    private void Table_PopupMenu_Edit_EntryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Table_PopupMenu_Edit_EntryActionPerformed
-        Edit_Entry_ActionPerformed();
-    }//GEN-LAST:event_Table_PopupMenu_Edit_EntryActionPerformed
-
-    private void Delete_Entry_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Delete_Entry_ButtonActionPerformed
-        Delete_Entry_ActionPerformed();
-    }//GEN-LAST:event_Delete_Entry_ButtonActionPerformed
-
-    private void Delete_Entry_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Delete_Entry_MenuItemActionPerformed
-        Delete_Entry_ActionPerformed();
-    }//GEN-LAST:event_Delete_Entry_MenuItemActionPerformed
-
-    private void Table_PopupMenu_Delete_EntryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Table_PopupMenu_Delete_EntryActionPerformed
-        Delete_Entry_ActionPerformed();
-    }//GEN-LAST:event_Table_PopupMenu_Delete_EntryActionPerformed
-
-    private void Copy_Username_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Copy_Username_ButtonActionPerformed
-        Copy_Username_ActionPerformed();
-    }//GEN-LAST:event_Copy_Username_ButtonActionPerformed
-
-    private void Copy_Username_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Copy_Username_MenuItemActionPerformed
-        Copy_Username_ActionPerformed();
-    }//GEN-LAST:event_Copy_Username_MenuItemActionPerformed
-
-    private void Table_PopupMenu_Copy_UsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Table_PopupMenu_Copy_UsernameActionPerformed
-        Copy_Username_ActionPerformed();
-    }//GEN-LAST:event_Table_PopupMenu_Copy_UsernameActionPerformed
-
-    private void Copy_Password_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Copy_Password_ButtonActionPerformed
-        Copy_Password_ActionPerformed();
-    }//GEN-LAST:event_Copy_Password_ButtonActionPerformed
-
-    private void Copy_Password_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Copy_Password_MenuItemActionPerformed
-        Copy_Password_ActionPerformed();
-    }//GEN-LAST:event_Copy_Password_MenuItemActionPerformed
-
-    private void Table_PopupMenu_Copy_PasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Table_PopupMenu_Copy_PasswordActionPerformed
-        Copy_Password_ActionPerformed();
-    }//GEN-LAST:event_Table_PopupMenu_Copy_PasswordActionPerformed
-
-    private void Copy_URL_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Copy_URL_ButtonActionPerformed
-        Copy_URL_ActionPerformed();
-    }//GEN-LAST:event_Copy_URL_ButtonActionPerformed
-
-    private void Copy_URL_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Copy_URL_MenuItemActionPerformed
-        Copy_URL_ActionPerformed();
-    }//GEN-LAST:event_Copy_URL_MenuItemActionPerformed
-
-    private void Table_PopupMenu_Copy_URLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Table_PopupMenu_Copy_URLActionPerformed
-        Copy_URL_ActionPerformed();
-    }//GEN-LAST:event_Table_PopupMenu_Copy_URLActionPerformed
-
-    private void Vault_Password_ToggleButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Vault_Password_ToggleButtonItemStateChanged
-        if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED)
-            Vault_Password_Field.setEchoChar((char) 0);
-        else
-            Vault_Password_Field.setEchoChar('\u2022');
-    }//GEN-LAST:event_Vault_Password_ToggleButtonItemStateChanged
-
-    private void Confirm_Password_ToggleButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Confirm_Password_ToggleButtonItemStateChanged
-        if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED)
-            Confirm_Password_Field.setEchoChar((char) 0);
-        else
-            Confirm_Password_Field.setEchoChar('\u2022');
-    }//GEN-LAST:event_Confirm_Password_ToggleButtonItemStateChanged
-
-    private void Password_Field_ToggleButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Password_Field_ToggleButtonItemStateChanged
-        if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED)
-            Password_Field.setEchoChar((char) 0);
-        else
-            Password_Field.setEchoChar('\u2022');
-    }//GEN-LAST:event_Password_Field_ToggleButtonItemStateChanged
-
     private void Clear_List_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Clear_List_ButtonActionPerformed
         com.xahertz.internal.SQLite.remVaultList();
         Recent_Vaults_List.setModel(com.xahertz.internal.SQLite.getVaultList());
     }//GEN-LAST:event_Clear_List_ButtonActionPerformed
-
-    private void Key_File_CheckBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Key_File_CheckBoxItemStateChanged
-        if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
-            Key_File_Location_Field.setEnabled(true);
-            Key_File_Browse_Button.setEnabled(true);
-        } else {
-            Key_File_Location_Field.setEnabled(false);
-            Key_File_Browse_Button.setEnabled(false);
-        }
-    }//GEN-LAST:event_Key_File_CheckBoxItemStateChanged
-
-    private void Key_File_Browse_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Key_File_Browse_ButtonActionPerformed
-        javax.swing.JFileChooser fileChooser = new javax.swing.JFileChooser();
-        fileChooser.setDialogTitle("Save Key File as");
-        fileChooser.setDialogType(javax.swing.JFileChooser.SAVE_DIALOG);
-        fileChooser.setSelectedFile(new java.io.File("Passwords.svlk"));
-        fileChooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Sentinel Vault Key File", "svlk"));
-        if (fileChooser.showSaveDialog(null) == javax.swing.JFileChooser.APPROVE_OPTION) {
-            if (fileChooser.getSelectedFile().exists()) {
-                int response = JOptionPane.showConfirmDialog(null, "The file already exists. Do you want to overwrite the file?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-                if (response == JOptionPane.YES_OPTION) {
-                    Key_File_Location_Field.setText(fileChooser.getSelectedFile().getAbsolutePath());
-                }
-            } else
-                Key_File_Location_Field.setText(fileChooser.getSelectedFile().getAbsolutePath());
-        }
-    }//GEN-LAST:event_Key_File_Browse_ButtonActionPerformed
 
     private void OpenVault_Password_ToggleButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_OpenVault_Password_ToggleButtonItemStateChanged
         if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED)
@@ -1953,6 +1824,13 @@ public class Main extends javax.swing.JFrame {
             OpenVault_Key_File_Browse_Button.setEnabled(false);
         }
     }//GEN-LAST:event_OpenVault_Key_File_CheckBoxItemStateChanged
+
+    private void OpenVault_Key_File_ToggleButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_OpenVault_Key_File_ToggleButtonItemStateChanged
+        if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED)
+            OpenVault_Key_File_Location_Field.setEchoChar((char) 0);
+        else
+            OpenVault_Key_File_Location_Field.setEchoChar('\u2022');
+    }//GEN-LAST:event_OpenVault_Key_File_ToggleButtonItemStateChanged
 
     private void OpenVault_Key_File_Browse_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpenVault_Key_File_Browse_ButtonActionPerformed
         javax.swing.JFileChooser fileChooser = new javax.swing.JFileChooser();
@@ -2001,32 +1879,177 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_Unlock_ButtonActionPerformed
 
-    private void OpenVault_Key_File_ToggleButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_OpenVault_Key_File_ToggleButtonItemStateChanged
+    private void Vault_Password_ToggleButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Vault_Password_ToggleButtonItemStateChanged
         if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED)
-            OpenVault_Key_File_Location_Field.setEchoChar((char) 0);
+            Vault_Password_Field.setEchoChar((char) 0);
         else
-            OpenVault_Key_File_Location_Field.setEchoChar('\u2022');
-    }//GEN-LAST:event_OpenVault_Key_File_ToggleButtonItemStateChanged
-
-    private void Password_Generator_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Password_Generator_ButtonActionPerformed
-        Password PG = new Password();
-        PG.setVisible(true);
-    }//GEN-LAST:event_Password_Generator_ButtonActionPerformed
-
-    private void Password_Generator_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Password_Generator_MenuItemActionPerformed
-        Password PG = new Password();
-        PG.setVisible(true);
-    }//GEN-LAST:event_Password_Generator_MenuItemActionPerformed
+            Vault_Password_Field.setEchoChar('\u2022');
+    }//GEN-LAST:event_Vault_Password_ToggleButtonItemStateChanged
 
     private void Generate_Vault_Password_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Generate_Vault_Password_ButtonActionPerformed
         Password PG = new Password();
         PG.setVisible(true);
     }//GEN-LAST:event_Generate_Vault_Password_ButtonActionPerformed
 
-    private void Generate_Password_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Generate_Password_ButtonActionPerformed
-        Password PG = new Password();
-        PG.setVisible(true);
-    }//GEN-LAST:event_Generate_Password_ButtonActionPerformed
+    private void Confirm_Password_ToggleButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Confirm_Password_ToggleButtonItemStateChanged
+        if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED)
+            Confirm_Password_Field.setEchoChar((char) 0);
+        else
+            Confirm_Password_Field.setEchoChar('\u2022');
+    }//GEN-LAST:event_Confirm_Password_ToggleButtonItemStateChanged
+
+    private void Browse_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Browse_ButtonActionPerformed
+        javax.swing.JFileChooser fileChooser = new javax.swing.JFileChooser();
+        fileChooser.setDialogTitle("Save Vault as");
+        fileChooser.setDialogType(javax.swing.JFileChooser.SAVE_DIALOG);
+        fileChooser.setSelectedFile(new java.io.File("Passwords.svlt"));
+        fileChooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Sentinel Vault File", "svlt"));
+        if (fileChooser.showSaveDialog(null) == javax.swing.JFileChooser.APPROVE_OPTION) {
+            if (fileChooser.getSelectedFile().exists()) {
+                int response = JOptionPane.showConfirmDialog(null, "The file already exists. Do you want to overwrite the file?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                if (response == JOptionPane.YES_OPTION) {
+                    Vault_Location_Field.setText(fileChooser.getSelectedFile().getAbsolutePath());
+                }
+            } else
+                Vault_Location_Field.setText(fileChooser.getSelectedFile().getAbsolutePath());
+        }
+    }//GEN-LAST:event_Browse_ButtonActionPerformed
+
+    private void Key_File_CheckBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Key_File_CheckBoxItemStateChanged
+        if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
+            Key_File_Location_Field.setEnabled(true);
+            Key_File_Browse_Button.setEnabled(true);
+        } else {
+            Key_File_Location_Field.setEnabled(false);
+            Key_File_Browse_Button.setEnabled(false);
+        }
+    }//GEN-LAST:event_Key_File_CheckBoxItemStateChanged
+
+    private void Key_File_Browse_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Key_File_Browse_ButtonActionPerformed
+        javax.swing.JFileChooser fileChooser = new javax.swing.JFileChooser();
+        fileChooser.setDialogTitle("Save Key File as");
+        fileChooser.setDialogType(javax.swing.JFileChooser.SAVE_DIALOG);
+        fileChooser.setSelectedFile(new java.io.File("Passwords.svlk"));
+        fileChooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Sentinel Vault Key File", "svlk"));
+        if (fileChooser.showSaveDialog(null) == javax.swing.JFileChooser.APPROVE_OPTION) {
+            if (fileChooser.getSelectedFile().exists()) {
+                int response = JOptionPane.showConfirmDialog(null, "The file already exists. Do you want to overwrite the file?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                if (response == JOptionPane.YES_OPTION) {
+                    Key_File_Location_Field.setText(fileChooser.getSelectedFile().getAbsolutePath());
+                }
+            } else
+                Key_File_Location_Field.setText(fileChooser.getSelectedFile().getAbsolutePath());
+        }
+    }//GEN-LAST:event_Key_File_Browse_ButtonActionPerformed
+
+    private void NewVault_Cancel_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewVault_Cancel_ButtonActionPerformed
+        Container_Deck.show(Container, "start");
+    }//GEN-LAST:event_NewVault_Cancel_ButtonActionPerformed
+
+    private void NewVault_Finish_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewVault_Finish_ButtonActionPerformed
+        String vltName = Vault_Name_Field.getText();
+        String vltPass = new String(Vault_Password_Field.getPassword());
+        String cnfPass = new String(Confirm_Password_Field.getPassword());
+        String vltPath = Vault_Location_Field.getText();
+        String valtKey = Key_File_Location_Field.getText();
+        boolean vltKey = Key_File_CheckBox.isSelected();
+        if (vltName.equals("") || vltPass.equals("") || cnfPass.equals("") || vltPath.equals("") || (vltKey && valtKey.equals("")))
+            JOptionPane.showMessageDialog(null, "All Fields are Required to be Filled. Please Try Again!", "Empty Feilds", JOptionPane.ERROR_MESSAGE);
+        else if (vltPass.length() < 8)
+            JOptionPane.showMessageDialog(null, "Your Password Must Contain at Least 8 Characters. Please Try Again!", "Password Too Short", JOptionPane.ERROR_MESSAGE);
+        else if (!vltPass.equals(cnfPass))
+            JOptionPane.showMessageDialog(null, "The Passwords in Password Fields do not Match. Please Try Again!", "Password Mismatch", JOptionPane.ERROR_MESSAGE);
+        else {
+            if (vltKey) {
+                String Salt = com.xahertz.internal.Functions.getSalt();
+                com.password4j.Hash hash = com.password4j.Password.hash(vltPass).addSalt(Salt).withPBKDF2();
+                com.xahertz.internal.Functions.writeKeyFile(Salt, valtKey);
+                vltPass = hash.getResult();
+            }
+            if (com.xahertz.internal.SQLite.createNewVault(vltName, vltPass, vltPath)) {
+                com.xahertz.internal.SQLite.setVaultList(vltPath, vltName, vltKey, valtKey);
+                Current_Vault_Location = vltPath;
+                Current_Vault_Name = vltName;
+                Current_Vault_Has_Key = vltKey;
+                Current_Vault_Key_Location = valtKey;
+                Vault_Name_Field.setText("");
+                Vault_Password_Field.setText("");
+                Confirm_Password_Field.setText("");
+                Vault_Location_Field.setText("");
+                Key_File_Location_Field.setText("");
+                Key_File_CheckBox.setSelected(false);
+                OpenVaultPage();
+            }
+        }
+    }//GEN-LAST:event_NewVault_Finish_ButtonActionPerformed
+
+    private void FolderTreeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FolderTreeMousePressed
+        javax.swing.tree.TreePath selPath = FolderTree.getClosestPathForLocation(evt.getX(), evt.getY());
+        FolderTree.setSelectionPath(selPath);
+    }//GEN-LAST:event_FolderTreeMousePressed
+
+    private void FolderTreeValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_FolderTreeValueChanged
+        if (evt.getNewLeadSelectionPath() != null){
+            String vltTableName = evt.getNewLeadSelectionPath().getLastPathComponent().toString();
+            Passwords_Table_Model(vltTableName);
+            Vault_Table_Name = vltTableName;
+        }
+    }//GEN-LAST:event_FolderTreeValueChanged
+
+    private void Tree_PopupMenu_New_GroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Tree_PopupMenu_New_GroupActionPerformed
+        New_Group_ActionPerformed();
+    }//GEN-LAST:event_Tree_PopupMenu_New_GroupActionPerformed
+
+    private void Tree_PopupMenu_Edit_GroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Tree_PopupMenu_Edit_GroupActionPerformed
+        Edit_Group_ActionPerformed();
+    }//GEN-LAST:event_Tree_PopupMenu_Edit_GroupActionPerformed
+
+    private void Tree_PopupMenu_Delete_GroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Tree_PopupMenu_Delete_GroupActionPerformed
+        Delete_Group_ActionPerformed();
+    }//GEN-LAST:event_Tree_PopupMenu_Delete_GroupActionPerformed
+
+    private void Passwords_TableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Passwords_TableMousePressed
+        if (evt.getButton() == java.awt.event.MouseEvent.BUTTON3) {
+            int row = Passwords_Table.rowAtPoint(evt.getPoint());
+            int column = Passwords_Table.columnAtPoint(evt.getPoint());
+            if (!Passwords_Table.isRowSelected(row))
+                Passwords_Table.changeSelection(row, column, false, false);
+        }
+    }//GEN-LAST:event_Passwords_TableMousePressed
+
+    private void Passwords_Table_RowSelected(javax.swing.event.ListSelectionEvent evt) {
+        int row = Passwords_Table.getSelectedRow();
+        if (row != -1) {
+            Details_Username_Field.setText(Passwords_Table.getValueAt(row, 2).toString());
+            Details_Password_Field.setText(Passwords_Table.getValueAt(row, 3).toString());
+            Details_URL_Field.setText(Passwords_Table.getValueAt(row, 4).toString());
+            Details_Notes_TextArea.setText(Passwords_Table.getValueAt(row, 5).toString());
+        }
+    }
+
+    private void Table_PopupMenu_New_EntryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Table_PopupMenu_New_EntryActionPerformed
+        New_Entry_ActionPerformed();
+    }//GEN-LAST:event_Table_PopupMenu_New_EntryActionPerformed
+
+    private void Table_PopupMenu_Edit_EntryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Table_PopupMenu_Edit_EntryActionPerformed
+        Edit_Entry_ActionPerformed();
+    }//GEN-LAST:event_Table_PopupMenu_Edit_EntryActionPerformed
+
+    private void Table_PopupMenu_Delete_EntryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Table_PopupMenu_Delete_EntryActionPerformed
+        Delete_Entry_ActionPerformed();
+    }//GEN-LAST:event_Table_PopupMenu_Delete_EntryActionPerformed
+
+    private void Table_PopupMenu_Copy_UsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Table_PopupMenu_Copy_UsernameActionPerformed
+        Copy_Username_ActionPerformed();
+    }//GEN-LAST:event_Table_PopupMenu_Copy_UsernameActionPerformed
+
+    private void Table_PopupMenu_Copy_PasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Table_PopupMenu_Copy_PasswordActionPerformed
+        Copy_Password_ActionPerformed();
+    }//GEN-LAST:event_Table_PopupMenu_Copy_PasswordActionPerformed
+
+    private void Table_PopupMenu_Copy_URLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Table_PopupMenu_Copy_URLActionPerformed
+        Copy_URL_ActionPerformed();
+    }//GEN-LAST:event_Table_PopupMenu_Copy_URLActionPerformed
 
     private void Details_Password_ToggleButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Details_Password_ToggleButtonItemStateChanged
         if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED)
@@ -2035,50 +2058,108 @@ public class Main extends javax.swing.JFrame {
             Details_Password_Field.setEchoChar('\u2022');
     }//GEN-LAST:event_Details_Password_ToggleButtonItemStateChanged
 
-    private void Settings_ToggleButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Settings_ToggleButtonItemStateChanged
-        if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
-            Settings_CheckBox_MenuItem.setSelected(true);
+    private void Password_Field_ToggleButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Password_Field_ToggleButtonItemStateChanged
+        if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED)
+            Password_Field.setEchoChar((char) 0);
+        else
+            Password_Field.setEchoChar('\u2022');
+    }//GEN-LAST:event_Password_Field_ToggleButtonItemStateChanged
+
+    private void Generate_Password_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Generate_Password_ButtonActionPerformed
+        Password PG = new Password();
+        PG.setVisible(true);
+    }//GEN-LAST:event_Generate_Password_ButtonActionPerformed
+
+    private void EntryPage_Cancel_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EntryPage_Cancel_ButtonActionPerformed
+        Container_Deck.show(Container, "vault");
+        EnableVaultDataManipulationFunctions();
+        Title_TextField.setText("");
+        Username_TextField.setText("");
+        Password_Field.setText("");
+        URL_TextField.setText("");
+        Notes_TextArea.setText("");
+    }//GEN-LAST:event_EntryPage_Cancel_ButtonActionPerformed
+
+    private void EntryPage_Finish_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EntryPage_Finish_ButtonActionPerformed
+        String Title = Title_TextField.getText();
+        String Username = Username_TextField.getText();
+        String Password = new String(Password_Field.getPassword());
+        String URL = URL_TextField.getText();
+        String Notes = Notes_TextArea.getText();
+        com.xahertz.internal.SQLite.newTableEntry(Vault_Table_Name, UID, Title, Username, Password, URL, Notes);
+        Passwords_Table_Model(Vault_Table_Name);
+        Container_Deck.show(Container, "vault");
+        EnableVaultDataManipulationFunctions();
+        Title_TextField.setText("");
+        Username_TextField.setText("");
+        Password_Field.setText("");
+        URL_TextField.setText("");
+        Notes_TextArea.setText("");
+    }//GEN-LAST:event_EntryPage_Finish_ButtonActionPerformed
+
+    private void Change_Vault_Name_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Change_Vault_Name_ButtonActionPerformed
+        String vltName = Settings_Vault_Name_Field.getText();
+        if (vltName.equals(""))
+            JOptionPane.showMessageDialog(null, "Vault Name Field is Required to be Filled. Please Try Again!", "Empty Feilds", JOptionPane.ERROR_MESSAGE);
+        else if (vltName.equals(Current_Vault_Name))
+            JOptionPane.showMessageDialog(null, "New Name is same as the Old one. Nothing to Rename.", "Error", JOptionPane.ERROR_MESSAGE);
+        else {
+            com.xahertz.internal.SQLite.setVaultName(vltName);
+            com.xahertz.internal.SQLite.setVaultList(Current_Vault_Location, vltName, Current_Vault_Has_Key, Current_Vault_Key_Location);
+            Current_Vault_Name = com.xahertz.internal.SQLite.getVaultName();
+            JOptionPane.showMessageDialog(null, "Vault Name Changed Successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
             Settings_Vault_Name_Field.setText(Current_Vault_Name);
-            New_Key_RadioButton.setSelected(true);
+            setTitle("Vault : " + Current_Vault_Name + "  \u2013  Sentinel");
+        }
+    }//GEN-LAST:event_Change_Vault_Name_ButtonActionPerformed
+
+    private void Settings_New_Password_ToggleButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Settings_New_Password_ToggleButtonItemStateChanged
+        if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED)
+            Settings_New_Password_Field.setEchoChar((char) 0);
+        else
+            Settings_New_Password_Field.setEchoChar('\u2022');
+    }//GEN-LAST:event_Settings_New_Password_ToggleButtonItemStateChanged
+
+    private void Generate_New_Password_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Generate_New_Password_ButtonActionPerformed
+        Password PG = new Password();
+        PG.setVisible(true);
+    }//GEN-LAST:event_Generate_New_Password_ButtonActionPerformed
+
+    private void Settings_Confirm_Password_ToggleButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Settings_Confirm_Password_ToggleButtonItemStateChanged
+        if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED)
+            Settings_Confirm_Password_Field.setEchoChar((char) 0);
+        else
+            Settings_Confirm_Password_Field.setEchoChar('\u2022');
+    }//GEN-LAST:event_Settings_Confirm_Password_ToggleButtonItemStateChanged
+
+    private void Change_Password_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Change_Password_ButtonActionPerformed
+        String vltPass = new String(Settings_New_Password_Field.getPassword());
+        String cnfPass = new String(Settings_Confirm_Password_Field.getPassword());
+        if (vltPass.equals("") || cnfPass.equals(""))
+            JOptionPane.showMessageDialog(null, "All Fields are Required to be Filled. Please Try Again!", "Empty Feilds", JOptionPane.ERROR_MESSAGE);
+        else if (vltPass.length() < 8)
+            JOptionPane.showMessageDialog(null, "Your Password Must Contain at Least 8 Characters. Please Try Again!", "Password Too Short", JOptionPane.ERROR_MESSAGE);
+        else if (!vltPass.equals(cnfPass))
+            JOptionPane.showMessageDialog(null, "The Passwords in Password Fields do not Match. Please Try Again!", "Password Mismatch", JOptionPane.ERROR_MESSAGE);
+        else {
             if (Current_Vault_Has_Key) {
-                Current_Key_File_Location_Field.setText(Current_Vault_Key_Location);
-                Current_Key_File_Location_Field.setEnabled(true);
-                Change_Key_Button.setText("Change Key File");
-                Remove_Key_RadioButton.setEnabled(true);
-            } else {
-                Current_Key_File_Location_Field.setText("This Vault does not have a Key File.");
-                Current_Key_File_Location_Field.setEnabled(false);
-                Change_Key_Button.setText("Add Key File");
-                Remove_Key_RadioButton.setEnabled(false);
+                String Salt = com.xahertz.internal.Functions.readKeyFile(Current_Vault_Key_Location);
+                com.password4j.Hash hash = com.password4j.Password.hash(vltPass).addSalt(Salt).withPBKDF2();
+                vltPass = hash.getResult();
             }
-            Container_Deck.show(Container, "settings");
-            DisableVaultDataManipulationFunctions();
-            Close_Vault_Button.setEnabled(false);
-            Copy_Username_Button.setEnabled(false);
-            Copy_Password_Button.setEnabled(false);
-            Copy_URL_Button.setEnabled(false);
-            Close_Vault_MenuItem.setEnabled(false);
-            Copy_Username_MenuItem.setEnabled(false);
-            Copy_Password_MenuItem.setEnabled(false);
-            Copy_URL_MenuItem.setEnabled(false);
-        } else {
-            Settings_CheckBox_MenuItem.setSelected(false);
-            Container_Deck.show(Container, "vault");
-            EnableVaultDataManipulationFunctions();
-            Close_Vault_Button.setEnabled(true);
-            Copy_Username_Button.setEnabled(true);
-            Copy_Password_Button.setEnabled(true);
-            Copy_URL_Button.setEnabled(true);
-            Close_Vault_MenuItem.setEnabled(true);
-            Copy_Username_MenuItem.setEnabled(true);
-            Copy_Password_MenuItem.setEnabled(true);
-            Copy_URL_MenuItem.setEnabled(true);
+            com.xahertz.internal.SQLite.vltPassword(vltPass);
+            JOptionPane.showMessageDialog(null, "Password Changed Successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
             Settings_New_Password_Field.setText("");
             Settings_Confirm_Password_Field.setText("");
-            Current_Password_Field.setText("");
-            New_Key_File_Location_Field.setText("");
         }
-    }//GEN-LAST:event_Settings_ToggleButtonItemStateChanged
+    }//GEN-LAST:event_Change_Password_ButtonActionPerformed
+
+    private void Current_Password_ToggleButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Current_Password_ToggleButtonItemStateChanged
+        if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED)
+            Current_Password_Field.setEchoChar((char) 0);
+        else
+            Current_Password_Field.setEchoChar('\u2022');
+    }//GEN-LAST:event_Current_Password_ToggleButtonItemStateChanged
 
     private void New_Key_File_Browse_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_New_Key_File_Browse_ButtonActionPerformed
         javax.swing.JFileChooser fileChooser = new javax.swing.JFileChooser();
@@ -2105,70 +2186,6 @@ public class Main extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_New_Key_File_Browse_ButtonActionPerformed
-
-    private void Settings_New_Password_ToggleButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Settings_New_Password_ToggleButtonItemStateChanged
-        if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED)
-            Settings_New_Password_Field.setEchoChar((char) 0);
-        else
-            Settings_New_Password_Field.setEchoChar('\u2022');
-    }//GEN-LAST:event_Settings_New_Password_ToggleButtonItemStateChanged
-
-    private void Settings_Confirm_Password_ToggleButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Settings_Confirm_Password_ToggleButtonItemStateChanged
-        if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED)
-            Settings_Confirm_Password_Field.setEchoChar((char) 0);
-        else
-            Settings_Confirm_Password_Field.setEchoChar('\u2022');
-    }//GEN-LAST:event_Settings_Confirm_Password_ToggleButtonItemStateChanged
-
-    private void Generate_New_Password_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Generate_New_Password_ButtonActionPerformed
-        Password PG = new Password();
-        PG.setVisible(true);
-    }//GEN-LAST:event_Generate_New_Password_ButtonActionPerformed
-
-    private void Change_Password_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Change_Password_ButtonActionPerformed
-        String vltPass = new String(Settings_New_Password_Field.getPassword());
-        String cnfPass = new String(Settings_Confirm_Password_Field.getPassword());
-        if (vltPass.equals("") || cnfPass.equals(""))
-            JOptionPane.showMessageDialog(null, "All Fields are Required to be Filled. Please Try Again!", "Empty Feilds", JOptionPane.ERROR_MESSAGE);
-        else if (vltPass.length() < 8)
-            JOptionPane.showMessageDialog(null, "Your Password Must Contain at Least 8 Characters. Please Try Again!", "Password Too Short", JOptionPane.ERROR_MESSAGE);
-        else if (!vltPass.equals(cnfPass))
-            JOptionPane.showMessageDialog(null, "The Passwords in Password Fields do not Match. Please Try Again!", "Password Mismatch", JOptionPane.ERROR_MESSAGE);
-        else {
-            if (Current_Vault_Has_Key) {
-                String Salt = com.xahertz.internal.Functions.readKeyFile(Current_Vault_Key_Location);
-                com.password4j.Hash hash = com.password4j.Password.hash(vltPass).addSalt(Salt).withPBKDF2();
-                vltPass = hash.getResult();
-            }
-            com.xahertz.internal.SQLite.vltPassword(vltPass);
-            JOptionPane.showMessageDialog(null, "Password Changed Successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
-            Settings_New_Password_Field.setText("");
-            Settings_Confirm_Password_Field.setText("");
-        }
-    }//GEN-LAST:event_Change_Password_ButtonActionPerformed
-
-    private void Change_Vault_Name_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Change_Vault_Name_ButtonActionPerformed
-        String vltName = Settings_Vault_Name_Field.getText();
-        if (vltName.equals(""))
-            JOptionPane.showMessageDialog(null, "Vault Name Field is Required to be Filled. Please Try Again!", "Empty Feilds", JOptionPane.ERROR_MESSAGE);
-        else if (vltName.equals(Current_Vault_Name))
-            JOptionPane.showMessageDialog(null, "New Name is same as the Old one. Nothing to Rename.", "Error", JOptionPane.ERROR_MESSAGE);
-        else {
-            com.xahertz.internal.SQLite.setVaultName(vltName);
-            com.xahertz.internal.SQLite.setVaultList(Current_Vault_Location, vltName, Current_Vault_Has_Key, Current_Vault_Key_Location);
-            Current_Vault_Name = com.xahertz.internal.SQLite.getVaultName();
-            JOptionPane.showMessageDialog(null, "Vault Name Changed Successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
-            Settings_Vault_Name_Field.setText(Current_Vault_Name);
-            setTitle("Vault : " + Current_Vault_Name + "  \u2013  Sentinel");
-        }
-    }//GEN-LAST:event_Change_Vault_Name_ButtonActionPerformed
-
-    private void Settings_CheckBox_MenuItemItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Settings_CheckBox_MenuItemItemStateChanged
-        if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED)
-            Settings_ToggleButton.setSelected(true);
-        else
-            Settings_ToggleButton.setSelected(false);
-    }//GEN-LAST:event_Settings_CheckBox_MenuItemItemStateChanged
 
     private void Remove_Key_RadioButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Remove_Key_RadioButtonItemStateChanged
         if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
@@ -2238,23 +2255,6 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_Change_Key_ButtonActionPerformed
 
-    private void Current_Password_ToggleButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Current_Password_ToggleButtonItemStateChanged
-        if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED)
-            Current_Password_Field.setEchoChar((char) 0);
-        else
-            Current_Password_Field.setEchoChar('\u2022');
-    }//GEN-LAST:event_Current_Password_ToggleButtonItemStateChanged
-
-    private void Passwords_Table_RowSelected(javax.swing.event.ListSelectionEvent evt) {
-        int row = Passwords_Table.getSelectedRow();
-        if (row != -1) {
-            Details_Username_Field.setText(Passwords_Table.getValueAt(row, 2).toString());
-            Details_Password_Field.setText(Passwords_Table.getValueAt(row, 3).toString());
-            Details_URL_Field.setText(Passwords_Table.getValueAt(row, 4).toString());
-            Details_Notes_TextArea.setText(Passwords_Table.getValueAt(row, 5).toString());
-        }
-    }
-    
     private void Open_Vault_ActionPerformed() {
         javax.swing.JFileChooser fileChooser = new javax.swing.JFileChooser();
         fileChooser.setDialogTitle("Open Existing Vault");
@@ -2265,7 +2265,7 @@ public class Main extends javax.swing.JFrame {
             Container_Deck.show(Container, "open");
         }
     }
-    
+
     private void Open_Vault_ActionPerformed(String vltPath) {
         OpenVault_Label.setText(" Unlock Vault : " + com.xahertz.internal.SQLite.getVaultName(vltPath));
         Vault_Path_Field.setText(vltPath);
@@ -2277,161 +2277,6 @@ public class Main extends javax.swing.JFrame {
             OpenVault_Key_File_Location_Field.setText("");
         }
         Container_Deck.show(Container, "open");
-    }
-    
-    private void New_Entry_ActionPerformed() {
-        UID = "SVLT-" + new java.text.SimpleDateFormat("yyMMdd-HHmmss").format(new java.util.Date())+ "-" + com.xahertz.internal.Functions.randomID(8);
-        EntryPage_Label.setText(Vault_Table_Name + " \u2022 New Entry");
-        Container_Deck.show(Container, "entry");
-        DisableVaultDataManipulationFunctions();
-    }
-    
-    private void Edit_Entry_ActionPerformed(){
-        int row = Passwords_Table.getSelectedRow();
-        if (row == -1)
-            JOptionPane.showMessageDialog(null, "Please Select an Entry to Edit.", "Entry Not Selected", JOptionPane.ERROR_MESSAGE);
-        else {
-            UID = Passwords_Table.getValueAt(row, 0).toString();
-            Title_TextField.setText(Passwords_Table.getValueAt(row, 1).toString());
-            Username_TextField.setText(Passwords_Table.getValueAt(row, 2).toString());
-            Password_Field.setText(Passwords_Table.getValueAt(row, 3).toString());
-            URL_TextField.setText(Passwords_Table.getValueAt(row, 4).toString());
-            Notes_TextArea.setText(Passwords_Table.getValueAt(row, 5).toString());
-            EntryPage_Label.setText(Vault_Table_Name + " \u2022 " + Passwords_Table.getValueAt(row, 1).toString() + " \u2022 Edit Entry");
-            Container_Deck.show(Container, "entry");
-            DisableVaultDataManipulationFunctions();
-        }
-    }
-    
-    private void Delete_Entry_ActionPerformed() {
-        int row = Passwords_Table.getSelectedRow();
-        if (row == -1)
-            JOptionPane.showMessageDialog(null, "Please Select an Entry to be Deleted.", "Entry Not Selected", JOptionPane.ERROR_MESSAGE);
-        else {
-            int response = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this Entry?.", "Delete Entry: " + Passwords_Table.getValueAt(row, 1).toString(), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-            if (response == JOptionPane.YES_OPTION) {
-                com.xahertz.internal.SQLite.remTableEntry(Vault_Table_Name, Passwords_Table.getValueAt(row, 0).toString());
-                Passwords_Table_Model(Vault_Table_Name);
-            }
-        }
-    }
-    
-    private void New_Group_ActionPerformed() {
-        String vltTableName = JOptionPane.showInputDialog(null, "Enter a Name:", "New Group", JOptionPane.PLAIN_MESSAGE);
-        if (vltTableName != null) {
-            if (!vltTableName.equals("")) {
-                if (vltTableName.equals("Root"))
-                    JOptionPane.showMessageDialog(null, "\"Root\" can't be used as a Group Name.", "Error", JOptionPane.ERROR_MESSAGE);
-                if (vltTableName.equals("Configuration"))
-                    JOptionPane.showMessageDialog(null, "\"Configuration\" can't be used as a Group Name.", "Error", JOptionPane.ERROR_MESSAGE);
-                else if (com.xahertz.internal.SQLite.vltTableExists(vltTableName))
-                    JOptionPane.showMessageDialog(null, "A Group Nameed \"" + vltTableName + "\" Already Exists.", "Error", JOptionPane.ERROR_MESSAGE);
-                else {
-                    com.xahertz.internal.SQLite.newTable(vltTableName);
-                    FolderTree.setModel(com.xahertz.internal.SQLite.allTablesList());
-                    Passwords_Table_Model(vltTableName);
-                    Vault_Table_Name = vltTableName;
-                }
-            }
-        }
-    }
-    
-    private void Edit_Group_ActionPerformed() {
-        if (Vault_Table_Name.equals("Root"))
-            JOptionPane.showMessageDialog(null, "\"Root\" can't be Renamed or Deleted.", "Error", JOptionPane.ERROR_MESSAGE);
-        else {
-            String vltTableName = JOptionPane.showInputDialog(null, "Enter a new Name:", "Rename Group: " + Vault_Table_Name, JOptionPane.PLAIN_MESSAGE);
-            if (vltTableName != null) {
-                if (!vltTableName.equals("")) {
-                    if (vltTableName.equals(Vault_Table_Name))
-                        JOptionPane.showMessageDialog(null, "New Name is same as the Old one. Nothing to Rename.", "Error", JOptionPane.ERROR_MESSAGE);
-                    else if (com.xahertz.internal.SQLite.vltTableExists(vltTableName))
-                        JOptionPane.showMessageDialog(null, "A Group Nameed \"" + vltTableName + "\" Already Exists.", "Error", JOptionPane.ERROR_MESSAGE);
-                    else {
-                        com.xahertz.internal.SQLite.renTable(vltTableName, Vault_Table_Name);
-                        FolderTree.setModel(com.xahertz.internal.SQLite.allTablesList());
-                        Passwords_Table_Model(vltTableName);
-                        Vault_Table_Name = vltTableName;
-                    }
-                }
-            }
-        }
-    }
-    
-    private void Delete_Group_ActionPerformed() {
-        if (Vault_Table_Name.equals("Root"))
-            JOptionPane.showMessageDialog(null, "\"Root\" can't be Renamed or Deleted.", "Error", JOptionPane.ERROR_MESSAGE);
-        else {
-            int response = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this Group? Doing this will also delete all of it's Entries.", "Delete Group: " + Vault_Table_Name, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-            if (response == JOptionPane.YES_OPTION) {
-                com.xahertz.internal.SQLite.remTable(Vault_Table_Name);
-                FolderTree.setModel(com.xahertz.internal.SQLite.allTablesList());
-                Passwords_Table_Model("Root");
-                Vault_Table_Name = "Root";
-            }
-        }
-    }
-    
-    private void Copy_Username_ActionPerformed() {
-        int row = Passwords_Table.getSelectedRow();
-        if (row == -1)
-            JOptionPane.showMessageDialog(null, "Please Select an Entry to copy it's Username.", "Entry Not Selected", JOptionPane.ERROR_MESSAGE);
-        else {
-            java.awt.datatransfer.Clipboard clipboard = java.awt.Toolkit.getDefaultToolkit().getSystemClipboard();
-            clipboard.setContents(new java.awt.datatransfer.StringSelection(Passwords_Table.getValueAt(row, 2).toString()), null);
-            Acknowledgment_Label.setText("Username Copied Successfully!     ");
-            javax.swing.Timer timer = new javax.swing.Timer(2000, (java.awt.event.ActionEvent evt) -> {
-                Acknowledgment_Label.setText("");
-            });
-            timer.setRepeats(false);
-            timer.start();
-        }
-    }
-    
-    private void Copy_Password_ActionPerformed() {
-        int row = Passwords_Table.getSelectedRow();
-        if (row == -1)
-            JOptionPane.showMessageDialog(null, "Please Select an Entry to copy it's Password.", "Entry Not Selected", JOptionPane.ERROR_MESSAGE);
-        else {
-            java.awt.datatransfer.Clipboard clipboard = java.awt.Toolkit.getDefaultToolkit().getSystemClipboard();
-            clipboard.setContents(new java.awt.datatransfer.StringSelection(Passwords_Table.getValueAt(row, 3).toString()), null);
-            Acknowledgment_Label.setText("Password Copied Successfully!     ");
-            javax.swing.Timer timer = new javax.swing.Timer(2000, (java.awt.event.ActionEvent evt) -> {
-                Acknowledgment_Label.setText("");
-            });
-            timer.setRepeats(false);
-            timer.start();
-        }
-    }
-    
-    private void Copy_URL_ActionPerformed() {
-        int row = Passwords_Table.getSelectedRow();
-        if (row == -1)
-            JOptionPane.showMessageDialog(null, "Please Select an Entry to copy it's URL.", "Entry Not Selected", JOptionPane.ERROR_MESSAGE);
-        else {
-            java.awt.datatransfer.Clipboard clipboard = java.awt.Toolkit.getDefaultToolkit().getSystemClipboard();
-            clipboard.setContents(new java.awt.datatransfer.StringSelection(Passwords_Table.getValueAt(row, 4).toString()), null);
-            Acknowledgment_Label.setText("URL Copied Successfully!     ");
-            javax.swing.Timer timer = new javax.swing.Timer(2000, (java.awt.event.ActionEvent evt) -> {
-                Acknowledgment_Label.setText("");
-            });
-            timer.setRepeats(false);
-            timer.start();
-        }
-    }
-    
-    private void Passwords_Table_Model(String TableName) {
-        Passwords_Table.setModel(com.xahertz.internal.Functions.vltTableModel(TableName));
-        Passwords_Table.getColumnModel().getColumn(0).setMinWidth(0);
-        Passwords_Table.getColumnModel().getColumn(0).setMaxWidth(0);
-        Passwords_Table.getColumnModel().getColumn(0).setWidth(0);
-        Passwords_Table.getColumnModel().getColumn(3).setMinWidth(0);
-        Passwords_Table.getColumnModel().getColumn(3).setMaxWidth(0);
-        Passwords_Table.getColumnModel().getColumn(3).setWidth(0);
-        Details_Username_Field.setText("");
-        Details_Password_Field.setText("");
-        Details_URL_Field.setText("");
-        Details_Notes_TextArea.setText("");
     }
     
     private void OpenVaultPage() {
@@ -2455,7 +2300,7 @@ public class Main extends javax.swing.JFrame {
         Copy_URL_MenuItem.setEnabled(true);
         Settings_CheckBox_MenuItem.setEnabled(true);
     }
-    
+
     private void CloseVaultPage() {
         setTitle("Sentinel");
         Container_Deck.show(Container, "start");
@@ -2474,7 +2319,7 @@ public class Main extends javax.swing.JFrame {
         Copy_URL_MenuItem.setEnabled(false);
         Settings_CheckBox_MenuItem.setEnabled(false);
     }
-    
+
     private void EnableVaultDataManipulationFunctions() {
         New_Entry_Button.setEnabled(true);
         Edit_Entry_Button.setEnabled(true);
@@ -2486,7 +2331,7 @@ public class Main extends javax.swing.JFrame {
         Edit_Group_MenuItem.setEnabled(true);
         Delete_Group_MenuItem.setEnabled(true);
     }
-    
+
     private void DisableVaultDataManipulationFunctions() {
         New_Entry_Button.setEnabled(false);
         Edit_Entry_Button.setEnabled(false);
@@ -2498,7 +2343,162 @@ public class Main extends javax.swing.JFrame {
         Edit_Group_MenuItem.setEnabled(false);
         Delete_Group_MenuItem.setEnabled(false);
     }
-    
+
+    private void Passwords_Table_Model(String TableName) {
+        Passwords_Table.setModel(com.xahertz.internal.Functions.vltTableModel(TableName));
+        Passwords_Table.getColumnModel().getColumn(0).setMinWidth(0);
+        Passwords_Table.getColumnModel().getColumn(0).setMaxWidth(0);
+        Passwords_Table.getColumnModel().getColumn(0).setWidth(0);
+        Passwords_Table.getColumnModel().getColumn(3).setMinWidth(0);
+        Passwords_Table.getColumnModel().getColumn(3).setMaxWidth(0);
+        Passwords_Table.getColumnModel().getColumn(3).setWidth(0);
+        Details_Username_Field.setText("");
+        Details_Password_Field.setText("");
+        Details_URL_Field.setText("");
+        Details_Notes_TextArea.setText("");
+    }
+
+    private void New_Entry_ActionPerformed() {
+        UID = "SVLT-" + new java.text.SimpleDateFormat("yyMMdd-HHmmss").format(new java.util.Date())+ "-" + com.xahertz.internal.Functions.randomID(8);
+        EntryPage_Label.setText(Vault_Table_Name + " \u2022 New Entry");
+        Container_Deck.show(Container, "entry");
+        DisableVaultDataManipulationFunctions();
+    }
+
+    private void Edit_Entry_ActionPerformed(){
+        int row = Passwords_Table.getSelectedRow();
+        if (row == -1)
+            JOptionPane.showMessageDialog(null, "Please Select an Entry to Edit.", "Entry Not Selected", JOptionPane.ERROR_MESSAGE);
+        else {
+            UID = Passwords_Table.getValueAt(row, 0).toString();
+            Title_TextField.setText(Passwords_Table.getValueAt(row, 1).toString());
+            Username_TextField.setText(Passwords_Table.getValueAt(row, 2).toString());
+            Password_Field.setText(Passwords_Table.getValueAt(row, 3).toString());
+            URL_TextField.setText(Passwords_Table.getValueAt(row, 4).toString());
+            Notes_TextArea.setText(Passwords_Table.getValueAt(row, 5).toString());
+            EntryPage_Label.setText(Vault_Table_Name + " \u2022 " + Passwords_Table.getValueAt(row, 1).toString() + " \u2022 Edit Entry");
+            Container_Deck.show(Container, "entry");
+            DisableVaultDataManipulationFunctions();
+        }
+    }
+
+    private void Delete_Entry_ActionPerformed() {
+        int row = Passwords_Table.getSelectedRow();
+        if (row == -1)
+            JOptionPane.showMessageDialog(null, "Please Select an Entry to be Deleted.", "Entry Not Selected", JOptionPane.ERROR_MESSAGE);
+        else {
+            int response = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this Entry?.", "Delete Entry: " + Passwords_Table.getValueAt(row, 1).toString(), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (response == JOptionPane.YES_OPTION) {
+                com.xahertz.internal.SQLite.remTableEntry(Vault_Table_Name, Passwords_Table.getValueAt(row, 0).toString());
+                Passwords_Table_Model(Vault_Table_Name);
+            }
+        }
+    }
+
+    private void New_Group_ActionPerformed() {
+        String vltTableName = JOptionPane.showInputDialog(null, "Enter a Name:", "New Group", JOptionPane.PLAIN_MESSAGE);
+        if (vltTableName != null) {
+            if (!vltTableName.equals("")) {
+                if (vltTableName.equals("Root"))
+                    JOptionPane.showMessageDialog(null, "\"Root\" can't be used as a Group Name.", "Error", JOptionPane.ERROR_MESSAGE);
+                if (vltTableName.equals("Configuration"))
+                    JOptionPane.showMessageDialog(null, "\"Configuration\" can't be used as a Group Name.", "Error", JOptionPane.ERROR_MESSAGE);
+                else if (com.xahertz.internal.SQLite.vltTableExists(vltTableName))
+                    JOptionPane.showMessageDialog(null, "A Group Nameed \"" + vltTableName + "\" Already Exists.", "Error", JOptionPane.ERROR_MESSAGE);
+                else {
+                    com.xahertz.internal.SQLite.newTable(vltTableName);
+                    FolderTree.setModel(com.xahertz.internal.SQLite.allTablesList());
+                    Passwords_Table_Model(vltTableName);
+                    Vault_Table_Name = vltTableName;
+                }
+            }
+        }
+    }
+
+    private void Edit_Group_ActionPerformed() {
+        if (Vault_Table_Name.equals("Root"))
+            JOptionPane.showMessageDialog(null, "\"Root\" can't be Renamed or Deleted.", "Error", JOptionPane.ERROR_MESSAGE);
+        else {
+            String vltTableName = JOptionPane.showInputDialog(null, "Enter a new Name:", "Rename Group: " + Vault_Table_Name, JOptionPane.PLAIN_MESSAGE);
+            if (vltTableName != null) {
+                if (!vltTableName.equals("")) {
+                    if (vltTableName.equals(Vault_Table_Name))
+                        JOptionPane.showMessageDialog(null, "New Name is same as the Old one. Nothing to Rename.", "Error", JOptionPane.ERROR_MESSAGE);
+                    else if (com.xahertz.internal.SQLite.vltTableExists(vltTableName))
+                        JOptionPane.showMessageDialog(null, "A Group Nameed \"" + vltTableName + "\" Already Exists.", "Error", JOptionPane.ERROR_MESSAGE);
+                    else {
+                        com.xahertz.internal.SQLite.renTable(vltTableName, Vault_Table_Name);
+                        FolderTree.setModel(com.xahertz.internal.SQLite.allTablesList());
+                        Passwords_Table_Model(vltTableName);
+                        Vault_Table_Name = vltTableName;
+                    }
+                }
+            }
+        }
+    }
+
+    private void Delete_Group_ActionPerformed() {
+        if (Vault_Table_Name.equals("Root"))
+            JOptionPane.showMessageDialog(null, "\"Root\" can't be Renamed or Deleted.", "Error", JOptionPane.ERROR_MESSAGE);
+        else {
+            int response = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this Group? Doing this will also delete all of it's Entries.", "Delete Group: " + Vault_Table_Name, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (response == JOptionPane.YES_OPTION) {
+                com.xahertz.internal.SQLite.remTable(Vault_Table_Name);
+                FolderTree.setModel(com.xahertz.internal.SQLite.allTablesList());
+                Passwords_Table_Model("Root");
+                Vault_Table_Name = "Root";
+            }
+        }
+    }
+
+    private void Copy_Username_ActionPerformed() {
+        int row = Passwords_Table.getSelectedRow();
+        if (row == -1)
+            JOptionPane.showMessageDialog(null, "Please Select an Entry to copy it's Username.", "Entry Not Selected", JOptionPane.ERROR_MESSAGE);
+        else {
+            java.awt.datatransfer.Clipboard clipboard = java.awt.Toolkit.getDefaultToolkit().getSystemClipboard();
+            clipboard.setContents(new java.awt.datatransfer.StringSelection(Passwords_Table.getValueAt(row, 2).toString()), null);
+            Acknowledgment_Label.setText("Username Copied Successfully!     ");
+            javax.swing.Timer timer = new javax.swing.Timer(2000, (java.awt.event.ActionEvent evt) -> {
+                Acknowledgment_Label.setText("");
+            });
+            timer.setRepeats(false);
+            timer.start();
+        }
+    }
+
+    private void Copy_Password_ActionPerformed() {
+        int row = Passwords_Table.getSelectedRow();
+        if (row == -1)
+            JOptionPane.showMessageDialog(null, "Please Select an Entry to copy it's Password.", "Entry Not Selected", JOptionPane.ERROR_MESSAGE);
+        else {
+            java.awt.datatransfer.Clipboard clipboard = java.awt.Toolkit.getDefaultToolkit().getSystemClipboard();
+            clipboard.setContents(new java.awt.datatransfer.StringSelection(Passwords_Table.getValueAt(row, 3).toString()), null);
+            Acknowledgment_Label.setText("Password Copied Successfully!     ");
+            javax.swing.Timer timer = new javax.swing.Timer(2000, (java.awt.event.ActionEvent evt) -> {
+                Acknowledgment_Label.setText("");
+            });
+            timer.setRepeats(false);
+            timer.start();
+        }
+    }
+
+    private void Copy_URL_ActionPerformed() {
+        int row = Passwords_Table.getSelectedRow();
+        if (row == -1)
+            JOptionPane.showMessageDialog(null, "Please Select an Entry to copy it's URL.", "Entry Not Selected", JOptionPane.ERROR_MESSAGE);
+        else {
+            java.awt.datatransfer.Clipboard clipboard = java.awt.Toolkit.getDefaultToolkit().getSystemClipboard();
+            clipboard.setContents(new java.awt.datatransfer.StringSelection(Passwords_Table.getValueAt(row, 4).toString()), null);
+            Acknowledgment_Label.setText("URL Copied Successfully!     ");
+            javax.swing.Timer timer = new javax.swing.Timer(2000, (java.awt.event.ActionEvent evt) -> {
+                Acknowledgment_Label.setText("");
+            });
+            timer.setRepeats(false);
+            timer.start();
+        }
+    }
+
     /**
      * @param args the command line arguments
      */

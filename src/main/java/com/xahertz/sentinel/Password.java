@@ -240,7 +240,7 @@ public class Password extends javax.swing.JFrame {
         else
             Generate_Password_Button.setEnabled(false);
     }
-    
+
     /**
      * @param args the command line arguments
      */

@@ -167,28 +167,6 @@ public class SQLite {
         }
     }
     
-    public static void vltPassword(String vltPass) {
-        String vltNewPass = String.format("PRAGMA rekey='%s'", vltPass);
-        try {
-            Statement vltDBquery = vltDB.createStatement();
-            vltDBquery.execute(vltNewPass);
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-    
-    public static void closeVault() {
-        if (vltDB != null) {
-            try {
-                if (vltDB.isValid(5)) {
-                    vltDB.close();
-                }
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-    }
-    
     public static String getVaultName() {
         String allTables = "SELECT Value FROM Configuration WHERE Parameter = 'Vault Name';";
         String vltName = null;
@@ -212,6 +190,16 @@ public class SQLite {
         }
     }
     
+    public static void vltPassword(String vltPass) {
+        String vltNewPass = String.format("PRAGMA rekey='%s'", vltPass);
+        try {
+            Statement vltDBquery = vltDB.createStatement();
+            vltDBquery.execute(vltNewPass);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
     public static DefaultTreeModel allTablesList() {
         DefaultMutableTreeNode treeNode1 = new DefaultMutableTreeNode("Root");
         DefaultMutableTreeNode treeNode2;
@@ -326,6 +314,18 @@ public class SQLite {
             vltDBquery.executeUpdate();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+        
+    public static void closeVault() {
+        if (vltDB != null) {
+            try {
+                if (vltDB.isValid(5)) {
+                    vltDB.close();
+                }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
 }
