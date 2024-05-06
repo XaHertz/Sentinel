@@ -1691,7 +1691,11 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_Settings_CheckBox_MenuItemItemStateChanged
 
     private void About_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_About_MenuItemActionPerformed
-        JOptionPane.showMessageDialog(null, "<html><h1>Sentinel Password Manager</h1></html>\nVersion " + Version + "\nCopyright \u00A9 2024 XaHertz", "About", JOptionPane.PLAIN_MESSAGE);
+        JOptionPane.showMessageDialog(null,
+            "<html><h1>Sentinel Password Manager</h1></html>Version " + Version + "\nCopyright \u00A9 2024 XaHertz",
+            "About Sentinel", JOptionPane.PLAIN_MESSAGE,
+            new javax.swing.ImageIcon(getClass().getResource("/images/app-icon.png"))
+        );
     }//GEN-LAST:event_About_MenuItemActionPerformed
 
     private void Open_Vault_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Open_Vault_ButtonActionPerformed
@@ -1778,7 +1782,11 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_Settings_ToggleButtonItemStateChanged
 
     private void About_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_About_ButtonActionPerformed
-        JOptionPane.showMessageDialog(null, "<html><h1>Sentinel Password Manager</h1></html>\nVersion " + Version + "\nCopyright \u00A9 2024 XaHertz", "About", JOptionPane.PLAIN_MESSAGE);
+        JOptionPane.showMessageDialog(null,
+            "<html><h1>Sentinel Password Manager</h1></html>Version " + Version + "\nCopyright \u00A9 2024 XaHertz",
+            "About Sentinel", JOptionPane.PLAIN_MESSAGE,
+            new javax.swing.ImageIcon(getClass().getResource("/images/app-icon.png"))
+        );
     }//GEN-LAST:event_About_ButtonActionPerformed
 
     private void StartPage_Create_Vault_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StartPage_Create_Vault_ButtonActionPerformed
