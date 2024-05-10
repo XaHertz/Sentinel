@@ -15,6 +15,10 @@ public class Main extends javax.swing.JFrame {
         Version = "0.9.0";
         Vault_Table_Name = "Root";
         com.xahertz.internal.SQLite.initVaultList();
+        javax.swing.UIManager.put("Tree.showDefaultIcons", true);
+        javax.swing.UIManager.put("Tree.leafIcon", new javax.swing.ImageIcon(getClass().getResource("/images/folder-closed.png")));
+        javax.swing.UIManager.put("Tree.openIcon", new javax.swing.ImageIcon(getClass().getResource("/images/folder-opened.png")));
+        javax.swing.UIManager.put("Tree.closedIcon", new javax.swing.ImageIcon(getClass().getResource("/images/folder-closed.png")));
         initComponents();
         Container_Deck = (java.awt.CardLayout)Container.getLayout();
         if (!com.xahertz.internal.SQLite.getVaultList().isEmpty())
@@ -886,6 +890,7 @@ public class Main extends javax.swing.JFrame {
             }
         ));
         Passwords_Table.setComponentPopupMenu(Passwords_Table_PopupMenu);
+        Passwords_Table.setRowHeight(26);
         Passwords_Table.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         Passwords_Table.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -1997,7 +2002,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_FolderTreeMousePressed
 
     private void FolderTreeValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_FolderTreeValueChanged
-        if (evt.getNewLeadSelectionPath() != null){
+        if (evt.getNewLeadSelectionPath() != null) {
             String vltTableName = evt.getNewLeadSelectionPath().getLastPathComponent().toString();
             Passwords_Table_Model(vltTableName);
             Vault_Table_Name = vltTableName;
@@ -2530,6 +2535,10 @@ public class Main extends javax.swing.JFrame {
         javax.swing.UIManager.put("TextArea.inactiveBackground", new javax.swing.plaf.ColorUIResource(java.awt.Color.WHITE));
         javax.swing.UIManager.put("TextField.inactiveBackground", new javax.swing.plaf.ColorUIResource(java.awt.Color.WHITE));
         javax.swing.UIManager.put("PasswordField.inactiveBackground", new javax.swing.plaf.ColorUIResource(java.awt.Color.WHITE));
+        javax.swing.UIManager.put("Table.alternateRowColor", new javax.swing.plaf.ColorUIResource(new java.awt.Color(242, 242, 242)));
+        if (com.formdev.flatlaf.util.SystemInfo.isLinux) {
+            javax.swing.UIManager.put("MenuBar.background", new javax.swing.plaf.ColorUIResource(new java.awt.Color(242, 242, 242)));
+        }
         //</editor-fold>
 
         /* Create and display the form */
