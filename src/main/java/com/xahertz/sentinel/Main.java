@@ -1696,11 +1696,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_Settings_CheckBox_MenuItemItemStateChanged
 
     private void About_MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_About_MenuItemActionPerformed
-        JOptionPane.showMessageDialog(null,
-            "<html><h1>Sentinel Password Manager</h1></html>Version " + Version + "\nCopyright \u00A9 2024 XaHertz",
-            "About Sentinel", JOptionPane.PLAIN_MESSAGE,
-            new javax.swing.ImageIcon(getClass().getResource("/images/app-icon.png"))
-        );
+        About_ActionPerformed();
     }//GEN-LAST:event_About_MenuItemActionPerformed
 
     private void Open_Vault_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Open_Vault_ButtonActionPerformed
@@ -1787,11 +1783,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_Settings_ToggleButtonItemStateChanged
 
     private void About_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_About_ButtonActionPerformed
-        JOptionPane.showMessageDialog(null,
-            "<html><h1>Sentinel Password Manager</h1></html>Version " + Version + "\nCopyright \u00A9 2024 XaHertz",
-            "About Sentinel", JOptionPane.PLAIN_MESSAGE,
-            new javax.swing.ImageIcon(getClass().getResource("/images/app-icon.png"))
-        );
+        About_ActionPerformed();
     }//GEN-LAST:event_About_ButtonActionPerformed
 
     private void StartPage_Create_Vault_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StartPage_Create_Vault_ButtonActionPerformed
@@ -2372,7 +2364,7 @@ public class Main extends javax.swing.JFrame {
     }
 
     private void New_Entry_ActionPerformed() {
-        UID = "SVLT-" + new java.text.SimpleDateFormat("yyMMdd-HHmmss").format(new java.util.Date())+ "-" + com.xahertz.internal.Functions.randomID(8);
+        UID = "SVLT-" + new java.text.SimpleDateFormat("yyMMdd-HHmmss").format(new java.util.Date()) + "-" + com.xahertz.internal.Functions.randomID(8);
         EntryPage_Label.setText(Vault_Table_Name + " \u2022 New Entry");
         Container_Deck.show(Container, "entry");
         DisableVaultDataManipulationFunctions();
@@ -2512,6 +2504,17 @@ public class Main extends javax.swing.JFrame {
         }
     }
 
+    private void About_ActionPerformed() {
+        String Year = "2024";
+        if (java.time.Year.now().getValue() > 2024)
+            Year = "2024-" + java.time.Year.now().getValue();
+        JOptionPane.showMessageDialog(null,
+            "<html><h1>Sentinel Password Manager</h1></html>Version " + Version + "\nCopyright \u00A9 " + Year + " XaHertz",
+            "About Sentinel", JOptionPane.PLAIN_MESSAGE,
+            new javax.swing.ImageIcon(getClass().getResource("/images/app-icon.png"))
+        );
+    }
+    
     /**
      * @param args the command line arguments
      */
