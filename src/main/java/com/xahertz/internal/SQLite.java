@@ -25,7 +25,11 @@ public class SQLite {
     static File dataFolder = new File("data");
     static Path currentDirectory = Paths.get(System.getProperty("user.dir"));
     
+    /**
+    * Initializes the list of vaults and stores it in a Vault List File.
+    */
     public static void initVaultList() {
+        // Changes the data folder loaction to inside appdata folder if the current directory is not writable.
         if (!Files.isWritable(currentDirectory))
             dataFolder = new File(System.getenv("appdata") + File.separator + "Sentinel");
         dataFolder.mkdir();
@@ -39,6 +43,11 @@ public class SQLite {
         }
     }
     
+    /**
+    * Returns a list of paths from the vaults table. The list is sorted by Last Opened in Descending Order.
+    * 
+    * @return A DefaultListModel that contains the list of paths.
+    */
     public static DefaultListModel<String> getVaultList() {
         DefaultListModel<String> listModel = new DefaultListModel<>();
         String vltsTable = "SELECT Path FROM Vaults ORDER BY LastOpened DESC;";
@@ -54,6 +63,13 @@ public class SQLite {
         return listModel;
     }
     
+    /**
+    * Gets the name of the Vault associated with the path.
+    * 
+    * @param vltPath - The path of the Vault File.
+    * 
+    * @return The name of the Vault associated with the path.
+    */
     public static String getVaultName(String vltPath) {
         String vltsTable = "SELECT Name FROM Vaults WHERE Path = ?;";
         String vltName = null;
@@ -68,6 +84,13 @@ public class SQLite {
         return vltName;
     }
     
+    /**
+    * Checks if the Vault has key. This is used to check if a Vault has a Key File or not.
+    * 
+    * @param vltPath - Path of the Vault to check.
+    * 
+    * @return true if the Vault has a Key File false if not.
+    */
     public static boolean getVaultHasKey(String vltPath) {
         String vltsTable = "SELECT HasKey FROM Vaults WHERE Path = ?;";
         boolean vltHasKey = false;
@@ -82,6 +105,13 @@ public class SQLite {
         return vltHasKey;
     }
     
+    /**
+    * Gets the Vault Key Path associated with a Vault. If there is no key path associated with the Vault null is returned.
+    * 
+    * @param vltPath - The path of the Vault.
+    * 
+    * @return The Vault Key Path or null if there is no key path.
+    */
     public static String getVaultKeyPath(String vltPath) {
         String vltsTable = "SELECT KeyPath FROM Vaults WHERE Path = ?;";
         String vltKeyPath = null;
@@ -96,6 +126,14 @@ public class SQLite {
         return vltKeyPath;
     }
     
+    /**
+    * Sets the vault list. This is called from the UI and should not be called directly.
+    * 
+    * @param vltPath - Path of the Vault to set
+    * @param vltName - Name of the Vault to set
+    * @param vltKey - True if the Vault has a Key File ( or false if there is no Key )
+    * @param valtKey - Path of the Key File to set ( or null if not set )
+    */
     public static void setVaultList(String vltPath, String vltName, boolean vltKey, String valtKey) {
         String vltsTable = "REPLACE INTO Vaults (Path, Name, HasKey, KeyPath, LastOpened) VALUES(?, ?, ?, ?, datetime('now'));";
         try {
@@ -110,6 +148,9 @@ public class SQLite {
         }
     }
     
+    /**
+    * Remove all entries from Vaults table.
+    */
     public static void remVaultList(){
         String vltsTable = "DELETE FROM Vaults;";
         try {
@@ -120,6 +161,9 @@ public class SQLite {
         }
     }
     
+    /**
+    * Closes the vault list if it is open. This is called when the user clicks the close vault button.
+    */
     public static void closeVaultList() {
         if (listDB != null) {
             try {
@@ -132,6 +176,15 @@ public class SQLite {
         }
     }
 
+    /**
+    * Creates a Vault file in the given path. If the file already exists it will be deleted before creating the Vault file.
+    * 
+    * @param vltName - Name of the Vault file to create.
+    * @param vltPass - Password that will be used to access the Vault file.
+    * @param vltPath - Path to the Vault file.
+    * 
+    * @return true if the Vault was created false if not.
+    */
     public static boolean createNewVault(String vltName, String vltPass, String vltPath) {
         String rootTable = "CREATE TABLE IF NOT EXISTS Root (\"UID\" TEXT NOT NULL UNIQUE, \"Title\" TEXT, \"Username\" TEXT, \"Password\" TEXT, \"URL\" TEXT, \"Notes\" TEXT, PRIMARY KEY(\"UID\"));";
         String allTables = "CREATE TABLE IF NOT EXISTS AllTables (\"Table Name\" TEXT NOT NULL UNIQUE, PRIMARY KEY(\"Table Name\"));";

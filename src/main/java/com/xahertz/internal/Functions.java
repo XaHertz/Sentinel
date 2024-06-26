@@ -21,6 +21,13 @@ public class Functions {
     private static final String LOWER = "abcdefghijklmnopqrstuvwxyz";
     private static final SecureRandom random = new SecureRandom();
     
+    /**
+    * Generates a random ID of the specified length.
+    * 
+    * @param length - the length of the ID to generate. Must be greater than 0.
+    * 
+    * @return a random ID of the specified length.
+    */
     public static String randomID(int length) {
         StringBuilder builder = new StringBuilder(length);
         for (int i=0; i<length; i++)
@@ -28,6 +35,18 @@ public class Functions {
         return builder.toString();
     }
     
+    /**
+    * Generates a password of the specified length. The password is composed of uppercase lowercase and digits depending on the parameters.
+    * 
+    * @param length - the length of the password to generate. Must be greater than 0.
+    * @param upper - true if upper characters should be included in the password.
+    * @param lower - true if lower characters should be included in the password.
+    * @param digits - true if digits should be included in the password.
+    * @param specialA - true if special characters Set-A should be included in the password.
+    * @param specialB - true if special characters Set-B should be included in the password.
+    * 
+    * @return a randomly generated password of the specified length that is comprised of uppercase lowercase digits and special characters.
+    */
     public static String generatePassword(int length, boolean upper, boolean lower, boolean digits, boolean specialA, boolean specialB) {
         StringBuilder password = new StringBuilder(length);
         ALL_CHARS = null;
@@ -70,12 +89,24 @@ public class Functions {
         return new String(charArray);
     }
     
+    /**
+    * Generates a 64 byte salt and returns it as a hex string. The salt is randomly generated and converted to hex using #toHex ( byte [] ).
+    * 
+    * @return a string containing the salt to be used in the MD5 hash function ( SHA1 ) or the salt to be
+    */
     public static String getSalt() {
         byte[] salt = new byte[64];
         random.nextBytes(salt);
         return toHex(salt);
     }
 
+    /**
+    * Converts a byte array to a hexadecimal string. The string is padded with 0's if necessary to accommodate the length of the byte array.
+    * 
+    * @param array - The byte array to convert. Must be non-null and non-empty.
+    * 
+    * @return The hexadecimal representation of the byte array as a string. May be empty but never null even if the byte array is null.
+    */
     private static String toHex(byte[] array) {
         java.math.BigInteger bi = new java.math.BigInteger(1, array);
         String hex = bi.toString(16);
@@ -86,6 +117,12 @@ public class Functions {
             return hex;
     }
     
+    /**
+    * Writes the key data to the keyFile. If there is a file with the same name it is deleted before writing the data.
+    * 
+    * @param keyData - The key data to write.
+    * @param keyFile - The file to write the key data to.
+    */
     public static void writeKeyFile(String keyData, String keyFile) {
         java.io.File vltKey = new java.io.File(keyFile);
         if (vltKey.exists())
@@ -97,6 +134,13 @@ public class Functions {
         }
     }
     
+    /**
+    * Reads the key file and returns the contents. If there is an error the user is shown an error message.
+    * 
+    * @param keyFile - path to the key file.
+    * 
+    * @return String contents of the key file or null if there is an error in the file or the file is empty.
+    */
     public static String readKeyFile(String keyFile) {
         String keyData = null;
         try (java.io.BufferedReader keyReader = new java.io.BufferedReader(new java.io.FileReader(keyFile))) {
@@ -107,6 +151,13 @@ public class Functions {
         return keyData;
     }
     
+    /**
+    * Creates a TableModel for Vault Table. This is a convenience method to use vltTableData ( String ) method.
+    * 
+    * @param vltTableName - The name of the table to create the TableModel for.
+    * 
+    * @return A TableModel for the table with the given name or null if the table doesn't exist or is unreadable.
+    */
     public static TableModel vltTableModel(String vltTableName) {
         ResultSet vltResult = SQLite.vltTableData(vltTableName);
         DefaultTableModel vltTableModel = new DefaultTableModel() {
