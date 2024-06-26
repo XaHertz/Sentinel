@@ -3,7 +3,7 @@
 set name=Sentinel
 set vendor=XaHertz
 set year=2024
-set version=0.9.0
+set version=1.0.0
 
 set input_dir=target
 set working_dir=target

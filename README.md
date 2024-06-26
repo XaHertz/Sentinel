@@ -7,6 +7,7 @@ A No-Frills Password Manager written in Java
 1. **IDE** : [Apache NetBeans](https://netbeans.apache.org/) : Version 21
 2. **JDK** : [BellSoft Liberica](https://bell-sw.com/libericajdk/) : Version 21.0.3+10 LTS
 3. **Build Tool** : [Apache Maven](https://maven.apache.org/) : Version 3.9.6
+4. **Packaging Tool** : [WiX Toolset](https://wixtoolset.org/) : Version 3.14.1
 
 ## Dependencies
 

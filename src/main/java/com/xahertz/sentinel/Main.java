@@ -12,7 +12,7 @@ public class Main extends javax.swing.JFrame {
      * Creates new form Main
      */
     public Main() {
-        Version = "0.9.0";
+        Version = "1.0.0";
         Vault_Table_Name = "Root";
         com.xahertz.internal.SQLite.initVaultList();
         javax.swing.UIManager.put("Tree.showDefaultIcons", true);
