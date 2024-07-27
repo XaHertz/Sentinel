@@ -11,6 +11,6 @@ A No-Frills Password Manager written in Java
 
 ## Dependencies
 
-1. **[SQLite JDBC Crypt](https://github.com/Willena/sqlite-jdbc-crypt)** : Version 3.45.1.0
-2. **[Password4j](https://password4j.com/)** : Version 1.8.1
-3. **[FlatLaf](https://www.formdev.com/flatlaf/)** : Version 3.4.1
+1. **[SQLite JDBC Crypt](https://github.com/Willena/sqlite-jdbc-crypt)** : Version 3.46.0.0
+2. **[Password4j](https://password4j.com/)** : Version 1.8.2
+3. **[FlatLaf](https://www.formdev.com/flatlaf/)** : Version 3.5

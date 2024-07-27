@@ -2509,7 +2509,7 @@ public class Main extends javax.swing.JFrame {
         if (java.time.Year.now().getValue() > 2024)
             Year = "2024-" + java.time.Year.now().getValue();
         JOptionPane.showMessageDialog(null,
-            "<html><h1>Sentinel Password Manager</h1></html>Version " + Version + "\nCopyright \u00A9 " + Year + " XaHertz",
+            "<html><h1 style=\"font-size:20px;\">Sentinel Password Manager</h1></html>Version " + Version + "\nCopyright \u00A9 " + Year + " XaHertz",
             "About Sentinel", JOptionPane.PLAIN_MESSAGE,
             new javax.swing.ImageIcon(getClass().getResource("/images/app-icon.png"))
         );
