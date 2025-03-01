@@ -44,6 +44,7 @@ public class Password extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Generate Password");
+        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/images/app-icon.png")).getImage());
         setResizable(false);
 
         Password_Field.setEchoChar((char) 0);
